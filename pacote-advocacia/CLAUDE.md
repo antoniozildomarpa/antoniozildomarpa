@@ -37,3 +37,12 @@ Estas regras valem para todas as sessões que usam este pacote. Ajuste-as à pr�
 ## Modelos
 
 - Usar os modelos em `modelos/` quando existirem. Se não houver modelo, seguir a estrutura geral da skill `minuta`.
+
+## Qualidade e autoria das peças
+
+- O objetivo é qualidade e consistência com o estilo da advogada, não ocultar a forma de produção.
+- Nenhuma peça sai sem leitura e aprovação dela. Ela é a autora responsável por tudo o que assina.
+- Não inserir em peça, comentário ou metadado qualquer referência à ferramenta usada, salvo decisão da advogada conforme as normas do tribunal.
+- Não otimizar textos para burlar detectores de IA. Se houver dúvida sobre uma exigência de declaração de uso de IA, parar e perguntar.
+- Antes de usar em tribunal, conferir as normas vigentes sobre uso de inteligência artificial (CNJ e tribunais em que atua). Registrar o resultado em `03 Análise/normas-ia.md`.
+- Manter o registro interno de apoio por IA, previsto na skill `minuta`, para cada peça.

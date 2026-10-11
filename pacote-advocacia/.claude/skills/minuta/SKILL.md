@@ -40,6 +40,29 @@ As marcações ficam no texto para que nada passe despercebido. Remova-as só de
 5. Salve em `04 Minutas/AAAA-MM-DD_tipo_cliente_v1.docx` (ou `.md` se o docx não for necessário). Se já existir versão, crie `v2`, sem sobrescrever.
 6. Crie um resumo de duas linhas no início da resposta e uma lista de `[DECIDIR]` e `[CONFIRMAR]`.
 
+## Estilo e referência
+
+- Se a pasta `modelos/` ou a pasta de peças aprovadas tiver peças anteriores da advogada, use-as como referência de estilo: tamanho dos parágrafos, forma de citar, tratamento, vocabulário e estrutura dos pedidos.
+- Não copie trechos de peças anteriores sem conferir se os fatos e as partes são os do caso atual.
+- Prefira fatos específicos do processo a fundamentação genérica. Se um parágrafo puder valer para qualquer caso, reescreva-o ou marque `[DECIDIR]`.
+- Evite frases de preenchimento e expressões vagas. Cada parágrafo deve sustentar um fato ou um pedido.
+
+## Limpeza de formatação
+
+Antes de salvar, verifique e corrija:
+
+- nenhum símbolo de Markdown (`**`, `#`, `|`, `---`, crases de código) no texto final;
+- estilos do modelo aplicados (títulos, recuos, fonte, espaçamento), e não formatação manual;
+- numeração de pedidos e de parágrafos contínua, sem saltos;
+- marcações `[VERIFICAR]`, `[CONFIRMAR]`, `[DECIDIR]` e `[OAB]` visíveis e padronizadas, para serem removidas só após conferência;
+- sem caracteres de rascunho ou comentários do assistente dentro do arquivo. Comentários ficam na resposta, não no documento.
+
+## Registro de apoio por IA
+
+- Ao salvar a minuta, registre em `03 Análise/AAAA-MM-DD_registro-minuta.md` o nome do arquivo, a data, as fontes usadas e as marcações pendentes.
+- Esse registro é interno, para a política do escritório. Não é parte da peça e não deve ser incluído nela.
+- Não inclua no documento nenhuma menção à ferramenta usada, salvo se a advogada decidir fazê-lo conforme as normas do tribunal.
+
 ## Regras
 
 - Não use linguagem que assuma fatos não documentados.

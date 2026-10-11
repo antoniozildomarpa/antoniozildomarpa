@@ -46,6 +46,8 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 - [ ] Testar as ferramentas nativas, na ordem de `ferramentas/README.md`, com dados fictícios.
 - [ ] Verificar a cobertura do Brasil no Legal Data Hunter antes de qualquer instalação.
 - [ ] Testar o conector da Jurídico AI com dez decisões e comparar com a fonte oficial.
+- [ ] Conferir as normas do CNJ e dos tribunais em que ela atua sobre uso de IA em processos, e registrar em `03 Análise/normas-ia.md` (ver `CLAUDE.md`, seção de qualidade e autoria).
+- [ ] Reunir de duas a três peças antigas já aprovadas por ela, para servirem de referência de estilo na skill `minuta`.
 
 ## Ferramentas em avaliação
 
