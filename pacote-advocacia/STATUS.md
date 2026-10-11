@@ -43,6 +43,19 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 - [ ] Cadastro automático de clientes, na conta dela, com revisão antes da importação.
 - [ ] Teste com caso fictício, conforme `checklist-instalacao.md`.
 - [ ] Criar as rotinas na conta dela, uma por vez.
+- [ ] Testar as ferramentas nativas, na ordem de `ferramentas/README.md`, com dados fictícios.
+- [ ] Verificar a cobertura do Brasil no Legal Data Hunter antes de qualquer instalação.
+- [ ] Testar o conector da Jurídico AI com dez decisões e comparar com a fonte oficial.
+
+## Ferramentas em avaliação
+
+Índice e critérios em `ferramentas/README.md`. Ordem: primeiro as nativas do Claude, depois as de terceiros.
+
+- **Nativas:** skills de Word, PDF e planilha; Claude Docs; visualização (dataviz); Claude Code; rotinas agendadas; Claude in Chrome; app desktop. Detalhes em `ferramentas/01-claude-nativo.md`.
+- **Terceiros:** conector de jurisprudência da Jurídico AI; servidores comunitários para dados públicos de tribunais; plugin "Legal"; Legal Data Hunter (verificar se cobre o Brasil); Stintwell. Detalhes em `ferramentas/02-terceiros.md`.
+- **Descartadas:** ferramentas de EUA, Espanha, Emirados, Vietnã e Japão, e LegalizaObra por enquanto.
+
+Todas as ferramentas estão pendentes de teste. Nenhuma foi instalada nesta sessão.
 
 ## Premissas em aberto
 
