@@ -1,0 +1,190 @@
+# Plano de instalação das ferramentas do Claude
+
+Plano para instalar as 18 ferramentas escolhidas em 2026-10-21, **pelo Claude Code sempre que possível**. Cobre as três frentes: geoprocessamento e fiscalização ambiental, escritório de advocacia e organização pessoal.
+
+Este plano vale para a **sua conta**. A instalação na conta da advogada segue o `pacote-advocacia/ferramentas/`, com as regras de lá.
+
+Legenda: `[ ]` pendente · `[~]` instalado, em teste · `[x]` aprovado para uso
+
+## Como cada item é instalado
+
+Nem tudo pode ser feito só pelo terminal. Três situações:
+
+| Tipo | Quem faz | Itens |
+|---|---|---|
+| **Pelo Claude Code, por mim**, em arquivos do repositório (`.claude/`, `CLAUDE.md`, skills) | Eu, com a sua aprovação em cada commit | 1, 2, 15, 16, 17, 18, e plugins 7, 11 e 12 via configuração |
+| **Pelo Claude Code, com um passo seu** (autorizar login OAuth ou instalar no seu computador) | Você digita o comando ou autoriza no navegador | 9, 11, 12, 13, 14 |
+| **Fora do terminal**, uma única vez | Você, no navegador ou no app | 10 (app desktop) e a autorização inicial dos conectores |
+
+Os itens 3, 4, 5, 6 e 8 já estão disponíveis. Basta usar e testar.
+
+## Regras gerais
+
+1. **Uma fase por vez.** Só avance quando os testes da fase anterior passarem.
+2. **Teste com dados fictícios** antes de usar com casos reais, principalmente em processos, autuações e dados de clientes.
+3. **Conectores são lidos no início da sessão.** Depois de ligar um conector, abra uma sessão nova.
+4. **Comandos e menus mudam.** Se um comando não funcionar, rode `/help` no Claude Code ou peça "como instalo X na versão atual".
+5. **Nada é enviado sem a sua aprovação**: e-mail, protocolo, publicação ou mensagem a terceiros.
+6. **Sessão na nuvem e terminal local são diferentes.** As sessões na nuvem (como esta) não acessam o seu computador. QGIS, Chrome e arquivos locais exigem o Claude Code instalado no seu computador ou o app desktop.
+
+## Decisões a tomar antes de começar
+
+- [ ] **E-mail:** Gmail ou Outlook (Microsoft 365)? Define o item 13.
+- [ ] **Gerenciador de tarefas:** Notion, Asana ou ClickUp? Define o item 14. Escolha só um.
+- [ ] **Pastas por frente:** confirmar os nomes do item 15. Proposta: `geoprocessamento/`, `pacote-advocacia/` (já existe) e `pessoal/`.
+- [ ] **Claude Code no seu computador:** já está instalado? Necessário para os itens 9 e 10 e para trabalhar com arquivos locais.
+
+---
+
+## Fase 1: Fundação (dia 1)
+
+### 15. Contexto por frente (equivalente aos Projetos, no Claude Code)
+- [ ] **Como:** em vez de Projetos no claude.ai, cada frente vira uma pasta do repositório com seu próprio `CLAUDE.md` (instruções lidas automaticamente em toda sessão aberta ali).
+- **Feito por mim:**
+  1. Criar `geoprocessamento/CLAUDE.md`: padrões de carta imagem, fontes de imagem, sistema de coordenadas, regras de entrega.
+  2. Criar `pessoal/CLAUDE.md`: rotina, prioridades, formato do planejamento.
+  3. `pacote-advocacia/CLAUDE.md` já existe.
+- **Opcional:** criar também os Projetos no claude.ai, para conversas pelo celular.
+- **Teste:** abrir uma sessão na pasta e pedir "resuma as regras desta frente".
+
+### 13. Conector de e-mail (Gmail ou Outlook)
+- [ ] **Como:** conecte uma vez em https://claude.ai/customize/connectors com a mesma conta do Claude Code. Os conectores da conta passam a aparecer nas sessões do Claude Code.
+- **No terminal:** abra uma sessão nova e rode `/mcp` para confirmar que o conector aparece e está autenticado.
+- **Recomendação:** exigir confirmação para envio.
+- **Teste:** "liste os 5 e-mails mais recentes sem resposta". Depois: "rascunhe uma resposta ao segundo, sem enviar".
+
+### 14. Gerenciador de tarefas (Notion, Asana ou ClickUp)
+- [ ] **Como:** igual ao item 13 (conectar na conta e conferir com `/mcp`). Alternativa pelo terminal local: `claude mcp add --transport http <nome> <endereço-do-servidor>` e depois `/mcp` para autenticar. O endereço oficial do servidor eu confirmo na hora, pela documentação do fornecedor.
+- **Observação:** nesta sessão na nuvem, Notion e Asana falharam ao conectar porque o proxy da rede bloqueou. Para usar nas sessões na nuvem, é preciso liberar o domínio na política de rede do ambiente.
+- **Montagem:** quadro com três colunas (A fazer, Fazendo, Feito) e etiquetas por frente (Geo, Advocacia, Pessoal).
+- **Teste:** "crie a tarefa 'Teste de integração' na coluna A fazer, com etiqueta Pessoal" e confira no app.
+
+## Fase 2: Produtividade e rotina (dias 2 e 3)
+
+Depende da Fase 1.
+
+### 11. Plugin Productivity (Anthropic)
+- [ ] **Pelo terminal:**
+  ```
+  /plugin marketplace add anthropics/knowledge-work-plugins
+  /plugin install productivity@knowledge-work-plugins
+  ```
+- **Alternativa feita por mim:** declarar o marketplace e o plugin em `.claude/settings.json` do repositório, para que ele carregue em toda sessão aberta aqui, inclusive na nuvem.
+- **O que traz:** skills de gestão de tarefas, planejamento do dia, memória de contexto e atualização de status.
+- **Teste:** rodar a skill de início (`start`) e depois "planeje meu dia de amanhã com base na agenda e nas tarefas abertas".
+
+### 3. Morning brief (`/morning`)
+- [ ] **Pelo terminal:** digite `/morning` ou peça "configure meu morning brief". Defina o que entra: agenda, e-mails importantes, tarefas vencendo, prazos.
+- **Teste:** rodar uma vez manualmente e ajustar.
+
+### 2. Tarefas agendadas
+- [ ] **Feito por mim:** eu crio as tarefas agendadas direto daqui, uma por vez, com o horário no seu fuso.
+- **Rotinas propostas:**
+  1. Morning brief: dias úteis, cedo.
+  2. Revisão semanal: sexta à tarde, com o que foi feito, o que ficou e as prioridades seguintes.
+  3. Alerta de prazos: diário, a partir da planilha de processos (depois da Fase 3).
+  4. Novos embargos e autuações da semana, se houver fonte pública ou planilha de controle.
+- **Teste:** revisar as saídas da primeira semana de cada rotina antes de manter.
+
+## Fase 3: Documentos e dados (dias 4 a 6)
+
+Já disponíveis. Falta padronizar o uso.
+
+### 4. Claude Docs
+- [ ] **Teste:** "crie um doc de relatório técnico de embargo com dados fictícios". Comente um trecho no doc e peça para o Claude responder ao comentário.
+- **Uso:** pareceres, relatórios técnicos, minutas. Exporta para Word, PDF e Google Docs.
+- **Cuidado:** verifique com quem o doc está compartilhado antes de pôr dados reais.
+
+### 5. PDF + PDF Viewer
+- [ ] **Teste:** com um PDF fictício ou público: extrair texto, gerar índice de peças, juntar dois arquivos, abrir no visualizador (`/pdf-viewer:open`) e anotar.
+- **Cuidado:** número ou data extraído por OCR é conferido no original.
+
+### 6. Planilhas (xlsx) + Google Sheets
+- [ ] **Feito por mim, com a sua aprovação:** criar no Drive as planilhas-base (Controle de processos, Controle de embargos e cartas imagem, Financeiro), com dados fictícios.
+- **Teste:** ler e atualizar uma linha de teste.
+
+### 7. Dataviz + Build Dashboard (plugin Data, já instalado)
+- [ ] **Teste:** a partir de uma planilha da Fase 3, "monte um painel com indicadores e gráficos".
+- **Uso:** área desmatada por ano, embargos por município, receita e inadimplência do escritório.
+
+## Fase 4: Navegação e automação de tela (semana 2)
+
+Exige o seu computador. Não funciona nas sessões na nuvem.
+
+### 9. Claude in Chrome
+- [ ] **Passos:**
+  1. Instale a extensão oficial "Claude" da Anthropic na loja do Chrome e confira o fornecedor.
+  2. No Claude Code local, rode `/chrome` para conectar o terminal à extensão.
+  3. Aprove só os sites necessários: SICAR, Planet, portais dos tribunais e dos órgãos ambientais.
+- **Teste:** com você já logado, "consulte o imóvel X no SICAR e liste as informações, sem baixar nada".
+- **Cuidado:** login, certificado digital, CAPTCHA e senhas ficam sempre com você.
+
+### 10. App desktop com controle do computador (QGIS)
+- [ ] **Exceção ao terminal:** o controle de tela funciona pelo app desktop do Claude (Windows ou Mac). Instale o app, ative o controle do computador nas configurações e, no Mac, conceda acessibilidade e gravação de tela.
+- **Teste:** com um projeto QGIS de cópia, "abra o projeto de teste, atualize o Atlas e exporte o layout em PDF".
+- **Alternativa pelo terminal:** automatizar o QGIS por script PyQGIS, sem controle de tela. É mais rápido e repetível. Avaliar junto com a skill `producao-carta-imagem`.
+
+## Fase 5: Pesquisa e jurídico (semana 2)
+
+### 8. Deep Research
+- [ ] **Teste:** "pesquise as normas federais e estaduais sobre embargo de área por desmatamento ilegal e gere um relatório com fontes".
+- **Cuidado:** toda norma ou decisão citada é conferida na fonte oficial.
+
+### 12. Plugin Legal (Anthropic)
+- [ ] **Pelo terminal** (o marketplace do item 11 já estará adicionado):
+  ```
+  /plugin install legal@knowledge-work-plugins
+  ```
+- **O que traz:** revisão de contratos, avaliação de risco, checagem de conformidade, briefing de reunião e pedido de assinatura.
+- **Limite:** foi feito com foco nos EUA. Use pela estrutura e pelo método, nunca como fonte de direito brasileiro.
+- **Teste:** revisar um contrato fictício e comparar com a sua própria análise.
+- **Registro:** atualizar o status em `pacote-advocacia/ferramentas/02-terceiros.md`.
+
+## Fase 6: Ajustes no Claude Code (semana 2)
+
+Feito por mim, em arquivos do repositório.
+
+### 16. Hooks de segurança
+- [ ] Hook em `.claude/settings.json` que bloqueia envio de e-mail, mensagem ou protocolo sem confirmação explícita.
+- **Teste:** pedir um envio e confirmar que o hook bloqueia.
+
+### 17. Session Start Hook
+- [ ] Script que instala Python, GDAL e rasterio nas sessões na nuvem, para os scripts de satélite rodarem direto.
+- **Teste:** abrir uma sessão nova e rodar um recorte de imagem de teste.
+
+### 18. Menos pedidos de permissão
+- [ ] Rodar `/fewer-permission-prompts` depois de algumas semanas de uso, quando houver histórico suficiente.
+- **Teste:** revisar a lista proposta antes de aplicar. Só comandos de leitura.
+
+## Fase 7: Novas skills (contínuo, a partir da semana 3)
+
+### 1. Skill Creator
+- [ ] **Feito por mim:** as novas skills ficam em `.claude/skills/` de cada frente, versionadas no Git.
+- **Candidatas:**
+  1. Relatório técnico de embargo ou autuação.
+  2. Análise de sobreposição com o CAR e áreas protegidas.
+  3. Laudo de evolução da vegetação, a partir da skill de Landsat.
+  4. Revisão semanal pessoal.
+- **Teste:** rodar cada skill com um caso antigo já concluído e comparar.
+
+---
+
+## Cronograma resumido
+
+| Fase | Itens | Quando | Depende de |
+|---|---|---|---|
+| 1. Fundação | 15, 13, 14 | Dia 1 | Decisões de e-mail e tarefas |
+| 2. Produtividade | 11, 3, 2 | Dias 2 e 3 | Fase 1 |
+| 3. Documentos e dados | 4, 5, 6, 7 | Dias 4 a 6 | Nenhuma |
+| 4. Navegação e tela | 9, 10 | Semana 2 | Claude Code local e app desktop |
+| 5. Pesquisa e jurídico | 8, 12 | Semana 2 | Item 11 (marketplace) |
+| 6. Claude Code | 16, 17, 18 | Semana 2 | Item 18 só após semanas de uso |
+| 7. Novas skills | 1 | Semana 3 em diante | Fases 1 a 5 |
+
+## Registro de andamento
+
+Anote aqui cada item concluído, com data e observações.
+
+| Data | Item | Status | Observação |
+|---|---|---|---|
+| 2026-10-21 | Plano | criado | 18 ferramentas aprovadas; instalação preferencial pelo Claude Code |
