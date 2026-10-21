@@ -1,0 +1,14 @@
+{
+  "extraKnownMarketplaces": {
+    "knowledge-work-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/knowledge-work-plugins"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "productivity@knowledge-work-plugins": true,
+    "legal@knowledge-work-plugins": true
+  }
+}

@@ -29,17 +29,18 @@ Os itens 3, 4, 5, 6 e 8 já estão disponíveis. Basta usar e testar.
 
 ## Decisões a tomar antes de começar
 
-- [ ] **E-mail:** Gmail ou Outlook (Microsoft 365)? Define o item 13.
-- [ ] **Gerenciador de tarefas:** Notion, Asana ou ClickUp? Define o item 14. Escolha só um.
-- [ ] **Pastas por frente:** confirmar os nomes do item 15. Proposta: `geoprocessamento/`, `pacote-advocacia/` (já existe) e `pessoal/`.
-- [ ] **Claude Code no seu computador:** já está instalado? Necessário para os itens 9 e 10 e para trabalhar com arquivos locais.
+- [x] **E-mail:** os dois, Gmail e Outlook (Microsoft 365). Item 13 conecta ambos.
+- [x] **Gerenciador de tarefas:** Notion (recomendação aceita por padrão; pode ser trocado). Motivo: junta tarefas, notas e bases de dados (ex.: controle de embargos ou processos) num só lugar, tem plano pessoal gratuito, app no celular e interface em português. Asana é mais voltado a equipes; ClickUp é mais complexo de configurar.
+- [x] **Pastas por frente:** `geoprocessamento/`, `pacote-advocacia/` e `pessoal/`, cada uma com `CLAUDE.md`.
+- [x] **Claude Code no seu computador:** já instalado.
 
 ---
 
 ## Fase 1: Fundação (dia 1)
 
 ### 15. Contexto por frente (equivalente aos Projetos, no Claude Code)
-- [ ] **Como:** em vez de Projetos no claude.ai, cada frente vira uma pasta do repositório com seu próprio `CLAUDE.md` (instruções lidas automaticamente em toda sessão aberta ali).
+- [~] **Estrutura criada em 2026-10-21.** Falta preencher os itens `[A CONFIRMAR]` dos `CLAUDE.md`.
+- **Como:** em vez de Projetos no claude.ai, cada frente vira uma pasta do repositório com seu próprio `CLAUDE.md` (instruções lidas automaticamente em toda sessão aberta ali).
 - **Feito por mim:**
   1. Criar `geoprocessamento/CLAUDE.md`: padrões de carta imagem, fontes de imagem, sistema de coordenadas, regras de entrega.
   2. Criar `pessoal/CLAUDE.md`: rotina, prioridades, formato do planejamento.
@@ -47,14 +48,19 @@ Os itens 3, 4, 5, 6 e 8 já estão disponíveis. Basta usar e testar.
 - **Opcional:** criar também os Projetos no claude.ai, para conversas pelo celular.
 - **Teste:** abrir uma sessão na pasta e pedir "resuma as regras desta frente".
 
-### 13. Conector de e-mail (Gmail ou Outlook)
-- [ ] **Como:** conecte uma vez em https://claude.ai/customize/connectors com a mesma conta do Claude Code. Os conectores da conta passam a aparecer nas sessões do Claude Code.
+### 13. Conectores de e-mail (Gmail e Outlook)
+- [ ] **Gmail:** conecte o conector Gmail.
+- [ ] **Outlook:** conecte o conector Microsoft 365. No histórico do pacote de advocacia ele aparecia com conexão incompleta; refaça a autorização.
+- **Como:** conecte uma vez em https://claude.ai/customize/connectors com a mesma conta do Claude Code. Os conectores da conta passam a aparecer nas sessões do Claude Code.
 - **No terminal:** abra uma sessão nova e rode `/mcp` para confirmar que o conector aparece e está autenticado.
 - **Recomendação:** exigir confirmação para envio.
 - **Teste:** "liste os 5 e-mails mais recentes sem resposta". Depois: "rascunhe uma resposta ao segundo, sem enviar".
 
-### 14. Gerenciador de tarefas (Notion, Asana ou ClickUp)
-- [ ] **Como:** igual ao item 13 (conectar na conta e conferir com `/mcp`). Alternativa pelo terminal local: `claude mcp add --transport http <nome> <endereço-do-servidor>` e depois `/mcp` para autenticar. O endereço oficial do servidor eu confirmo na hora, pela documentação do fornecedor.
+### 14. Gerenciador de tarefas: Notion
+- [ ] **Como:** crie a conta em notion.so, se ainda não tiver. Depois, escolha um caminho:
+  - **Pela conta:** conecte o conector Notion em https://claude.ai/customize/connectors e confira com `/mcp`.
+  - **Pelo terminal local:** `claude mcp add --transport http notion https://mcp.notion.com/mcp`, depois `/mcp` para autenticar no navegador.
+  - **Pelo plugin Productivity (item 11):** o plugin já traz o servidor do Notion; basta autenticar com `/mcp`.
 - **Observação:** nesta sessão na nuvem, Notion e Asana falharam ao conectar porque o proxy da rede bloqueou. Para usar nas sessões na nuvem, é preciso liberar o domínio na política de rede do ambiente.
 - **Montagem:** quadro com três colunas (A fazer, Fazendo, Feito) e etiquetas por frente (Geo, Advocacia, Pessoal).
 - **Teste:** "crie a tarefa 'Teste de integração' na coluna A fazer, com etiqueta Pessoal" e confira no app.
@@ -69,7 +75,7 @@ Depende da Fase 1.
   /plugin marketplace add anthropics/knowledge-work-plugins
   /plugin install productivity@knowledge-work-plugins
   ```
-- **Alternativa feita por mim:** declarar o marketplace e o plugin em `.claude/settings.json` do repositório, para que ele carregue em toda sessão aberta aqui, inclusive na nuvem.
+- **Já declarado em `.claude/settings.json`** (2026-10-21), junto com o Legal. Ao abrir o Claude Code na pasta do repositório, ele pede para confiar no marketplace e instalar os plugins. Aceite e confira com `/plugin`.
 - **O que traz:** skills de gestão de tarefas, planejamento do dia, memória de contexto e atualização de status.
 - **Teste:** rodar a skill de início (`start`) e depois "planeje meu dia de amanhã com base na agenda e nas tarefas abertas".
 
@@ -188,3 +194,6 @@ Anote aqui cada item concluído, com data e observações.
 | Data | Item | Status | Observação |
 |---|---|---|---|
 | 2026-10-21 | Plano | criado | 18 ferramentas aprovadas; instalação preferencial pelo Claude Code |
+| 2026-10-21 | Decisões | tomadas | Gmail e Outlook; Notion; Claude Code já instalado |
+| 2026-10-21 | 15 | em teste | Pastas `geoprocessamento/` e `pessoal/` com `CLAUDE.md`; `CLAUDE.md` raiz como índice |
+| 2026-10-21 | 11, 12 | declarados | Plugins Productivity e Legal em `.claude/settings.json`; falta instalar e testar |
