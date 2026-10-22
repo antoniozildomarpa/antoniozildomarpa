@@ -2,7 +2,7 @@
 
 Plano para automatizar o ciclo completo de um documento técnico (relatório, parecer, informação ou manifestação técnica), desde a demanda que chega num processo do SEI até o despacho que devolve o documento ao setor demandante.
 
-Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fases A, B e C concluídas.
+Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fases A, B, C e D concluídas.
 
 ## Princípios
 
@@ -217,7 +217,7 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 | A ✅ | `estrutura-caso`: pasta, ficha e registro (concluída em 2026-10-22) | Testada na nuvem com caso fictício; falta rodar no seu computador |
 | B ✅ | `coordenadas-para-qgis` e `projeto-qgis-caso` (concluída em 2026-10-22) | Testada na nuvem com QGIS 3.34 e casos fictícios; falta rodar no seu computador |
 | C ✅ | `figura-mapa-legenda` e `padrao-cartografico` (concluída em 2026-10-22) | Testada na nuvem com QGIS 3.34; falta rodar no seu computador |
-| D | `redacao-documento-tecnico`, `agente-redator` e `agente-revisor` | Computador, com seus modelos |
+| D ✅ | `redacao-documento-tecnico`, `agente-redator` e `agente-revisor` (concluída em 2026-10-22) | Testada na nuvem com caso fictício; falta rodar no seu computador (`pip install python-docx`) |
 | E | `anexos-e-pacote` | Computador |
 | F | `leitura-processo-sei` (só leitura) | SEI real, com você acompanhando |
 | G | `protocolo-sei` (escrita, com conferência a cada passo) | SEI real, num processo de teste se houver |
@@ -237,3 +237,4 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 | Erro do georreferenciamento | Definido caso a caso, conforme fonte, resolução e qualidade |
 | Edição no SEI | Criar documentos, incluir anexos e colar texto com imagens já foi feito antes pelo Claude Code; assinar e enviar continuam com você |
 | QGIS | Versão a confirmar ao rodar a Fase B no seu computador |
+| Ilustrações no documento | ABNT NBR 14724: identificação acima ("Figura 1 – ...", "Tabela 1 – ...") e fonte abaixo, com autoria, imagem (sensor e data) e bases |

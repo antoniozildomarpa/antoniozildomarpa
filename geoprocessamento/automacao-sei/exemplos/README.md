@@ -21,3 +21,11 @@ Resultados esperados: 78,6332 ha no primeiro, 99,9955 ha no segundo (após conve
 Para reproduzir: crie um caso, valide `ficticio_gms.csv`, rode `projeto_qgis.py --bases ficticio_imovel_car.geojson ficticio_hidrografia.geojson` e depois o comando de exemplo da skill `figura-mapa-legenda`, sem a camada de imagem.
 | `Figura_exemplo_imagem_escura_sem_ajuste.png` | A mesma figura com imagem escura, só medida (`--ajuste-imagem so-medir`), para comparação |
 | `Comparacao_ajuste_imagem.png` | Imagem escura antes (esquerda) e depois (direita) do ajuste automático de brilho, contraste e saturação |
+
+## Minuta (Fase D)
+
+| Arquivo | Uso |
+| --- | --- |
+| `conteudo_exemplo.md` | Conteúdo com marcadores, como o agente-redator escreve |
+| `Minuta_exemplo.pdf` | O Word gerado por `minuta.py` a partir desse conteúdo, convertido em PDF para visualização |
+

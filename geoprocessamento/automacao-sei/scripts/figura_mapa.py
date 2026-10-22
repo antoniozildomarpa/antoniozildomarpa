@@ -443,6 +443,7 @@ def montar_figura(a, projeto):
         "arquivo": f"{base.name}.png",
         "objetivo": a.objetivo,
         "legenda_figura": f"Figura {a.numero} – {a.legenda_figura}",
+        "fonte": a.fonte,
         "camadas": a.camadas,
         "nomes_na_legenda": nomes_legenda,
         "foco": foco_nomes,
@@ -498,6 +499,8 @@ def main(argv=None):
     ap.add_argument("--nome-curto", required=True, help="Parte do nome do arquivo, sem espaços")
     ap.add_argument("--objetivo", required=True, help="O que a figura precisa mostrar, em uma frase")
     ap.add_argument("--legenda-figura", required=True, help="Texto da legenda da figura no documento (sem 'Figura N –')")
+    ap.add_argument("--fonte", default="Elaborado pelo autor. Sistema de referência SIRGAS 2000.",
+                    help="Fonte, impressa abaixo da figura (ABNT): autoria, imagem (sensor e data) e bases usadas")
     ap.add_argument("--camadas", nargs="+", required=True, help="Camadas do projeto, de cima para baixo")
     ap.add_argument("--foco", nargs="*", help="Camadas que definem o enquadramento (padrão: a primeira)")
     ap.add_argument("--principal", nargs="*", help="Camadas da informação principal, que os rótulos não devem cobrir (padrão: as do foco)")
