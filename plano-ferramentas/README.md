@@ -196,17 +196,17 @@ Feito por mim, em arquivos do repositório.
 
 ## Para retomar
 
-Atualizado em 2026-10-22, no fim da Fase 1.
+Atualizado em 2026-10-22, com as Fases 1 e 2 concluídas e a Fase 3 em andamento.
 
-- **Feito:** clone em `C:\Users\Work\Projetos\antoniozildomarpa`, na branch `claude/modest-gates-nhyd9t`. Perguntas dos `CLAUDE.md` respondidas (ver registro). Outlook encaminhado para o Gmail e testado. Conector Gmail ligado no Claude Code local.
-- **Feito também:** conector Notion ligado (espaço "Espaço de Zildomar Oliveira", conta Gmail), conferido em 2026-10-22.
-- **Feito também:** plugins Productivity e Legal instalados (skills ativas), conferidos com `/mcp` em 2026-10-22. Fase 1 concluída.
+- **Feito:** clone em `C:\Users\Work\Projetos\antoniozildomarpa`, na branch `claude/modest-gates-nhyd9t`. Conectores Gmail, Calendar, Drive, Notion e QGIS ligados. Plugins Productivity, Legal e frontend-design instalados. Quadro de Tarefas no Notion com cinco frentes. `/morning` testado e duas rotinas agendadas (morning brief e revisão semanal). Planilhas-base criadas no Drive (ver registro).
 - **Para continuar em qualquer sessão:** peça "leia `plano-ferramentas/README.md` e continue de onde paramos".
 
-### Próximos passos depois da Fase 1
+### Próximos passos
 
-1. Atualizar o registro abaixo com o que foi concluído no computador (plugins, conectores, Notion).
-2. Fase 2: ~~montar o quadro no Notion~~ (feito em 2026-10-22), configurar o `/morning` e criar as tarefas agendadas (morning brief nos dias úteis e revisão semanal), uma por vez, no fuso de Brasília.
+1. Fase 3: testar Claude Docs (item 4), PDF e visualizador (item 5) e painel com Dataviz (item 7).
+2. Fase 5: testar o plugin Legal com contrato fictício (item 12) e o Deep Research (item 8).
+3. Fase 6: hook que bloqueia envio sem confirmação (item 16).
+4. E-mails pendentes: Outlook para a DRE não entrega; "Enviar e-mail como" do Hotmail no Gmail falha; regra de encaminhamento ainda ativa no Outlook do IBAMA.
 
 ## Registro de andamento
 
