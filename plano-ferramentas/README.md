@@ -187,6 +187,14 @@ Feito por mim, em arquivos do repositório.
 | 6. Claude Code | 16, 17, 18 | Semana 2 | Item 18 só após semanas de uso |
 | 7. Novas skills | 1 | Semana 3 em diante | Fases 1 a 5 |
 
+## Para retomar
+
+Pausado em 2026-10-22, no meio da Fase 1.
+
+- **No computador (Claude Code local):** o clone do repositório foi iniciado. Confirmar que ele está em `C:\Users\<usuário>\Projetos\antoniozildomarpa` (fora do Google Drive), na branch `claude/modest-gates-nhyd9t`. Depois: abrir `claude` na pasta, aceitar os plugins (`/plugin`), criar a conta no Notion, conectar Gmail, Microsoft 365 e Notion em https://claude.ai/customize/connectors e conferir com `/mcp`.
+- **Na sessão web:** responder às perguntas dos `CLAUDE.md` (sistema de coordenadas, buffer, formato de saída, órgão, horário de trabalho, dia da revisão semanal). Com os conectores ligados, seguir para a Fase 2.
+- **Para continuar em qualquer sessão:** peça "leia `plano-ferramentas/README.md` e continue de onde paramos".
+
 ## Registro de andamento
 
 Anote aqui cada item concluído, com data e observações.
