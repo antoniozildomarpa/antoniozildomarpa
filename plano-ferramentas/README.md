@@ -192,8 +192,8 @@ Feito por mim, em arquivos do repositório.
 
 Atualizado em 2026-10-22, no fim da Fase 1.
 
-- **Feito:** clone em `C:\Users\Work\Projetos\antoniozildomarpa`, na branch `claude/modest-gates-nhyd9t`. Perguntas dos `CLAUDE.md` respondidas (ver registro). Outlook encaminhado para o Gmail. Conector Gmail ligado no Claude Code local.
-- **Falta na Fase 1:** testar o encaminhamento do Outlook (mandar um e-mail ao Outlook e conferir que chega no Gmail), criar a conta no Notion e conectá-la, aceitar os plugins (`/plugin`) e conferir com `/mcp`.
+- **Feito:** clone em `C:\Users\Work\Projetos\antoniozildomarpa`, na branch `claude/modest-gates-nhyd9t`. Perguntas dos `CLAUDE.md` respondidas (ver registro). Outlook encaminhado para o Gmail e testado. Conector Gmail ligado no Claude Code local.
+- **Falta na Fase 1:** criar a conta no Notion e conectá-la, aceitar os plugins (`/plugin`) e conferir com `/mcp`.
 - **Para continuar em qualquer sessão:** peça "leia `plano-ferramentas/README.md` e continue de onde paramos".
 
 ### Próximos passos depois da Fase 1
@@ -216,3 +216,4 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-21 | 13 | adiado | Microsoft 365 só aceita conta corporativa ou de estudante; alternativa para o Outlook a decidir (ver item 13) |
 | 2026-10-21 | 13 | encaminhamento | Outlook encaminha para o Gmail, com cópia (configurado pelo usuário). Falta ligar o conector Gmail e testar |
 | 2026-10-22 | 13 | Gmail ligado | Conector Gmail ativo no Claude Code local; encaminhamento do Outlook ainda sem teste |
+| 2026-10-22 | 13 | concluído | Outlook (antoniozildomar@hotmail.com) encaminha para o Gmail, com cópia; teste confirmado pelo conector Gmail. Correção: o destino estava apontando para o próprio hotmail |
