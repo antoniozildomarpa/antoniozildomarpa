@@ -200,7 +200,7 @@ Atualizado em 2026-10-22, no fim da Fase 1.
 ### Próximos passos depois da Fase 1
 
 1. Atualizar o registro abaixo com o que foi concluído no computador (plugins, conectores, Notion).
-2. Fase 2: montar o quadro no Notion, configurar o `/morning` e criar as tarefas agendadas (morning brief nos dias úteis e revisão semanal), uma por vez, no fuso de Brasília.
+2. Fase 2: ~~montar o quadro no Notion~~ (feito em 2026-10-22), configurar o `/morning` e criar as tarefas agendadas (morning brief nos dias úteis e revisão semanal), uma por vez, no fuso de Brasília.
 
 ## Registro de andamento
 
@@ -219,4 +219,5 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-22 | 13 | Gmail ligado | Conector Gmail ativo no Claude Code local; encaminhamento do Outlook ainda sem teste |
 | 2026-10-22 | 13 | concluído | Outlook (antoniozildomar@hotmail.com) encaminha para o Gmail, com cópia; teste confirmado pelo conector Gmail. Correção: o destino estava apontando para o próprio hotmail |
 | 2026-10-22 | 14 | Notion ligado | Conector Notion ativo; `notion-get-self` confirmou o espaço "Espaço de Zildomar Oliveira" |
+| 2026-10-22 | 14 | quadro criado | Banco "Quadro de Tarefas" (página privada no nível do espaço; a "Página inicial" não aceita bancos): Status A fazer/Fazendo/Feito, Frente Geo/Advocacia/Pessoal, Prazo; visão "Quadro" em kanban com filtro rápido por frente |
 | 2026-10-22 | 11, 12 | instalados | Productivity e Legal ativos; conferido com `/mcp`. Gmail, Calendar, Drive, Notion e QGIS conectados. Servidores dos plugins (Figma, Box, Amplitude, Hex, Intercom) sem autenticação e Definite com endpoint quebrado, todos fora do plano. Plugin frontend-design instalado |
