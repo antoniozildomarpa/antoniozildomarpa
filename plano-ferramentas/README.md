@@ -192,8 +192,30 @@ Feito por mim, em arquivos do repositório.
 Pausado em 2026-10-22, no meio da Fase 1.
 
 - **No computador (Claude Code local):** o clone do repositório foi iniciado. Confirmar que ele está em `C:\Users\<usuário>\Projetos\antoniozildomarpa` (fora do Google Drive), na branch `claude/modest-gates-nhyd9t`. Depois: abrir `claude` na pasta, aceitar os plugins (`/plugin`), criar a conta no Notion, conectar Gmail, Microsoft 365 e Notion em https://claude.ai/customize/connectors e conferir com `/mcp`.
-- **Na sessão web:** responder às perguntas dos `CLAUDE.md` (sistema de coordenadas, buffer, formato de saída, órgão, horário de trabalho, dia da revisão semanal). Com os conectores ligados, seguir para a Fase 2.
+- **Na sessão web:** responder às perguntas dos `CLAUDE.md`, listadas abaixo. Com os conectores ligados, seguir para a Fase 2.
 - **Para continuar em qualquer sessão:** peça "leia `plano-ferramentas/README.md` e continue de onde paramos".
+
+### Perguntas pendentes ao usuário
+
+1. Sistema de coordenadas usado (ex.: SIRGAS 2000 UTM) e formato das coordenadas na tabela de vértices. Vai para `geoprocessamento/CLAUDE.md`.
+2. Tamanho padrão do buffer e formato de saída da carta (PDF, PNG, GeoTIFF). Vai para `geoprocessamento/CLAUDE.md`.
+3. Órgão para o qual trabalha e modelo de relatório usado. Vai para `geoprocessamento/CLAUDE.md`.
+4. Horário de trabalho e dia e horário da revisão semanal. Vai para `pessoal/CLAUDE.md`.
+
+### Próximos passos depois da Fase 1
+
+1. Atualizar o registro abaixo com o que foi concluído no computador (plugins, conectores, Notion).
+2. Fase 2: montar o quadro no Notion, configurar o `/morning` e criar as tarefas agendadas (morning brief nos dias úteis e revisão semanal), uma por vez, no fuso de Brasília.
+
+### Mensagem para a sessão local, se o clone não tiver terminado
+
+```
+Clone o repositório https://github.com/antoniozildomarpa/antoniozildomarpa
+na pasta C:\Users\<meu usuário>\Projetos\antoniozildomarpa (crie a pasta
+Projetos se não existir) e faça checkout da branch claude/modest-gates-nhyd9t.
+O repositório é privado: se pedir autenticação, me avise que eu faço o login
+no GitHub pelo navegador. Não use H:\Meu Drive.
+```
 
 ## Registro de andamento
 
