@@ -190,33 +190,16 @@ Feito por mim, em arquivos do repositório.
 
 ## Para retomar
 
-Pausado em 2026-10-22, no meio da Fase 1.
+Atualizado em 2026-10-22, no fim da Fase 1.
 
-- **No computador (Claude Code local):** o clone do repositório foi iniciado. Confirmar que ele está em `C:\Users\<usuário>\Projetos\antoniozildomarpa` (fora do Google Drive), na branch `claude/modest-gates-nhyd9t`. Depois: abrir `claude` na pasta, aceitar os plugins (`/plugin`), criar a conta no Notion, conectar Gmail, Microsoft 365 e Notion em https://claude.ai/customize/connectors e conferir com `/mcp`.
-- **Na sessão web:** responder às perguntas dos `CLAUDE.md`, listadas abaixo. Com os conectores ligados, seguir para a Fase 2.
+- **Feito:** clone em `C:\Users\Work\Projetos\antoniozildomarpa`, na branch `claude/modest-gates-nhyd9t`. Perguntas dos `CLAUDE.md` respondidas (ver registro). Outlook encaminhado para o Gmail. Conector Gmail ligado no Claude Code local.
+- **Falta na Fase 1:** testar o encaminhamento do Outlook (mandar um e-mail ao Outlook e conferir que chega no Gmail), criar a conta no Notion e conectá-la, aceitar os plugins (`/plugin`) e conferir com `/mcp`.
 - **Para continuar em qualquer sessão:** peça "leia `plano-ferramentas/README.md` e continue de onde paramos".
-
-### Perguntas pendentes ao usuário
-
-1. Sistema de coordenadas usado (ex.: SIRGAS 2000 UTM) e formato das coordenadas na tabela de vértices. Vai para `geoprocessamento/CLAUDE.md`.
-2. Tamanho padrão do buffer e formato de saída da carta (PDF, PNG, GeoTIFF). Vai para `geoprocessamento/CLAUDE.md`.
-3. Órgão para o qual trabalha e modelo de relatório usado. Vai para `geoprocessamento/CLAUDE.md`.
-4. Horário de trabalho e dia e horário da revisão semanal. Vai para `pessoal/CLAUDE.md`.
 
 ### Próximos passos depois da Fase 1
 
 1. Atualizar o registro abaixo com o que foi concluído no computador (plugins, conectores, Notion).
 2. Fase 2: montar o quadro no Notion, configurar o `/morning` e criar as tarefas agendadas (morning brief nos dias úteis e revisão semanal), uma por vez, no fuso de Brasília.
-
-### Mensagem para a sessão local, se o clone não tiver terminado
-
-```
-Clone o repositório https://github.com/antoniozildomarpa/antoniozildomarpa
-na pasta C:\Users\<meu usuário>\Projetos\antoniozildomarpa (crie a pasta
-Projetos se não existir) e faça checkout da branch claude/modest-gates-nhyd9t.
-O repositório é privado: se pedir autenticação, me avise que eu faço o login
-no GitHub pelo navegador. Não use H:\Meu Drive.
-```
 
 ## Registro de andamento
 
@@ -232,3 +215,4 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-21 | 13, 14 | diagnóstico | No terminal local: Microsoft 365 e Notion (plugin Design) aguardam autenticação via `/mcp`; Gmail não está conectado na conta |
 | 2026-10-21 | 13 | adiado | Microsoft 365 só aceita conta corporativa ou de estudante; alternativa para o Outlook a decidir (ver item 13) |
 | 2026-10-21 | 13 | encaminhamento | Outlook encaminha para o Gmail, com cópia (configurado pelo usuário). Falta ligar o conector Gmail e testar |
+| 2026-10-22 | 13 | Gmail ligado | Conector Gmail ativo no Claude Code local; encaminhamento do Outlook ainda sem teste |
