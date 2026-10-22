@@ -51,7 +51,7 @@ Os itens 3, 4, 5, 6 e 8 já estão disponíveis. Basta usar e testar.
 ### 13. Conectores de e-mail (Gmail e Outlook)
 - [ ] **Gmail:** conecte o conector Gmail.
 - [ ] **Outlook:** conecte o conector Microsoft 365. No histórico do pacote de advocacia ele aparecia com conexão incompleta; refaça a autorização.
-  - **Pendente (2026-10-21):** o conector Microsoft 365 recusou o login, porque aceita apenas conta corporativa ou de estudante. Decidir depois entre: (a) encaminhar o Outlook pessoal para o Gmail; (b) testar a integração de Outlook do Composio; (c) se a conta for do escritório, pedir ao administrador que libere o app.
+  - **Decidido (2026-10-21):** o conector Microsoft 365 recusou o login, porque aceita apenas conta corporativa ou de estudante. Solução adotada: o Outlook pessoal encaminha para o Gmail, mantendo cópia no Outlook. O Claude lê o Outlook pelo conector do Gmail; respostas como Outlook continuam no próprio Outlook.
 - **Como:** conecte uma vez em https://claude.ai/customize/connectors com a mesma conta do Claude Code. Os conectores da conta passam a aparecer nas sessões do Claude Code.
 - **No terminal:** abra uma sessão nova e rode `/mcp` para confirmar que o conector aparece e está autenticado.
 - **Recomendação:** exigir confirmação para envio.
@@ -231,3 +231,4 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-21 | 15 | preenchido | `[A CONFIRMAR]` resolvidos: SIRGAS 2000 geográficas, GMS, buffer por caso, saídas PDF/GeoTIFF/SHP-GPKG, modelo IBAMA; horário flexível, revisão sexta 16h |
 | 2026-10-21 | 13, 14 | diagnóstico | No terminal local: Microsoft 365 e Notion (plugin Design) aguardam autenticação via `/mcp`; Gmail não está conectado na conta |
 | 2026-10-21 | 13 | adiado | Microsoft 365 só aceita conta corporativa ou de estudante; alternativa para o Outlook a decidir (ver item 13) |
+| 2026-10-21 | 13 | encaminhamento | Outlook encaminha para o Gmail, com cópia (configurado pelo usuário). Falta ligar o conector Gmail e testar |
