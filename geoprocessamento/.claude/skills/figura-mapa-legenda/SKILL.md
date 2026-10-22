@@ -29,12 +29,13 @@ Com o Python do QGIS (ver skill `projeto-qgis-caso`):
   --objetivo "Mostrar a localização da área embargada no interior do imóvel" \
   --legenda-figura "Área embargada no interior do imóvel, sobre imagem PlanetScope de 10/05/2026" \
   --camadas vertices_area_embargada poligono_area_embargada imovel_car hidrografia imagem_planet \
-  --foco imovel_car \
-  --estilos "imovel_car=imovel" "hidrografia=hidrografia" \
+  --foco imovel_car --principal poligono_area_embargada \
+  --estilos "imovel_car=imovel" "hidrografia=hidrografia:nome" \
   --nomes "vertices_area_embargada=Vértices" "poligono_area_embargada=Área embargada (78,63 ha)" "imovel_car=Imóvel (CAR)" "hidrografia=Rio"
 ```
 
 Opções úteis:
+- `--principal`: camadas da informação principal, que os rótulos não podem cobrir (padrão: as do foco);
 - `--margem 0.35`: folga em volta do foco (aumente se a legenda cobrir a área);
 - `--largura-mm 160 --altura-mm 110`: tamanho na página (160 mm cabe na largura útil de uma folha A4);
 - `--estilos "camada=papel:campo"`: aplica a paleta e rotula pelo campo indicado;
@@ -46,6 +47,8 @@ O que o script faz sozinho:
 - escolhe o canto da legenda com menor sobreposição com a área de foco; escala e norte vão para os cantos que sobrarem;
 - legenda com fundo branco semitransparente, sem a imagem de fundo (ela vai na legenda da figura);
 - escala em m ou km, com números no padrão brasileiro;
+- linhas finas e rótulos com buffer branco, sempre exibidos, fora da informação principal (paleta de `estilos.py`);
+- revisão automática dos rótulos: quantos foram exibidos, quais ficaram sem espaço, cortados na borda ou sobre a informação principal (campo `rotulos` e `alertas` do JSON);
 - exporta `04_Figuras/Figura_NN_<nome>.png` a 300 dpi e o `.json` com objetivo, escala, cantos e as perguntas de conferência;
 - guarda o layout no projeto (`Figura_NN`) para ajuste fino no QGIS, com cópia de segurança do projeto;
 - registra a figura na ficha e no registro do caso.
@@ -54,7 +57,7 @@ O que o script faz sozinho:
 
 1. Abra o PNG e olhe a figura inteira.
 2. Responda às perguntas do campo `conferencia` do JSON (as mesmas da skill `padrao-cartografico`).
-3. Se o JSON trouxer `alertas` (legenda sobre a área de foco), aumente `--margem` ou reduza a legenda e gere de novo.
+3. Se o JSON trouxer `alertas` (legenda sobre a área de foco, rótulo sem espaço, cortado ou sobre a informação principal), corrija: aumente `--margem`, tire rótulos dispensáveis ou divida a figura, e gere de novo.
 4. Corrija o que for preciso e gere de novo, com o mesmo número.
 5. Quando todas as respostas forem "sim", mude `"conferido": true` no JSON da figura e na lista `figuras` de `ficha.json`, e mostre a figura ao usuário com as respostas.
 

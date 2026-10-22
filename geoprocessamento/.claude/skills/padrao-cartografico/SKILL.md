@@ -36,6 +36,21 @@ Registre o objetivo no `--objetivo` da figura e na ficha do caso.
 - Evite vermelho e verde puros lado a lado (daltonismo) e nunca use mais de uma cor forte.
 - Fundo de imagem em cor real, no estilo natural já validado (skill `landsat-estilo-natural-tiarg`).
 
+## 3a. Linhas finas
+
+- Contornos e linhas **o mais finos possível**, no limite em que ainda se enxergam sobre a imagem. Nada de traço grosseiro.
+- Referência a 300 dpi: 0,2 a 0,3 mm para contornos de contexto; até 0,35 a 0,4 mm só para a informação principal.
+- Moldura do mapa e da legenda: 0,2 a 0,25 mm, em cinza.
+- Se uma linha fina some sobre a imagem, troque a cor por uma mais contrastante, em vez de engrossar.
+
+## 3b. Rótulos
+
+- **Sempre com buffer (halo) branco**, para serem lidos sobre a imagem.
+- **Sempre visíveis**: nenhum rótulo importante pode sumir por falta de espaço.
+- **Nunca atrapalham a informação principal**: ficam fora do polígono principal, ao lado dos pontos, acompanhando as linhas. O interior do polígono de foco funciona como obstáculo para os rótulos.
+- Texto pequeno e sóbrio (6 a 7 pt, cinza-escuro). Rotule só o que o texto do documento cita ou o que o leitor precisa para entender.
+- **Revisão de rótulos é obrigatória em todo mapa**: confira se algum ficou sem espaço, cortado na borda, sobre a informação principal ou sobreposto a outro. O script da figura faz essa conferência automaticamente e lista os problemas em `alertas`; mesmo sem alertas, olhe a imagem.
+
 ## 4. Elementos técnicos
 
 ### Mapas e cartas imagem completos (anexos)
@@ -78,6 +93,8 @@ Com o mapa ou a figura na versão considerada final, olhe a imagem e responda po
 3. **O título (ou a legenda da figura) está alinhado ao objetivo?**
 4. **Há informação demais?** Se sim, dividir em uma sequência de mapas.
 5. **Um leitor que não é especialista entende o mapa sem explicação?**
-6. **Todos os elementos técnicos estão presentes** (seção 4)?
+6. **Todos os rótulos estão visíveis, com buffer, sem cobrir a informação principal?**
+7. **As linhas estão finas, sem traço grosseiro, e ainda visíveis sobre a imagem?**
+8. **Todos os elementos técnicos estão presentes** (seção 4)?
 
 Se alguma resposta for "não", corrija e confira de novo. Só depois marque a figura como conferida e mostre ao usuário, com as respostas.

@@ -169,6 +169,20 @@ def montar_figura(a, projeto):
     foco = QgsGeometry(foco_geo)
     foco.transform(QgsCoordinateTransform(geo, crs_mapa, projeto))
 
+    # informação principal: o que os rótulos não devem cobrir (padrão: a mesma camada do foco)
+    principal_nomes = a.principal or foco_nomes
+    partes = []
+    for nome in principal_nomes:
+        achadas = projeto.mapLayersByName(nome)
+        if not achadas:
+            raise RuntimeError(f"Camada '{nome}' de --principal não está no projeto.")
+        t = QgsCoordinateTransform(achadas[0].crs(), crs_mapa, projeto)
+        for f in achadas[0].getFeatures():
+            g = QgsGeometry(f.geometry())
+            g.transform(t)
+            partes.append(g)
+    principal = QgsGeometry.unaryUnion(partes) if partes else foco
+
     # extensão: foco com margem, no formato da página
     larg, alt = a.largura_mm, a.altura_mm
     bb = foco.boundingBox()
@@ -317,6 +331,37 @@ def montar_figura(a, projeto):
 
     alertas = [f"A {n} cobre parte da área de foco ({c['sobreposicao_m2']} m²). Aumente --margem ou reduza a legenda."
                for n, c in cantos.items() if c["sobreposicao_m2"] > 0]
+
+    # revisão automática dos rótulos: todos exibidos? algum cobre a área de foco ou ficou fora do mapa?
+    rotulos = {"exibidos": 0, "nao_posicionados": 0, "sobre_a_informacao_principal": [], "cortados_na_borda": []}
+    try:
+        resultados_rotulos = exportador.labelingResults().get(mapa.uuid())
+    except AttributeError:
+        resultados_rotulos = None
+    if resultados_rotulos is not None:
+        moldura = QgsGeometry.fromRect(mapa.extent())
+        por_texto = {}  # rótulos curvos vêm letra a letra: junta pelo texto
+        for pos in resultados_rotulos.allLabels():
+            if getattr(pos, "isUnplaced", False):
+                rotulos["nao_posicionados"] += 1
+                continue
+            g = QgsGeometry.fromRect(pos.labelRect)
+            chave = (pos.layerID, pos.featureId, pos.labelText)
+            por_texto[chave] = g if chave not in por_texto else por_texto[chave].combine(g)
+        for (_, _, texto), ret in por_texto.items():
+            rotulos["exibidos"] += 1
+            if ret.intersects(principal) and ret.intersection(principal).area() > 0.3 * ret.area():
+                rotulos["sobre_a_informacao_principal"].append(texto)
+            if not moldura.contains(ret):
+                rotulos["cortados_na_borda"].append(texto)
+        if hasattr(resultados_rotulos, "unplacedLabels"):
+            rotulos["nao_posicionados"] = max(rotulos["nao_posicionados"], len(resultados_rotulos.unplacedLabels()))
+    if rotulos["nao_posicionados"]:
+        alertas.append(f"{rotulos['nao_posicionados']} rótulo(s) sem espaço para aparecer. Reduza camadas rotuladas ou divida a figura.")
+    if rotulos["sobre_a_informacao_principal"]:
+        alertas.append(f"Rótulos sobre a informação principal: {', '.join(rotulos['sobre_a_informacao_principal'])}. Confira se atrapalham a leitura.")
+    if rotulos["cortados_na_borda"]:
+        alertas.append(f"Rótulos cortados na borda: {', '.join(rotulos['cortados_na_borda'])}. Aumente --margem.")
     meta = {
         "figura": f"Figura {a.numero}",
         "arquivo": f"{base.name}.png",
@@ -330,6 +375,7 @@ def montar_figura(a, projeto):
         "tamanho_mm": [larg, alt],
         "dpi": a.dpi,
         "cantos": cantos,
+        "rotulos": rotulos,
         "alertas": alertas,
         "conferencia": [
             "O objetivo foi atendido por esta figura?",
@@ -337,6 +383,8 @@ def montar_figura(a, projeto):
             "A legenda da figura está alinhada ao objetivo?",
             "Há informação demais? Se sim, dividir em uma sequência de figuras.",
             "Cores suaves, legível para quem não é especialista em mapas?",
+            "Rótulos todos visíveis, com buffer, sem cobrir a informação principal?",
+            "Linhas finas, sem traço grosseiro, mas ainda visíveis sobre a imagem?",
         ],
         "conferido": False,
         "gerada_em": agora(),
@@ -373,6 +421,7 @@ def main(argv=None):
     ap.add_argument("--legenda-figura", required=True, help="Texto da legenda da figura no documento (sem 'Figura N –')")
     ap.add_argument("--camadas", nargs="+", required=True, help="Camadas do projeto, de cima para baixo")
     ap.add_argument("--foco", nargs="*", help="Camadas que definem o enquadramento (padrão: a primeira)")
+    ap.add_argument("--principal", nargs="*", help="Camadas da informação principal, que os rótulos não devem cobrir (padrão: as do foco)")
     ap.add_argument("--nomes", nargs="*", default=[], help='Nome na legenda: "camada=Nome legível"')
     ap.add_argument("--estilos", nargs="*", default=[],
                     help=f'Paleta padrão: "camada=papel" ou "camada=papel:campo_do_rotulo". Papéis: {", ".join(PAPEIS)}')
