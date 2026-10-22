@@ -242,3 +242,4 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-22 | 4 | comentário ok | Comentário com @Claude no doc: linha Bioma incluída na tabela e resposta postada no próprio comentário; conferido pelo usuário |
 | 2026-10-22 | 4 | exportação ok | Doc exportado e conferido na pasta Downloads. Claude Docs testado por completo |
 | 2026-10-22 | 1, 16 | planejado | Plano da automação do fluxo SEI → análise → documento técnico → despacho em `geoprocessamento/automacao-sei/PLANO.md`: 9 etapas, 8 agentes, 10 skills novas, 4 conferências, fases A a I. Aguarda respostas às perguntas em aberto |
+| 2026-10-22 | 1 | automação SEI: fases A e B | Scripts `caso.py`, `coordenadas.py` e `projeto_qgis.py` e skills `estrutura-caso`, `coordenadas-para-qgis` e `projeto-qgis-caso`. Testados na nuvem (QGIS 3.34) com casos fictícios; conferência de precisão contra o pyproj. Falta rodar no computador do usuário |

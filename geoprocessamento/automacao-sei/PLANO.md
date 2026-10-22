@@ -2,7 +2,7 @@
 
 Plano para automatizar o ciclo completo de um documento técnico (relatório, parecer, informação ou manifestação técnica), desde a demanda que chega num processo do SEI até o despacho que devolve o documento ao setor demandante.
 
-Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fase A concluída.
+Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fases A e B concluídas.
 
 ## Princípios
 
@@ -214,7 +214,7 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 | Fase | O que entrega | Testável onde |
 |---|---|---|
 | A ✅ | `estrutura-caso`: pasta, ficha e registro (concluída em 2026-10-22) | Testada na nuvem com caso fictício; falta rodar no seu computador |
-| B | `coordenadas-para-qgis` e `projeto-qgis-caso` | Computador, QGIS |
+| B ✅ | `coordenadas-para-qgis` e `projeto-qgis-caso` (concluída em 2026-10-22) | Testada na nuvem com QGIS 3.34 e casos fictícios; falta rodar no seu computador |
 | C | `figura-mapa-legenda` | Computador, QGIS |
 | D | `redacao-documento-tecnico`, `agente-redator` e `agente-revisor` | Computador, com seus modelos |
 | E | `anexos-e-pacote` | Computador |

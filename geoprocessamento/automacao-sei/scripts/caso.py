@@ -86,6 +86,18 @@ def ler_ficha(pasta):
     return json.loads(caminho.read_text(encoding="utf-8")), caminho
 
 
+def descrever(item):
+    """Uma linha legível para itens da ficha (texto simples ou dicionário)."""
+    if isinstance(item, str):
+        return item
+    if isinstance(item, dict) and "camada" in item and "area_ha" in item:
+        ha = f"{item['area_ha']:.4f}".replace(".", ",") if item.get("area_ha") is not None else "—"
+        per = f"{item['perimetro_m']:.2f}".replace(".", ",") if item.get("perimetro_m") is not None else "—"
+        extra = f", datum de origem {item['datum_origem']}" if item.get("datum_origem") not in (None, "SIRGAS2000") else ""
+        return f"{item['camada']}: {ha} ha, perímetro {per} m ({item.get('calculo', '')}{extra}; {item.get('em', '')})"
+    return json.dumps(item, ensure_ascii=False)
+
+
 def gravar_ficha_md(pasta, ficha):
     linhas = [
         f"# Ficha do caso – {ficha['nup']}",
@@ -127,7 +139,7 @@ def gravar_ficha_md(pasta, ficha):
     ]:
         linhas += ["", f"## {titulo}", ""]
         itens = ficha.get(chave) or []
-        linhas += [f"- {i}" if isinstance(i, str) else f"- {json.dumps(i, ensure_ascii=False)}" for i in itens] or ["- (nenhum ainda)"]
+        linhas += [f"- {descrever(i)}" for i in itens] or ["- (nenhum ainda)"]
 
     (pasta / "00_Ficha" / "ficha.md").write_text("\n".join(linhas) + "\n", encoding="utf-8")
 
