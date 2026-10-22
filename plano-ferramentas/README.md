@@ -102,7 +102,7 @@ Depende da Fase 1.
 Já disponíveis. Falta padronizar o uso.
 
 ### 4. Claude Docs
-- [~] **Doc de teste criado em 2026-10-22:** "Relatório técnico – Caso Teste 02 (fictício)", https://claude.ai/artifact/LUdd2LtUkBCuyKvGh6Pvwp. Falta testar o comentário e a exportação.
+- [~] **Doc de teste criado em 2026-10-22:** "Relatório técnico – Caso Teste 02 (fictício)", https://claude.ai/artifact/LUdd2LtUkBCuyKvGh6Pvwp. Comentário testado e aprovado. Falta a exportação.
 - **Teste:** "crie um doc de relatório técnico de embargo com dados fictícios". Comente um trecho no doc e peça para o Claude responder ao comentário.
 - **Uso:** pareceres, relatórios técnicos, minutas. Exporta para Word, PDF e Google Docs.
 - **Cuidado:** verifique com quem o doc está compartilhado antes de pôr dados reais.
@@ -239,3 +239,4 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-22 | 11, 12 | instalados | Productivity e Legal ativos; conferido com `/mcp`. Gmail, Calendar, Drive, Notion e QGIS conectados. Servidores dos plugins (Figma, Box, Amplitude, Hex, Intercom) sem autenticação e Definite com endpoint quebrado, todos fora do plano. Plugin frontend-design instalado |
 | 2026-10-22 | 7 | criado | Painel "Embargos e financeiro" (artifact privado LCcDSmG3U9bDie8wxxixUL), lendo ao vivo as planilhas Controle de embargos e Financeiro pelo conector Google Sheets: casos, área adotada, cartas pendentes, divergência entre fontes (TEI, AI, SEI), gráfico de áreas por caso, recebido, a receber, despesas e saldo. Verificação automática sem erros. Falta a sua revisão |
 | 2026-10-22 | 4 | doc de teste | Relatório técnico fictício no Claude Docs (identificação, metodologia, análise das áreas com a regra de adoção, evolução da vegetação, conclusão com tarefas, anexos). Falta: comentar um trecho e pedir resposta; exportar para Word/PDF |
+| 2026-10-22 | 4 | comentário ok | Comentário com @Claude no doc: linha Bioma incluída na tabela e resposta postada no próprio comentário; conferido pelo usuário |
