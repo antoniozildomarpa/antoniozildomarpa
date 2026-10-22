@@ -2,7 +2,7 @@
 
 Plano para automatizar o ciclo completo de um documento técnico (relatório, parecer, informação ou manifestação técnica), desde a demanda que chega num processo do SEI até o despacho que devolve o documento ao setor demandante.
 
-Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fases A e B concluídas.
+Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fases A, B e C concluídas.
 
 ## Princípios
 
@@ -184,6 +184,7 @@ Skills são os roteiros reutilizáveis que os agentes seguem. Ficam em `geoproce
 | `georreferenciamento` | Pontos de controle, transformação, limite de erro, registro do RMS | `agente-geo` |
 | `projeto-qgis-caso` | Projeto padrão, grupos, estilos e bases oficiais | `agente-geo` |
 | `figura-mapa-legenda` | Recorte da área útil, legenda sobreposta no melhor canto, exportação | `agente-figuras` |
+| `padrao-cartografico` | Objetivo antes do mapa, título alinhado, cores suaves, pouca informação por mapa, elementos técnicos completos e conferência final | `agente-geo`, `agente-figuras`, `agente-revisor` |
 | `redacao-documento-tecnico` | Modelos de relatório, parecer, informação, manifestação técnica e despacho; estilo IBAMA | `agente-redator`, `agente-revisor` |
 | `anexos-e-pacote` | Nomes dos anexos, zip dos vetores com LEIA-ME, limites do SEI | `agente-empacotador` |
 | `protocolo-sei` | Passo a passo de inclusão no SEI, links para documentos, despacho | `agente-sei-protocolo` |
@@ -215,7 +216,7 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 |---|---|---|
 | A ✅ | `estrutura-caso`: pasta, ficha e registro (concluída em 2026-10-22) | Testada na nuvem com caso fictício; falta rodar no seu computador |
 | B ✅ | `coordenadas-para-qgis` e `projeto-qgis-caso` (concluída em 2026-10-22) | Testada na nuvem com QGIS 3.34 e casos fictícios; falta rodar no seu computador |
-| C | `figura-mapa-legenda` | Computador, QGIS |
+| C ✅ | `figura-mapa-legenda` e `padrao-cartografico` (concluída em 2026-10-22) | Testada na nuvem com QGIS 3.34; falta rodar no seu computador |
 | D | `redacao-documento-tecnico`, `agente-redator` e `agente-revisor` | Computador, com seus modelos |
 | E | `anexos-e-pacote` | Computador |
 | F | `leitura-processo-sei` (só leitura) | SEI real, com você acompanhando |

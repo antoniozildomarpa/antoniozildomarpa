@@ -31,17 +31,12 @@ from qgis.core import (
     QgsDistanceArea,
     QgsFeature,
     QgsField,
-    QgsFillSymbol,
     QgsGeometry,
-    QgsLineSymbol,
-    QgsMarkerSymbol,
-    QgsPalLayerSettings,
     QgsPointXY,
     QgsProject,
     QgsRasterLayer,
     QgsVectorFileWriter,
     QgsVectorLayer,
-    QgsVectorLayerSimpleLabeling,
 )
 
 from qgis.core import Qgis
@@ -58,6 +53,7 @@ else:  # QGIS anterior a 3.38
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import caso  # noqa: E402  (ficha e registro)
 from coordenadas import para_gms  # noqa: E402
+from estilos import aplicar_estilo  # noqa: E402
 
 CRS_CASO = "EPSG:4674"
 ELIPSOIDE = "EPSG:7019"  # GRS80
@@ -106,14 +102,6 @@ def gravar_no_gpkg(camada, gpkg, nome, projeto):
     if resultado[0] != QgsVectorFileWriter.NoError:
         raise RuntimeError(f"Falha ao gravar {nome} em {gpkg}: {resultado[1]}")
     return QgsVectorLayer(f"{gpkg}|layername={nome}", nome, "ogr")
-
-
-def rotular(camada, campo):
-    cfg = QgsPalLayerSettings()
-    cfg.fieldName = campo
-    cfg.enabled = True
-    camada.setLabeling(QgsVectorLayerSimpleLabeling(cfg))
-    camada.setLabelsEnabled(True)
 
 
 def ler_normalizado(caminho):
@@ -194,12 +182,9 @@ def importar_coordenadas(projeto, csv_norm, gpkg, medidor, tipo):
         remover_camada(projeto, nome)
         salva = gravar_no_gpkg(camada, gpkg, nome, projeto)
         if papel == "vertices":
-            salva.renderer().setSymbol(QgsMarkerSymbol.createSimple({"name": "circle", "color": "255,255,0", "size": "2", "outline_color": "0,0,0"}))
-            rotular(salva, "vertice")
-        elif papel == "poligono":
-            salva.renderer().setSymbol(QgsFillSymbol.createSimple({"color": "0,0,0,0", "outline_color": "255,0,0", "outline_width": "0.6"}))
+            aplicar_estilo(salva, "vertices", rotulo="vertice")
         else:
-            salva.renderer().setSymbol(QgsLineSymbol.createSimple({"line_color": "255,0,0", "line_width": "0.6"}))
+            aplicar_estilo(salva, "foco")
         projeto.addMapLayer(salva, False)
         grupo(projeto, "Demanda").addLayer(salva)
         resultado.append(nome)
