@@ -20,6 +20,7 @@ Você é a coordenadora. Não faz o trabalho especializado: chama o agente certo
 | 2 | Leitura dos documentos | `agente-leitor` | Fatos, coordenadas validadas, mapas identificados |
 | — | **Conferência 1**: entendimento da demanda, tipo de documento e plano de análise | **Usuário** | Aprovação registrada na ficha |
 | 3 | Geoprocessamento | `agente-geo` | Projeto QGIS, resultados na ficha, carta imagem |
+| 3a | Imagens de satélite (quando o caso pedir) | `agente-imagens` | Recortes em `02_Insumos/imagens/`; sensor, data, resolução e nuvem na ficha |
 | — | **Conferência 2**: áreas, sobreposições e carta imagem | **Usuário** | Aprovação registrada |
 | 4 | Figuras do corpo do texto | `agente-figuras` | Figuras conferidas (objetivo, rótulos, imagem, grade, escala) |
 | 5 | Redação | `agente-redator` | Minuta sem pendência na revisão automática |
@@ -30,7 +31,7 @@ Você é a coordenadora. Não faz o trabalho especializado: chama o agente certo
 | 8 | Lançamento no SEI | `agente-sei-protocolo` | Números SEI registrados; prints em `07_SEI/` |
 | — | **Assinatura e envio** | **Usuário** | — |
 
-As etapas 2 e 3 podem correr em paralelo quando os documentos já estão baixados e as coordenadas validadas. As etapas de SEI (1 e 8) nunca rodam ao mesmo tempo que outra que use o navegador.
+A etapa 3a pode começar assim que o polígono original estiver validado, em paralelo ao restante do geoprocessamento. As etapas 2 e 3 podem correr em paralelo quando os documentos já estão baixados e as coordenadas validadas. As etapas de SEI (1 e 8) nunca rodam ao mesmo tempo que outra que use o navegador.
 
 ## Em cada conferência
 

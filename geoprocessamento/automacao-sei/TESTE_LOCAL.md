@@ -26,6 +26,9 @@ Peça ao Claude: "Rode o teste local das Fases A a H com os exemplos de `geoproc
 - [ ] Escolher um caso já concluído (que você conhece bem) e refazer só o geoprocessamento e uma figura. Comparar com o que você entregou.
 - [ ] Testar uma consulta ao SISCOM e uma à SEMAS-PA pelo servidor QGIS, com o recorte salvo em `consultas_online`.
 
+- [ ] Imagens (`agente-imagens`): num caso já concluído, pedir uma Sentinel-2 e uma Landsat do ano da infração. Conferir se ele pergunta o buffer, mede a nuvem só no polígono, salva em `02_Insumos/imagens/` e registra sensor, data e resolução. Comparar a cor com uma imagem que você já aprovou.
+- [ ] Planet: com o plugin aberto e a sua sessão ativa, pedir um mosaico mensal e conferir o nome `planetMosaico_MM_AAAA`.
+
 ## 3. Leitura no SEI (somente leitura)
 
 - [ ] Abrir no Chrome um processo já concluído e pedir: "use a skill leitura-processo-sei neste processo, sem baixar nada". Conferir se a demanda foi bem identificada.
