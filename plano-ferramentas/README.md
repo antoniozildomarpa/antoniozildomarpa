@@ -220,4 +220,6 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-22 | 13 | concluído | Outlook (antoniozildomar@hotmail.com) encaminha para o Gmail, com cópia; teste confirmado pelo conector Gmail. Correção: o destino estava apontando para o próprio hotmail |
 | 2026-10-22 | 14 | Notion ligado | Conector Notion ativo; `notion-get-self` confirmou o espaço "Espaço de Zildomar Oliveira" |
 | 2026-10-22 | 14 | quadro criado | Banco "Quadro de Tarefas" (página privada no nível do espaço; a "Página inicial" não aceita bancos): Status A fazer/Fazendo/Feito, Frente Geo/Advocacia/Pessoal, Prazo; visão "Quadro" em kanban com filtro rápido por frente |
+| 2026-10-22 | 3 | testado | `/morning` rodado uma vez à mão: dia sem agenda, nada pendente; renderização conferida |
+| 2026-10-22 | 2 | agendado | Rotina "Morning brief (dias úteis 6h30)", `trig_01R96Tiu3XTWr9GeMyKUQHeU`: seg–sex 6h30 Brasília (cron `30 9 * * 1-5` UTC), nuvem B3, Sonnet 5.5; Calendar, Gmail, Slack e Notion; com botões de ação; entrega como artifact privado. Revisar as saídas da primeira semana |
 | 2026-10-22 | 11, 12 | instalados | Productivity e Legal ativos; conferido com `/mcp`. Gmail, Calendar, Drive, Notion e QGIS conectados. Servidores dos plugins (Figma, Box, Amplitude, Hex, Intercom) sem autenticação e Definite com endpoint quebrado, todos fora do plano. Plugin frontend-design instalado |
