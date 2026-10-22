@@ -2,7 +2,7 @@
 
 Plano para automatizar o ciclo completo de um documento técnico (relatório, parecer, informação ou manifestação técnica), desde a demanda que chega num processo do SEI até o despacho que devolve o documento ao setor demandante.
 
-Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fases A a E concluídas.
+Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fases A a E e H concluídas.
 
 ## Princípios
 
@@ -221,7 +221,7 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 | E ✅ | `anexos-e-pacote` e `agente-empacotador` (concluída em 2026-10-22) | Testada na nuvem com caso fictício; falta rodar no seu computador |
 | F | `leitura-processo-sei` (só leitura) | SEI real, com você acompanhando |
 | G | `protocolo-sei` (escrita, com conferência a cada passo) | SEI real, num processo de teste se houver |
-| H | `georreferenciamento` | Computador, com um mapa escaneado |
+| H ✅ | `georreferenciamento` (concluída em 2026-10-22) | Testada na nuvem com croqui fictício e ponto errado de propósito; falta rodar no seu computador |
 | I | `caso-sei`: o fluxo completo de ponta a ponta | Primeiro caso real, acompanhado |
 
 ## Decisões (respostas de 2026-10-22)

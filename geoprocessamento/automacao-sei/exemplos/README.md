@@ -29,3 +29,13 @@ Para reproduzir: crie um caso, valide `ficticio_gms.csv`, rode `projeto_qgis.py 
 | `conteudo_exemplo.md` | Conteúdo com marcadores, como o agente-redator escreve |
 | `Minuta_exemplo.pdf` | O Word gerado por `minuta.py` a partir desse conteúdo, convertido em PDF para visualização |
 
+## Georreferenciamento (Fase H)
+
+| Arquivo | Uso |
+| --- | --- |
+| `ficticio_croqui_escaneado.jpg` | "Mapa escaneado" fictício: imagem girada 4° e reduzida, sem georreferência (versão reduzida para o repositório) |
+| `ficticio_croqui_pontos.csv` | 7 pontos de controle e 2 de verificação; o P6 está errado de propósito (o script deve apontá-lo) |
+| `Conferencia_georreferenciamento.png` | Resultado conferido: a clareira do croqui coincide com o contorno da área embargada (RMS 3,68 m sem o P6) |
+
+Os pixels da tabela correspondem à imagem original (1900 × 1500); a versão reduzida aqui serve só para visualização.
+

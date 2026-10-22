@@ -68,6 +68,7 @@ def ler_angulo(txt, eixo):
         raise ValueError("vazio")
     t = bruto.upper().replace("º", "°").replace("’", "'").replace("′", "'").replace("″", '"').replace("”", '"').replace("''", '"')
     hemi = None
+    t = re.sub(r"([NSEWLO])[\"'\s]+$", r"\1", t.strip())  # aspas sobrando depois do hemisfério
     m = re.search(r"([NSEWLO])\s*$", t) or re.match(r"^\s*([NSEWLO])", t)
     if m:
         hemi = m.group(1)

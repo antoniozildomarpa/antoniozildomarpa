@@ -160,10 +160,19 @@ def adicionar_grade(mapa, projeto):
     grade.setFramePenSize(0.2)
     grade.setFramePenColor(QColor(70, 70, 70))
     grade.setAnnotationEnabled(True)
-    funcao = "to_dm" if iv * 3600 >= 60 else "to_dms"
+    # GMS com dois dígitos em minutos e segundos (3°45'00" S); só minutos quando o intervalo é de minutos
+    v = "abs(@grid_number)"
+    graus = f"floor({v} + 1e-9)"
+    minutos_total = f"(({v} - {graus}) * 60)"
+    hemi = "if(@grid_axis = 'x', if(@grid_number < 0, 'O', 'L'), if(@grid_number < 0, 'S', 'N'))"
+    if iv * 3600 >= 60:
+        expr = f"concat({graus}, '°', lpad(round({minutos_total}), 2, '0'), '′ ', {hemi})"
+    else:
+        minutos = f"floor({minutos_total} + 1e-9)"
+        segundos = f"round(({minutos_total} - {minutos}) * 60)"
+        expr = f"concat({graus}, '°', lpad({minutos}, 2, '0'), '′', lpad({segundos}, 2, '0'), '″ ', {hemi})"
     grade.setAnnotationFormat(QgsLayoutItemMapGrid.CustomFormat)
-    grade.setAnnotationExpression(
-        f"replace(replace({funcao}(@grid_number, if(@grid_axis = 'x', 'x', 'y'), 0, 'suffix'), 'W', 'O'), 'E', 'L')")
+    grade.setAnnotationExpression(expr)
     grade.setAnnotationTextFormat(formato_texto(5.5))
     grade.setAnnotationFrameDistance(0.6)
     for lado, exibir, direcao in [
