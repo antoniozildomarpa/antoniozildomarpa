@@ -6,7 +6,7 @@ Regras para planejamento do dia, da semana e acompanhamento de tarefas.
 
 - Agenda: Google Agenda.
 - E-mail: Gmail e Outlook. Leia os dois ao montar resumos e planejamentos.
-- Tarefas: Notion (quadro com colunas A fazer, Fazendo, Feito e etiquetas Geo, Advocacia, Pessoal).
+- Tarefas: Notion (quadro com colunas A fazer, Fazendo, Feito e frentes Geo, Advocacia, Pessoal, DRE e Casa).
 
 ## Formato do planejamento
 

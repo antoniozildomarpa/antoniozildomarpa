@@ -49,8 +49,8 @@ Os itens 3, 4, 5, 6 e 8 já estão disponíveis. Basta usar e testar.
 - **Teste:** abrir uma sessão na pasta e pedir "resuma as regras desta frente".
 
 ### 13. Conectores de e-mail (Gmail e Outlook)
-- [ ] **Gmail:** conecte o conector Gmail.
-- [ ] **Outlook:** conecte o conector Microsoft 365. No histórico do pacote de advocacia ele aparecia com conexão incompleta; refaça a autorização.
+- [x] **Gmail:** conectado em 2026-10-22.
+- [x] **Outlook pessoal:** resolvido por encaminhamento para o Gmail (2026-10-22). Pendente: Outlook do IBAMA. Conector Microsoft 365: No histórico do pacote de advocacia ele aparecia com conexão incompleta; refaça a autorização.
   - **Decidido (2026-10-21):** o conector Microsoft 365 recusou o login, porque aceita apenas conta corporativa ou de estudante. Solução adotada: o Outlook pessoal encaminha para o Gmail, mantendo cópia no Outlook. O Claude lê o Outlook pelo conector do Gmail; respostas como Outlook continuam no próprio Outlook.
 - **Como:** conecte uma vez em https://claude.ai/customize/connectors com a mesma conta do Claude Code. Os conectores da conta passam a aparecer nas sessões do Claude Code.
 - **No terminal:** abra uma sessão nova e rode `/mcp` para confirmar que o conector aparece e está autenticado.
@@ -58,7 +58,8 @@ Os itens 3, 4, 5, 6 e 8 já estão disponíveis. Basta usar e testar.
 - **Teste:** "liste os 5 e-mails mais recentes sem resposta". Depois: "rascunhe uma resposta ao segundo, sem enviar".
 
 ### 14. Gerenciador de tarefas: Notion
-- [ ] **Como:** crie a conta em notion.so, se ainda não tiver. Depois, escolha um caminho:
+- [~] **Conectado e quadro criado em 2026-10-22**, com cinco frentes (Geo, Advocacia, Pessoal, DRE, Casa).
+- **Como:** crie a conta em notion.so, se ainda não tiver. Depois, escolha um caminho:
   - **Pela conta:** conecte o conector Notion em https://claude.ai/customize/connectors e confira com `/mcp`.
   - **Pelo terminal local:** `claude mcp add --transport http notion https://mcp.notion.com/mcp`, depois `/mcp` para autenticar no navegador.
   - **Pelo plugin Productivity (item 11):** o plugin já traz o servidor do Notion; basta autenticar com `/mcp`.
@@ -71,7 +72,8 @@ Os itens 3, 4, 5, 6 e 8 já estão disponíveis. Basta usar e testar.
 Depende da Fase 1.
 
 ### 11. Plugin Productivity (Anthropic)
-- [ ] **Pelo terminal:**
+- [~] **Instalado em 2026-10-22.** Falta o teste (skill `start` e planejamento do dia).
+- **Pelo terminal:**
   ```
   /plugin marketplace add anthropics/knowledge-work-plugins
   /plugin install productivity@knowledge-work-plugins
@@ -81,11 +83,13 @@ Depende da Fase 1.
 - **Teste:** rodar a skill de início (`start`) e depois "planeje meu dia de amanhã com base na agenda e nas tarefas abertas".
 
 ### 3. Morning brief (`/morning`)
-- [ ] **Pelo terminal:** digite `/morning` ou peça "configure meu morning brief". Defina o que entra: agenda, e-mails importantes, tarefas vencendo, prazos.
+- [~] **Testado à mão em 2026-10-22** e agendado (item 2).
+- **Pelo terminal:** digite `/morning` ou peça "configure meu morning brief". Defina o que entra: agenda, e-mails importantes, tarefas vencendo, prazos.
 - **Teste:** rodar uma vez manualmente e ajustar.
 
 ### 2. Tarefas agendadas
-- [ ] **Feito por mim:** eu crio as tarefas agendadas direto daqui, uma por vez, com o horário no seu fuso.
+- [~] **Rotinas 1 e 2 agendadas em 2026-10-22.** Rotinas 3 e 4 dependem da Fase 3.
+- **Feito por mim:** eu crio as tarefas agendadas direto daqui, uma por vez, com o horário no seu fuso.
 - **Rotinas propostas:**
   1. Morning brief: dias úteis, cedo.
   2. Revisão semanal: sábado ao meio-dia (antes era sexta à tarde), com o que foi feito, o que ficou e as prioridades seguintes.
@@ -107,7 +111,8 @@ Já disponíveis. Falta padronizar o uso.
 - **Cuidado:** número ou data extraído por OCR é conferido no original.
 
 ### 6. Planilhas (xlsx) + Google Sheets
-- [ ] **Feito por mim, com a sua aprovação:** criar no Drive as planilhas-base (Controle de processos, Controle de embargos e cartas imagem, Financeiro), com dados fictícios.
+- [~] **Criadas e testadas em 2026-10-22** (6 planilhas, dados fictícios).
+- **Feito por mim, com a sua aprovação:** criar no Drive as planilhas-base (Controle de processos, Controle de embargos e cartas imagem, Financeiro), com dados fictícios.
 - **Teste:** ler e atualizar uma linha de teste.
 
 ### 7. Dataviz + Build Dashboard (plugin Data, já instalado)
@@ -138,7 +143,8 @@ Exige o seu computador. Não funciona nas sessões na nuvem.
 - **Cuidado:** toda norma ou decisão citada é conferida na fonte oficial.
 
 ### 12. Plugin Legal (Anthropic)
-- [ ] **Pelo terminal** (o marketplace do item 11 já estará adicionado):
+- [~] **Instalado em 2026-10-22.** Falta o teste com contrato fictício.
+- **Pelo terminal** (o marketplace do item 11 já estará adicionado):
   ```
   /plugin install legal@knowledge-work-plugins
   ```
