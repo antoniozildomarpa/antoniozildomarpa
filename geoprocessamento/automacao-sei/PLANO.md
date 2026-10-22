@@ -2,7 +2,7 @@
 
 Plano para automatizar o ciclo completo de um documento técnico (relatório, parecer, informação ou manifestação técnica), desde a demanda que chega num processo do SEI até o despacho que devolve o documento ao setor demandante.
 
-Situação: **rascunho para discussão**, criado em 2026-10-22. Nada foi implementado ainda. As perguntas em aberto estão no fim do arquivo.
+Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fase A concluída.
 
 ## Princípios
 
@@ -56,14 +56,16 @@ flowchart TD
 Estrutura da pasta (o nome usa o NUP sem barras, mais um apelido curto):
 
 ```
-<raiz dos casos>/2026/02001.012345-2026-11_embargo-fazenda-x/
+H:\Meu Drive\_GEO\_DEMANDAS_EMI\2026\02001.012345-2026-11_embargo-fazenda-x\
   00_Ficha/            ficha.md, ficha.json, registro.md (log de cada etapa)
   01_Processo_SEI/     documentos baixados, nomeados pelo número SEI
   02_Insumos/
     imagens/           satélite, fotos, prints
-    vetores_baixados/  CAR, UC, TI, PRODES, DETER, limites
+    vetores_baixados/  cópias das camadas de H:\Meu Drive\_GEO\_VETORES usadas
+    consultas_online/  recortes do SISCOM (IBAMA) e da SEMAS-PA, com data e hora
     tabelas/           coordenadas extraídas, planilhas
     mapas_scan/        mapas e croquis a georreferenciar
+    documentos_imovel/ demonstrativos do CAR e outros documentos do imóvel
   03_Geo/
     caso.qgz           projeto QGIS do caso
     vetores_produzidos/
@@ -71,7 +73,7 @@ Estrutura da pasta (o nome usa o NUP sem barras, mais um apelido curto):
     georreferenciados/
   04_Figuras/          recortes de mapa com legenda, para o corpo do texto
   05_Documento/        minuta_v1.docx, minuta_v2.docx, final.docx
-  06_Anexos/           Anexo_I_Carta_Imagem.pdf, Anexo_II_Arquivos_Vetoriais.zip ...
+  06_Anexos/           Anexo_1_Carta_Imagem.pdf, Anexo_2_Geoinformacao.zip ...
   07_SEI/              números SEI gerados, prints de confirmação
 ```
 
@@ -92,8 +94,8 @@ Campos da ficha: NUP, tipo de processo, setor demandante, documento da demanda (
 - **O que acontece:**
   1. Cria o projeto `03_Geo/caso.qgz` em SIRGAS 2000 (EPSG:4674), com grupos padrão: Demanda, Bases oficiais, Produzidos, Imagens.
   2. Converte as tabelas de coordenadas em pontos ou polígonos e adiciona ao projeto.
-  3. Georreferencia mapas e croquis importantes, a partir de pontos de controle (cantos de grade, coordenadas impressas ou feições reconhecíveis). Registra o erro médio (RMS) e só aceita abaixo do limite combinado.
-  4. Adiciona as bases baixadas (CAR, UC, TI, PRODES, DETER etc.).
+  3. Georreferencia mapas e croquis importantes, a partir de pontos de controle (cantos de grade, coordenadas impressas ou feições reconhecíveis). Registra o erro médio (RMS). O limite é definido caso a caso, conforme a fonte, a resolução e a qualidade do material; o Claude sugere um valor e você confirma.
+  4. Adiciona as bases: as locais de `H:\Meu Drive\_GEO\_VETORES` e as online, pelas conexões do QGIS com o SISCOM (IBAMA) e com a SEMAS-PA (imóveis, CAR, datas de criação, histórico de alteração). Como os dados online mudam, exporta o recorte usado para `02_Insumos/consultas_online`, com fonte, data e hora.
   5. Busca e recorta as imagens de satélite com a skill `landsat-estilo-natural-tiarg`.
   6. Faz as análises pedidas: área, sobreposição, distância, evolução temporal.
   7. Gera a carta imagem com a skill `producao-carta-imagem`.
@@ -112,9 +114,9 @@ Campos da ficha: NUP, tipo de processo, setor demandante, documento da demanda (
 ### 6. Redação da minuta
 
 - **O que acontece:**
-  1. Escreve o documento no modelo do tipo escolhido (relatório, parecer, informação ou manifestação técnica), no padrão IBAMA.
+  1. Escreve o documento na estrutura genérica: Objetivo, Resumo (só em documento extenso), Metodologia, Análises, Resultados e/ou Conclusão, Relação de Anexos. Os primeiros documentos feitos assim viram modelos para casos semelhantes.
   2. Insere cada figura logo após o parágrafo que a menciona, com legenda numerada ("Figura 1 – ...").
-  3. Numera os anexos na ordem em que aparecem no texto e monta a lista de anexos no fim.
+  3. Numera os anexos em algarismos arábicos, na ordem da primeira citação no texto (Anexo 1, Anexo 2...), e monta a Relação de Anexos no fim.
   4. Salva em Word, em versões que nunca se sobrescrevem: `minuta_v1.docx`, `minuta_v2.docx`.
 - **Produto:** a minuta em Word e o quadro de anexos previstos.
 
@@ -133,8 +135,8 @@ Campos da ficha: NUP, tipo de processo, setor demandante, documento da demanda (
 ### 8. Pacote de anexos
 
 - **O que acontece:**
-  1. Exporta cada anexo com o nome da lista: `Anexo_I_Carta_Imagem.pdf`, `Anexo_II_Tabela_de_Coordenadas.pdf`.
-  2. Junta os arquivos vetoriais usados e produzidos (Shapefile ou GeoPackage, com o .prj) num zip nomeado como anexo: `Anexo_III_Arquivos_Vetoriais.zip`.
+  1. Exporta cada anexo com o nome da lista: `Anexo_1_Carta_Imagem.pdf`, `Anexo_3_Demonstrativo_CAR.pdf`.
+  2. Junta os arquivos vetoriais usados e produzidos (Shapefile ou GeoPackage, com o .prj) num zip de Geoinformação nomeado como anexo: `Anexo_2_Geoinformacao.zip`.
   3. Inclui no zip um `LEIA-ME.txt` com a lista de arquivos, a origem de cada um e o sistema de referência.
   4. Confere tamanho e formato aceitos pelo SEI.
 - **Produto:** `06_Anexos/` pronto para subir.
@@ -144,9 +146,9 @@ Campos da ficha: NUP, tipo de processo, setor demandante, documento da demanda (
 
 Sempre no Chrome logado por você, um passo de cada vez, com print de confirmação salvo em `07_SEI/`:
 
-1. **Cria o documento principal em branco**, no tipo certo (relatório, parecer, informação ou manifestação técnica). Anota o número SEI.
-2. **Inclui os anexos** como documentos externos, um por um, com o nome da lista. Anota o número SEI de cada um.
-3. **Cola o texto da minuta final** no documento principal.
+1. **Cria o documento principal em branco**, no tipo certo: Relatório Técnico, Informação Técnica, Parecer Técnico ou Manifestação Técnica. Anota o número SEI.
+2. **Inclui os anexos** como documentos externos, um por um, com o nome da lista: mapas, documentos do imóvel (como demonstrativos do CAR) e a Geoinformação em zip. Anota o número SEI de cada um.
+3. **Cola o texto da minuta final** no documento principal, com as figuras (já validado em uso anterior no Claude Code).
 4. **Cria os links**: em cada menção a um anexo no corpo do texto, insere o link do SEI para o número daquele anexo.
 5. **Cria o despacho** que encaminha o documento principal e os anexos ao setor demandante, citando os números SEI com links.
 6. **Para e avisa.** Você confere, **assina** o documento principal e o despacho, e **envia** o processo.
@@ -211,7 +213,7 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 
 | Fase | O que entrega | Testável onde |
 |---|---|---|
-| A | `estrutura-caso`: pasta, ficha e registro | Computador, caso fictício |
+| A ✅ | `estrutura-caso`: pasta, ficha e registro (concluída em 2026-10-22) | Testada na nuvem com caso fictício; falta rodar no seu computador |
 | B | `coordenadas-para-qgis` e `projeto-qgis-caso` | Computador, QGIS |
 | C | `figura-mapa-legenda` | Computador, QGIS |
 | D | `redacao-documento-tecnico`, `agente-redator` e `agente-revisor` | Computador, com seus modelos |
@@ -221,13 +223,16 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 | H | `georreferenciamento` | Computador, com um mapa escaneado |
 | I | `caso-sei`: o fluxo completo de ponta a ponta | Primeiro caso real, acompanhado |
 
-## Perguntas em aberto
+## Decisões (respostas de 2026-10-22)
 
-1. **Raiz dos casos:** onde ficam as pastas dos casos? Ex.: `H:\Meu Drive\_GEO\Casos`. O Google Drive serve bem para os casos, só não para o repositório.
-2. **Modelos:** você tem modelos em Word de relatório, parecer, informação, manifestação técnica e despacho? Duas ou três peças antigas já aprovadas, sem dados pessoais, ajudam a acertar o estilo.
-3. **Tipos no SEI:** quais os nomes exatos dos tipos de documento no SEI do IBAMA? Por exemplo: "Relatório Técnico", "Parecer Técnico", "Informação Técnica". E os anexos entram como documento externo de qual tipo?
-4. **Numeração:** anexos em romanos (Anexo I, II) ou arábicos (Anexo 1, 2)? Figuras como "Figura 1"?
-5. **Bases oficiais:** quais camadas você costuma usar (CAR, UC, TI, PRODES, DETER, APP, hidrografia)? Ficam numa pasta local fixa?
-6. **QGIS:** qual versão? O servidor QGIS que aparece conectado no Claude Code está funcionando?
-7. **Georreferenciamento:** qual o erro máximo aceitável (RMS), em metros ou em pixels?
-8. **Links no SEI:** você já usa o botão de link para documento do SEI no editor? Ele é o caminho previsto para ligar o texto aos anexos.
+| Tema | Decisão |
+| --- | --- |
+| Pasta dos casos | `H:\Meu Drive\_GEO\_DEMANDAS_EMI\<ano>` |
+| Estrutura do documento | Genérica: Objetivo, Resumo (só em documento extenso), Metodologia, Análises, Resultados e/ou Conclusão, Relação de Anexos. Os primeiros documentos viram modelos |
+| Tipos no SEI (principais) | Relatório Técnico, Informação Técnica, Parecer Técnico, Manifestação Técnica |
+| Anexos (documentos externos) | Mapas, documentos do imóvel (como demonstrativos do CAR) e Geoinformação (arquivos vetoriais em zip) |
+| Numeração dos anexos | Arábica, pela ordem de citação no texto: Anexo 1, Anexo 2... |
+| Bases | CAR, UC, TI, PRODES, DETER, APP e outras. Locais em `H:\Meu Drive\_GEO\_VETORES`; online pelas conexões do QGIS com o SISCOM (IBAMA) e a SEMAS-PA |
+| Erro do georreferenciamento | Definido caso a caso, conforme fonte, resolução e qualidade |
+| Edição no SEI | Criar documentos, incluir anexos e colar texto com imagens já foi feito antes pelo Claude Code; assinar e enviar continuam com você |
+| QGIS | Versão a confirmar ao rodar a Fase B no seu computador |
