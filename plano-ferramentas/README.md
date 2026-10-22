@@ -102,7 +102,8 @@ Depende da Fase 1.
 Já disponíveis. Falta padronizar o uso.
 
 ### 4. Claude Docs
-- [ ] **Teste:** "crie um doc de relatório técnico de embargo com dados fictícios". Comente um trecho no doc e peça para o Claude responder ao comentário.
+- [~] **Doc de teste criado em 2026-10-22:** "Relatório técnico – Caso Teste 02 (fictício)", https://claude.ai/artifact/LUdd2LtUkBCuyKvGh6Pvwp. Falta testar o comentário e a exportação.
+- **Teste:** "crie um doc de relatório técnico de embargo com dados fictícios". Comente um trecho no doc e peça para o Claude responder ao comentário.
 - **Uso:** pareceres, relatórios técnicos, minutas. Exporta para Word, PDF e Google Docs.
 - **Cuidado:** verifique com quem o doc está compartilhado antes de pôr dados reais.
 
@@ -237,3 +238,4 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-22 | 9, 13 | IBAMA pelo Chrome | Encaminhamento do Outlook do IBAMA para o Gmail não entrega (bloqueio do órgão). Decisão do usuário: ler o Outlook web do IBAMA pelo Claude in Chrome, só leitura e sob pedido, sem entrar nas rotinas da nuvem. Teste: caixa aberta com a sessão já logada, sem abrir nem baixar mensagens. A regra de encaminhamento ainda aparece ativa no Outlook do IBAMA |
 | 2026-10-22 | 11, 12 | instalados | Productivity e Legal ativos; conferido com `/mcp`. Gmail, Calendar, Drive, Notion e QGIS conectados. Servidores dos plugins (Figma, Box, Amplitude, Hex, Intercom) sem autenticação e Definite com endpoint quebrado, todos fora do plano. Plugin frontend-design instalado |
 | 2026-10-22 | 7 | criado | Painel "Embargos e financeiro" (artifact privado LCcDSmG3U9bDie8wxxixUL), lendo ao vivo as planilhas Controle de embargos e Financeiro pelo conector Google Sheets: casos, área adotada, cartas pendentes, divergência entre fontes (TEI, AI, SEI), gráfico de áreas por caso, recebido, a receber, despesas e saldo. Verificação automática sem erros. Falta a sua revisão |
+| 2026-10-22 | 4 | doc de teste | Relatório técnico fictício no Claude Docs (identificação, metodologia, análise das áreas com a regra de adoção, evolução da vegetação, conclusão com tarefas, anexos). Falta: comentar um trecho e pedir resposta; exportar para Word/PDF |
