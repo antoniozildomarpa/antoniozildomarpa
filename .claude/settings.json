@@ -10,5 +10,20 @@
   "enabledPlugins": {
     "productivity@knowledge-work-plugins": true,
     "legal@knowledge-work-plugins": true
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__claude-in-chrome__.*|mcp__Claude_Browser__.*|mcp__remote-devices__.*|mcp__computer-use__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/bloquear_sei.py\" || python \"$CLAUDE_PROJECT_DIR/.claude/hooks/bloquear_sei.py\"",
+            "timeout": 10,
+            "statusMessage": "Conferindo segurança no SEI"
+          }
+        ]
+      }
+    ]
   }
 }

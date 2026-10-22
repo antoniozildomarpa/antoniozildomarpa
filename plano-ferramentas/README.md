@@ -160,7 +160,8 @@ Exige o seu computador. Não funciona nas sessões na nuvem.
 Feito por mim, em arquivos do repositório.
 
 ### 16. Hooks de segurança
-- [ ] Hook em `.claude/settings.json` que bloqueia envio de e-mail, mensagem ou protocolo sem confirmação explícita.
+- [~] **Gancho do SEI criado em 2026-10-22** (bloqueia assinar, enviar processo e senha no navegador); falta ver disparar no computador.
+- Hook em `.claude/settings.json` que bloqueia envio de e-mail, mensagem ou protocolo sem confirmação explícita.
 - **Teste:** pedir um envio e confirmar que o hook bloqueia.
 
 ### 17. Session Start Hook
@@ -248,3 +249,4 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-22 | 1 | automação SEI: fase D | `minuta.py` (Word a partir de conteúdo com marcadores: figuras, tabelas e anexos numerados, áreas e coordenadas dos dados do caso, ABNT para ilustrações, versões sem sobrescrever) e `revisar_minuta.py` (consistência); skill `redacao-documento-tecnico`; agentes `agente-redator` e `agente-revisor` em `.claude/agents/` |
 | 2026-10-22 | 1 | automação SEI: fase E | `anexos.py` (anexos com nome e número da minuta, versões anteriores guardadas, verificação de PDF, zip, extensão e tamanho, manifesto) e zip de Geoinformação com todas as camadas em SHP, GPKG e KML e LEIA-ME; skill `anexos-e-pacote`; agente `agente-empacotador` |
 | 2026-10-22 | 1 | automação SEI: fase H | `georreferenciar.py` (pontos em GMS, decimal ou UTM, qualquer datum; RMS de controle e de verificação em metros; ponto suspeito pela queda do RMS; limite caso a caso com referência de 0,2 mm na escala; GeoTIFF SIRGAS 2000; uso medição ou só ilustração); skill `georreferenciamento`; grade das figuras com GMS de dois dígitos |
+| 2026-10-22 | 1, 16 | automação SEI: F, G, I e gancho | Skills `leitura-processo-sei`, `protocolo-sei` e `caso-sei`; agentes `agente-sei-leitura`, `agente-sei-protocolo`, `agente-leitor`, `agente-geo` e `agente-figuras`; gancho que bloqueia assinar, enviar processo e senha no navegador (item 16). Roteiro de teste no computador em `geoprocessamento/automacao-sei/TESTE_LOCAL.md` |

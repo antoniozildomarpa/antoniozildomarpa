@@ -2,7 +2,7 @@
 
 Plano para automatizar o ciclo completo de um documento técnico (relatório, parecer, informação ou manifestação técnica), desde a demanda que chega num processo do SEI até o despacho que devolve o documento ao setor demandante.
 
-Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fases A a E e H concluídas.
+Situação: em construção. Plano criado e decisões tomadas em 2026-10-22 (ver "Decisões" no fim). Fases A a E e H construídas e testadas na nuvem; F, G e I escritas (✍️), aguardando teste no seu computador. Roteiro em `TESTE_LOCAL.md`.
 
 ## Princípios
 
@@ -202,7 +202,7 @@ Skills são os roteiros reutilizáveis que os agentes seguem. Ficam em `geoproce
 
 ## Proteções
 
-- **Gancho de segurança no Claude Code** que bloqueia cliques em "Assinar" e "Enviar processo" no SEI, mesmo por engano.
+- **Gancho de segurança no Claude Code** (`.claude/hooks/bloquear_sei.py`, configurado em `.claude/settings.json`) que nega ações de navegador e de controle do computador que mencionem assinatura, envio de processo ou campo de senha. Ações só de leitura passam.
 - **Gancho que impede commit** de qualquer pasta de caso ou arquivo com dados reais no repositório.
 - **Registro de cada etapa** em `00_Ficha/registro.md`: o que foi feito, quando, com quais arquivos. Serve para retomar um caso parado e para auditoria.
 - **Versões que não se sobrescrevem** na minuta e nos produtos geográficos.
@@ -219,10 +219,10 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 | C ✅ | `figura-mapa-legenda` e `padrao-cartografico` (concluída em 2026-10-22) | Testada na nuvem com QGIS 3.34; falta rodar no seu computador |
 | D ✅ | `redacao-documento-tecnico`, `agente-redator` e `agente-revisor` (concluída em 2026-10-22) | Testada na nuvem com caso fictício; falta rodar no seu computador (`pip install python-docx`) |
 | E ✅ | `anexos-e-pacote` e `agente-empacotador` (concluída em 2026-10-22) | Testada na nuvem com caso fictício; falta rodar no seu computador |
-| F | `leitura-processo-sei` (só leitura) | SEI real, com você acompanhando |
-| G | `protocolo-sei` (escrita, com conferência a cada passo) | SEI real, num processo de teste se houver |
+| F ✍️ | `leitura-processo-sei` e `agente-sei-leitura` (escritos em 2026-10-22) | SEI real, com você acompanhando |
+| G ✍️ | `protocolo-sei`, `agente-sei-protocolo` e gancho de segurança (escritos em 2026-10-22) | SEI real, num processo de teste se houver |
 | H ✅ | `georreferenciamento` (concluída em 2026-10-22) | Testada na nuvem com croqui fictício e ponto errado de propósito; falta rodar no seu computador |
-| I | `caso-sei`: o fluxo completo de ponta a ponta | Primeiro caso real, acompanhado |
+| I ✍️ | `caso-sei` e agentes `agente-leitor`, `agente-geo`, `agente-figuras` (escritos em 2026-10-22) | Primeiro caso real, acompanhado |
 
 ## Decisões (respostas de 2026-10-22)
 
