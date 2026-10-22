@@ -39,7 +39,7 @@ Os itens 3, 4, 5, 6 e 8 já estão disponíveis. Basta usar e testar.
 ## Fase 1: Fundação (dia 1)
 
 ### 15. Contexto por frente (equivalente aos Projetos, no Claude Code)
-- [~] **Estrutura criada em 2026-10-21.** Falta preencher os itens `[A CONFIRMAR]` dos `CLAUDE.md`.
+- [~] **Estrutura criada e preenchida em 2026-10-21.** Falta o teste.
 - **Como:** em vez de Projetos no claude.ai, cada frente vira uma pasta do repositório com seu próprio `CLAUDE.md` (instruções lidas automaticamente em toda sessão aberta ali).
 - **Feito por mim:**
   1. Criar `geoprocessamento/CLAUDE.md`: padrões de carta imagem, fontes de imagem, sistema de coordenadas, regras de entrega.
@@ -51,6 +51,7 @@ Os itens 3, 4, 5, 6 e 8 já estão disponíveis. Basta usar e testar.
 ### 13. Conectores de e-mail (Gmail e Outlook)
 - [ ] **Gmail:** conecte o conector Gmail.
 - [ ] **Outlook:** conecte o conector Microsoft 365. No histórico do pacote de advocacia ele aparecia com conexão incompleta; refaça a autorização.
+  - **Pendente (2026-10-21):** o conector Microsoft 365 recusou o login, porque aceita apenas conta corporativa ou de estudante. Decidir depois entre: (a) encaminhar o Outlook pessoal para o Gmail; (b) testar a integração de Outlook do Composio; (c) se a conta for do escritório, pedir ao administrador que libere o app.
 - **Como:** conecte uma vez em https://claude.ai/customize/connectors com a mesma conta do Claude Code. Os conectores da conta passam a aparecer nas sessões do Claude Code.
 - **No terminal:** abra uma sessão nova e rode `/mcp` para confirmar que o conector aparece e está autenticado.
 - **Recomendação:** exigir confirmação para envio.
@@ -227,3 +228,6 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-21 | Decisões | tomadas | Gmail e Outlook; Notion; Claude Code já instalado |
 | 2026-10-21 | 15 | em teste | Pastas `geoprocessamento/` e `pessoal/` com `CLAUDE.md`; `CLAUDE.md` raiz como índice |
 | 2026-10-21 | 11, 12 | declarados | Plugins Productivity e Legal em `.claude/settings.json`; falta instalar e testar |
+| 2026-10-21 | 15 | preenchido | `[A CONFIRMAR]` resolvidos: SIRGAS 2000 geográficas, GMS, buffer por caso, saídas PDF/GeoTIFF/SHP-GPKG, modelo IBAMA; horário flexível, revisão sexta 16h |
+| 2026-10-21 | 13, 14 | diagnóstico | No terminal local: Microsoft 365 e Notion (plugin Design) aguardam autenticação via `/mcp`; Gmail não está conectado na conta |
+| 2026-10-21 | 13 | adiado | Microsoft 365 só aceita conta corporativa ou de estudante; alternativa para o Outlook a decidir (ver item 13) |

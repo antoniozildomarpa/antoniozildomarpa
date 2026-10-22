@@ -1,6 +1,6 @@
 # Geoprocessamento e fiscalização ambiental
 
-Regras para o trabalho técnico com imagens de satélite, CAR, embargos e autuações. Itens marcados `[A CONFIRMAR]` ainda precisam ser preenchidos por você.
+Regras para o trabalho técnico com imagens de satélite, CAR, embargos e autuações.
 
 ## Entregas típicas
 
@@ -15,11 +15,11 @@ Regras para o trabalho técnico com imagens de satélite, CAR, embargos e autua�
 
 ## Padrões técnicos
 
-- Sistema de referência de coordenadas: `[A CONFIRMAR]` (ex.: SIRGAS 2000, UTM ou geográficas).
-- Formato das coordenadas na tabela: `[A CONFIRMAR]` (graus decimais, graus-minutos-segundos ou UTM).
-- Tamanho padrão do buffer: `[A CONFIRMAR]`.
-- Formato de saída: `[A CONFIRMAR]` (PDF do layout, PNG, GeoTIFF).
-- Órgão e modelo de relatório usados: `[A CONFIRMAR]`.
+- Sistema de referência de coordenadas: SIRGAS 2000, coordenadas geográficas (EPSG:4674).
+- Formato das coordenadas na tabela: graus-minutos-segundos.
+- Tamanho do buffer: definido caso a caso, sem padrão fixo. Pergunte antes de recortar.
+- Formatos de saída: PDF do layout, GeoTIFF dos recortes e Shapefile ou GeoPackage dos polígonos e vértices.
+- Órgão e modelo de relatório: IBAMA (embargos e autos de infração).
 
 ## Regras
 

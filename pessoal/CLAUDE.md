@@ -1,6 +1,6 @@
 # Organização pessoal
 
-Regras para planejamento do dia, da semana e acompanhamento de tarefas. Itens marcados `[A CONFIRMAR]` ainda precisam ser preenchidos por você.
+Regras para planejamento do dia, da semana e acompanhamento de tarefas.
 
 ## Fontes
 
@@ -12,8 +12,8 @@ Regras para planejamento do dia, da semana e acompanhamento de tarefas. Itens ma
 
 - **Dia:** compromissos da agenda, até três prioridades, tarefas vencendo e e-mails que pedem resposta.
 - **Semana:** o que foi concluído, o que ficou pendente e as prioridades da semana seguinte, separados por frente.
-- Horário de trabalho: `[A CONFIRMAR]`.
-- Dia e horário da revisão semanal: `[A CONFIRMAR]` (proposta: sexta à tarde).
+- Horário de trabalho: flexível, sem horário fixo. Não presuma expediente ao sugerir horários.
+- Revisão semanal: sexta-feira, às 16h.
 
 ## Regras
 
