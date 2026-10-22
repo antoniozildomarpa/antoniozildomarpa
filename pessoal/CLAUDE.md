@@ -13,7 +13,7 @@ Regras para planejamento do dia, da semana e acompanhamento de tarefas.
 - **Dia:** compromissos da agenda, até três prioridades, tarefas vencendo e e-mails que pedem resposta.
 - **Semana:** o que foi concluído, o que ficou pendente e as prioridades da semana seguinte, separados por frente.
 - Horário de trabalho: flexível, sem horário fixo. Não presuma expediente ao sugerir horários.
-- Revisão semanal: sexta-feira, às 16h.
+- Revisão semanal: sábado, ao meio-dia.
 
 ## Regras
 

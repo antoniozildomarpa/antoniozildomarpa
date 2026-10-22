@@ -88,7 +88,7 @@ Depende da Fase 1.
 - [ ] **Feito por mim:** eu crio as tarefas agendadas direto daqui, uma por vez, com o horário no seu fuso.
 - **Rotinas propostas:**
   1. Morning brief: dias úteis, cedo.
-  2. Revisão semanal: sexta à tarde, com o que foi feito, o que ficou e as prioridades seguintes.
+  2. Revisão semanal: sábado ao meio-dia (antes era sexta à tarde), com o que foi feito, o que ficou e as prioridades seguintes.
   3. Alerta de prazos: diário, a partir da planilha de processos (depois da Fase 3).
   4. Novos embargos e autuações da semana, se houver fonte pública ou planilha de controle.
 - **Teste:** revisar as saídas da primeira semana de cada rotina antes de manter.
@@ -222,4 +222,5 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-22 | 14 | quadro criado | Banco "Quadro de Tarefas" (página privada no nível do espaço; a "Página inicial" não aceita bancos): Status A fazer/Fazendo/Feito, Frente Geo/Advocacia/Pessoal, Prazo; visão "Quadro" em kanban com filtro rápido por frente |
 | 2026-10-22 | 3 | testado | `/morning` rodado uma vez à mão: dia sem agenda, nada pendente; renderização conferida |
 | 2026-10-22 | 2 | agendado | Rotina "Morning brief (dias úteis 6h30)", `trig_01R96Tiu3XTWr9GeMyKUQHeU`: seg–sex 6h30 Brasília (cron `30 9 * * 1-5` UTC), nuvem B3, Sonnet 5.5; Calendar, Gmail, Slack e Notion; com botões de ação; entrega como artifact privado. Revisar as saídas da primeira semana |
+| 2026-10-22 | 2 | agendado | Rotina "Revisão semanal (sábado 12h)", `trig_01WsrwYTSWqdUdjd3XUqAuyQ`: sábado 12h Brasília (cron `0 15 * * 6` UTC), nuvem B3, Sonnet 5.5; Notion, Calendar e Gmail; feito, ficou, próxima semana e e-mails sem resposta; entrega como artifact privado. Horário mudado de sexta 16h para sábado 12h a pedido do usuário |
 | 2026-10-22 | 11, 12 | instalados | Productivity e Legal ativos; conferido com `/mcp`. Gmail, Calendar, Drive, Notion e QGIS conectados. Servidores dos plugins (Figma, Box, Amplitude, Hex, Intercom) sem autenticação e Definite com endpoint quebrado, todos fora do plano. Plugin frontend-design instalado |
