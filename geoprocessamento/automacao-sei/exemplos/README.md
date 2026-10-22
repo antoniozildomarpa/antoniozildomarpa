@@ -19,4 +19,5 @@ Resultados esperados: 78,6332 ha no primeiro, 99,9955 ha no segundo (após conve
 | `Figura_exemplo_area_embargada.png` | Resultado esperado de `figura_mapa.py` (gerado com uma imagem de fundo fictícia, não incluída) |
 
 Para reproduzir: crie um caso, valide `ficticio_gms.csv`, rode `projeto_qgis.py --bases ficticio_imovel_car.geojson ficticio_hidrografia.geojson` e depois o comando de exemplo da skill `figura-mapa-legenda`, sem a camada de imagem.
-
+| `Figura_exemplo_imagem_escura_sem_ajuste.png` | A mesma figura com imagem escura, só medida (`--ajuste-imagem so-medir`), para comparação |
+| `Comparacao_ajuste_imagem.png` | Imagem escura antes (esquerda) e depois (direita) do ajuste automático de brilho, contraste e saturação |

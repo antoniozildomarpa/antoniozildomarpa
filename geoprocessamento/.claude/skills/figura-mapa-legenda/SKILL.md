@@ -46,7 +46,9 @@ O que o script faz sozinho:
 - desenha em SIRGAS 2000 / UTM da zona do foco, para formas e escala corretas;
 - escolhe o canto da legenda com menor sobreposição com a área de foco; escala e norte vão para os cantos que sobrarem;
 - legenda com fundo branco semitransparente, sem a imagem de fundo (ela vai na legenda da figura);
-- escala em m ou km, com números no padrão brasileiro;
+- escala gráfica refinada (barra de 1 mm, contorno de 0,15 mm), em m ou km, números no padrão brasileiro e texto colado à barra;
+- grade de coordenadas só com traços curtos na borda e valores em GMS (S/O), com intervalo escolhido pela escala (3 a 5 divisões); `--sem-grade` para retirar;
+- revisão de brilho e contraste de toda imagem de satélite, com ajuste automático (realce 2%–98%, gama e saturação) e registro de antes e depois no JSON; `--ajuste-imagem so-medir` só aponta o problema;
 - linhas finas e rótulos com buffer branco, sempre exibidos, fora da informação principal (paleta de `estilos.py`);
 - revisão automática dos rótulos: quantos foram exibidos, quais ficaram sem espaço, cortados na borda ou sobre a informação principal (campo `rotulos` e `alertas` do JSON);
 - exporta `04_Figuras/Figura_NN_<nome>.png` a 300 dpi e o `.json` com objetivo, escala, cantos e as perguntas de conferência;

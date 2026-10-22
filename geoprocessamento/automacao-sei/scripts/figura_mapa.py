@@ -34,6 +34,7 @@ from qgis.core import (
     QgsLayoutExporter,
     QgsLayoutItemLegend,
     QgsLayoutItemMap,
+    QgsLayoutItemMapGrid,
     QgsLayoutItemPicture,
     QgsLayoutItemScaleBar,
     QgsLayoutMeasurement,
@@ -54,6 +55,7 @@ from qgis.PyQt.QtGui import QColor, QFont
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import caso  # noqa: E402
 from estilos import PAPEIS, aplicar_estilo  # noqa: E402
+from revisao_imagem import revisar as revisar_imagem  # noqa: E402
 
 FONTE = "Arial"
 FUNDO_LEGENDA = QColor(255, 255, 255, 220)
@@ -120,10 +122,61 @@ def sobreposicao(ret, foco):
     return inter.area() if inter and not inter.isEmpty() else 0.0
 
 
-def posicao_mm(canto, largura_pag, altura_pag, largura_item, altura_item):
-    x = MARGEM_MM if canto.endswith("esq") else largura_pag - MARGEM_MM - largura_item
-    y = altura_pag - MARGEM_MM - altura_item if canto.startswith("inf") else MARGEM_MM
+def posicao_mm(canto, quadro, largura_item, altura_item):
+    """Posição do item dentro do quadro do mapa (x, y, largura, altura em mm)."""
+    mx, my, mw, mh = quadro
+    x = mx + MARGEM_MM if canto.endswith("esq") else mx + mw - MARGEM_MM - largura_item
+    y = my + mh - MARGEM_MM - altura_item if canto.startswith("inf") else my + MARGEM_MM
     return QgsLayoutPoint(x, y)
+
+
+# intervalos "redondos" da grade, em segundos de grau
+INTERVALOS_S = [1, 2, 3, 5, 10, 15, 20, 30, 60, 120, 180, 300, 600, 900, 1200, 1800,
+                3600, 7200, 10800, 18000, 36000]
+
+
+def intervalo_grade(largura_graus, alvo=4):
+    """Intervalo que dá cerca de 3 a 5 divisões na largura do mapa, qualquer que seja a escala."""
+    largura_s = largura_graus * 3600
+    for iv in INTERVALOS_S:
+        if largura_s / iv <= alvo + 1:
+            return iv / 3600
+    return INTERVALOS_S[-1] / 3600
+
+
+def adicionar_grade(mapa, projeto):
+    """Grade só com traços curtos na borda (sem linhas sobre o mapa) e valores em GMS (S/O)."""
+    geo = QgsCoordinateReferenceSystem("EPSG:4674")
+    ext = QgsCoordinateTransform(mapa.crs(), geo, projeto).transformBoundingBox(mapa.extent())
+    iv = intervalo_grade(ext.width())
+    grade = QgsLayoutItemMapGrid("Grade", mapa)
+    grade.setEnabled(True)
+    grade.setCrs(geo)
+    grade.setIntervalX(iv)
+    grade.setIntervalY(iv)
+    grade.setStyle(QgsLayoutItemMapGrid.FrameAnnotationsOnly)
+    grade.setFrameStyle(QgsLayoutItemMapGrid.ExteriorTicks)
+    grade.setFrameWidth(1.2)          # comprimento do traço, mm
+    grade.setFramePenSize(0.2)
+    grade.setFramePenColor(QColor(70, 70, 70))
+    grade.setAnnotationEnabled(True)
+    funcao = "to_dm" if iv * 3600 >= 60 else "to_dms"
+    grade.setAnnotationFormat(QgsLayoutItemMapGrid.CustomFormat)
+    grade.setAnnotationExpression(
+        f"replace(replace({funcao}(@grid_number, if(@grid_axis = 'x', 'x', 'y'), 0, 'suffix'), 'W', 'O'), 'E', 'L')")
+    grade.setAnnotationTextFormat(formato_texto(5.5))
+    grade.setAnnotationFrameDistance(0.6)
+    for lado, exibir, direcao in [
+        (QgsLayoutItemMapGrid.Left, QgsLayoutItemMapGrid.LatitudeOnly, QgsLayoutItemMapGrid.Vertical),
+        (QgsLayoutItemMapGrid.Bottom, QgsLayoutItemMapGrid.LongitudeOnly, QgsLayoutItemMapGrid.Horizontal),
+        (QgsLayoutItemMapGrid.Right, QgsLayoutItemMapGrid.HideAll, QgsLayoutItemMapGrid.Vertical),
+        (QgsLayoutItemMapGrid.Top, QgsLayoutItemMapGrid.HideAll, QgsLayoutItemMapGrid.Horizontal),
+    ]:
+        grade.setAnnotationDisplay(exibir, lado)
+        grade.setAnnotationPosition(QgsLayoutItemMapGrid.OutsideMapFrame, lado)
+        grade.setAnnotationDirection(direcao, lado)
+    mapa.grids().addGrid(grade)
+    return {"intervalo": f"{round(iv * 3600)}\"" if iv * 3600 < 60 else f"{round(iv * 60)}'", "graus": iv}
 
 
 def montar_figura(a, projeto):
@@ -183,12 +236,19 @@ def montar_figura(a, projeto):
             partes.append(g)
     principal = QgsGeometry.unaryUnion(partes) if partes else foco
 
-    # extensão: foco com margem, no formato da página
+    # quadro do mapa na página: com grade, sobra espaço à esquerda e embaixo para os valores
     larg, alt = a.largura_mm, a.altura_mm
+    if a.sem_grade:
+        quadro = (0.0, 0.0, larg, alt)
+    else:
+        quadro = (6.0, 1.5, larg - 7.5, alt - 6.5)
+    mx, my, mw, mh = quadro
+
+    # extensão: foco com margem, no formato do quadro
     bb = foco.boundingBox()
     lado = max(bb.width(), bb.height())
     bb.grow(lado * a.margem)
-    proporcao = larg / alt
+    proporcao = mw / mh
     if bb.width() / bb.height() < proporcao:
         extra = (bb.height() * proporcao - bb.width()) / 2
         bb = QgsRectangle(bb.xMinimum() - extra, bb.yMinimum(), bb.xMaximum() + extra, bb.yMaximum())
@@ -203,18 +263,25 @@ def montar_figura(a, projeto):
     layout.pageCollection().page(0).setPageSize(QgsLayoutSize(larg, alt))
 
     mapa = QgsLayoutItemMap(layout)
-    mapa.attemptMove(QgsLayoutPoint(0, 0))
-    mapa.attemptResize(QgsLayoutSize(larg, alt))
+    mapa.attemptMove(QgsLayoutPoint(mx, my))
+    mapa.attemptResize(QgsLayoutSize(mw, mh))
     mapa.setCrs(crs_mapa)
     mapa.setLayers(camadas)
     mapa.setKeepLayerSet(True)
     mapa.setExtent(bb)
     mapa.setFrameEnabled(True)
     mapa.setFrameStrokeColor(QColor(120, 120, 120))
-    mapa.setFrameStrokeWidth(mm(0.25))
+    mapa.setFrameStrokeWidth(mm(0.2))
     layout.addLayoutItem(mapa)
     escala = mapa.scale()
-    mu_por_mm = mapa.extent().width() / larg
+    grade_info = None if a.sem_grade else adicionar_grade(mapa, projeto)
+
+    # revisão de brilho e contraste das imagens de satélite, na área exata da figura
+    imagens = []
+    for lyr in camadas:
+        if isinstance(lyr, QgsRasterLayer):
+            imagens.append(revisar_imagem(lyr, mapa.extent(), crs_mapa, ajustar=(a.ajuste_imagem == "auto")))
+    mu_por_mm = mapa.extent().width() / mw
 
     itens = []  # (nome, item, largura_mm, altura_mm, cantos permitidos)
 
@@ -239,22 +306,22 @@ def montar_figura(a, projeto):
         legenda.setTitle("Legenda")
         legenda.setLegendFilterByMapEnabled(False)  # as camadas já são escolhidas; o filtro zera o tamanho antes do desenho
         legenda.setResizeToContents(True)
-        for estilo, tam, neg in [(QgsLegendStyle.Title, 8, True), (QgsLegendStyle.Subgroup, 7, True),
-                                 (QgsLegendStyle.SymbolLabel, 7, False)]:
+        for estilo, tam, neg in [(QgsLegendStyle.Title, 7, True), (QgsLegendStyle.Subgroup, 6.5, True),
+                                 (QgsLegendStyle.SymbolLabel, 6.5, False)]:
             try:
                 legenda.rstyle(estilo).setTextFormat(formato_texto(tam, neg))
             except AttributeError:
                 fonte = QFont(FONTE, tam)
                 fonte.setBold(neg)
                 legenda.setStyleFont(estilo, fonte)
-        legenda.setSymbolWidth(6)
-        legenda.setSymbolHeight(3.5)
-        legenda.setBoxSpace(2)
+        legenda.setSymbolWidth(5)
+        legenda.setSymbolHeight(3)
+        legenda.setBoxSpace(1.5)
         legenda.setBackgroundEnabled(True)
         legenda.setBackgroundColor(FUNDO_LEGENDA)
         legenda.setFrameEnabled(True)
         legenda.setFrameStrokeColor(QColor(150, 150, 150))
-        legenda.setFrameStrokeWidth(mm(0.2))
+        legenda.setFrameStrokeWidth(mm(0.15))
         layout.addLayoutItem(legenda)
         legenda.updateLegend()
         legenda.adjustBoxSize()
@@ -275,15 +342,18 @@ def montar_figura(a, projeto):
         formato_num.setDecimalSeparator(",")
         formato_num.setShowThousandsSeparator(True)
         barra.setNumericFormat(formato_num)
-        barra.setHeight(1.5)
+        # traço refinado: barra baixa, contorno fino, texto pequeno e colado à barra
+        barra.setHeight(1.0)
+        barra.setLineWidth(0.15)
+        barra.setLabelBarSpace(0.5)
         try:
-            barra.setTextFormat(formato_texto(6.5))
+            barra.setTextFormat(formato_texto(5.5))
         except AttributeError:
-            barra.setFont(QFont(FONTE, 6))
+            barra.setFont(QFont(FONTE, 5))
         barra.setBackgroundEnabled(True)
         barra.setBackgroundColor(FUNDO_LEGENDA)
         layout.addLayoutItem(barra)
-        barra.setBoxContentSpace(1)
+        barra.setBoxContentSpace(0.8)
         barra.refreshItemSize()
         itens.append(("escala", barra, None, None, ["inf_esq", "inf_dir"]))
 
@@ -302,6 +372,9 @@ def montar_figura(a, projeto):
     for item in (it[1] for it in itens if it[2] is None):
         if isinstance(item, QgsLayoutItemLegend):
             item.adjustBoxSize()
+        elif isinstance(item, QgsLayoutItemScaleBar):
+            item.refreshItemSize()
+            item.attemptResize(item.minimumSize())  # encolhe a caixa ao tamanho da barra refinada
     itens = [(n, it, w if w is not None else it.sizeWithUnits().width(), h if h is not None else it.sizeWithUnits().height(), perm)
              for n, it, w, h, perm in itens]
 
@@ -317,7 +390,7 @@ def montar_figura(a, projeto):
         escolhido = notas[0][2]
         cantos[nome] = {"canto": escolhido, "sobreposicao_m2": round(notas[0][0], 1), "tamanho_mm": [round(w_mm, 1), round(h_mm, 1)]}
         ocupados.add(escolhido)
-        item.attemptMove(posicao_mm(escolhido, larg, alt, w_mm, h_mm))
+        item.attemptMove(posicao_mm(escolhido, quadro, w_mm, h_mm))
 
     pasta_fig = pasta / "04_Figuras"
     pasta_fig.mkdir(parents=True, exist_ok=True)
@@ -356,6 +429,9 @@ def montar_figura(a, projeto):
                 rotulos["cortados_na_borda"].append(texto)
         if hasattr(resultados_rotulos, "unplacedLabels"):
             rotulos["nao_posicionados"] = max(rotulos["nao_posicionados"], len(resultados_rotulos.unplacedLabels()))
+    for im in imagens:
+        if im["problemas_depois"]:
+            alertas.append(f"Imagem {im['camada']}: {'; '.join(im['problemas_depois'])}. Ajuste manualmente e confira.")
     if rotulos["nao_posicionados"]:
         alertas.append(f"{rotulos['nao_posicionados']} rótulo(s) sem espaço para aparecer. Reduza camadas rotuladas ou divida a figura.")
     if rotulos["sobre_a_informacao_principal"]:
@@ -371,10 +447,12 @@ def montar_figura(a, projeto):
         "nomes_na_legenda": nomes_legenda,
         "foco": foco_nomes,
         "sistema_da_figura": crs_mapa.authid(),
+        "grade": grade_info,
         "escala_aproximada": f"1:{round(escala, -2):,.0f}".replace(",", "."),
         "tamanho_mm": [larg, alt],
         "dpi": a.dpi,
         "cantos": cantos,
+        "imagens": imagens,
         "rotulos": rotulos,
         "alertas": alertas,
         "conferencia": [
@@ -384,6 +462,7 @@ def montar_figura(a, projeto):
             "Há informação demais? Se sim, dividir em uma sequência de figuras.",
             "Cores suaves, legível para quem não é especialista em mapas?",
             "Rótulos todos visíveis, com buffer, sem cobrir a informação principal?",
+            "Imagem de satélite com brilho e contraste adequados, sem ficar escura, apagada ou estourada?",
             "Linhas finas, sem traço grosseiro, mas ainda visíveis sobre a imagem?",
         ],
         "conferido": False,
@@ -429,9 +508,12 @@ def main(argv=None):
     ap.add_argument("--largura-mm", type=float, default=160)
     ap.add_argument("--altura-mm", type=float, default=110)
     ap.add_argument("--dpi", type=int, default=300)
+    ap.add_argument("--ajuste-imagem", default="auto", choices=["auto", "so-medir"],
+                    help="auto: corrige brilho e contraste se preciso; so-medir: só aponta o problema")
     ap.add_argument("--sem-legenda", action="store_true")
     ap.add_argument("--sem-escala", action="store_true")
     ap.add_argument("--sem-norte", action="store_true")
+    ap.add_argument("--sem-grade", action="store_true", help="Sem grade de coordenadas na borda")
     ap.add_argument("--nao-salvar-layout", dest="salvar_layout", action="store_false")
     a = ap.parse_args(argv)
 
