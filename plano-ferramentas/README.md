@@ -116,7 +116,8 @@ Já disponíveis. Falta padronizar o uso.
 - **Teste:** ler e atualizar uma linha de teste.
 
 ### 7. Dataviz + Build Dashboard (plugin Data, já instalado)
-- [ ] **Teste:** a partir de uma planilha da Fase 3, "monte um painel com indicadores e gráficos".
+- [~] **Painel criado em 2026-10-22:** "Embargos e financeiro", https://claude.ai/artifact/LCcDSmG3U9bDie8wxxixUL (privado).
+- **Teste:** a partir de uma planilha da Fase 3, "monte um painel com indicadores e gráficos".
 - **Uso:** área desmatada por ano, embargos por município, receita e inadimplência do escritório.
 
 ## Fase 4: Navegação e automação de tela (semana 2)
@@ -234,3 +235,4 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-22 | 13 | pendente | Gmail da DRE: encaminhar para o Gmail principal (configuração do usuário), depois testar e criar marcador "DRE". Outlook do IBAMA: confirmar com a TI do órgão antes de encaminhar ou ligar o conector Microsoft 365 com a conta corporativa |
 | 2026-10-22 | 13 | DRE encaminhando | Gmail institucional da DRE (SEDUC-PA) encaminha para o Gmail principal, com cópia; teste confirmado com dois e-mails vindos de outro Gmail. Marcador "DRE" criado; filtro automático fica com o usuário (o conector não cria filtros). Pendências: e-mails do Outlook para a DRE não chegaram nem na DRE; "Enviar e-mail como" do Hotmail no Gmail falha |
 | 2026-10-22 | 11, 12 | instalados | Productivity e Legal ativos; conferido com `/mcp`. Gmail, Calendar, Drive, Notion e QGIS conectados. Servidores dos plugins (Figma, Box, Amplitude, Hex, Intercom) sem autenticação e Definite com endpoint quebrado, todos fora do plano. Plugin frontend-design instalado |
+| 2026-10-22 | 7 | criado | Painel "Embargos e financeiro" (artifact privado LCcDSmG3U9bDie8wxxixUL), lendo ao vivo as planilhas Controle de embargos e Financeiro pelo conector Google Sheets: casos, área adotada, cartas pendentes, divergência entre fontes (TEI, AI, SEI), gráfico de áreas por caso, recebido, a receber, despesas e saldo. Verificação automática sem erros. Falta a sua revisão |
