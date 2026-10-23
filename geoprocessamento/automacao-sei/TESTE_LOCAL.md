@@ -27,7 +27,7 @@ Peça ao Claude: "Rode o teste local das Fases A a H com os exemplos de `geoproc
 - [ ] Testar uma consulta ao SISCOM e uma à SEMAS-PA pelo servidor QGIS, com o recorte salvo em `consultas_online`.
 
 - [x] Imagens (`agente-imagens`): num caso já concluído, pedir uma Sentinel-2 e uma Landsat do ano da infração. Conferir se ele aplica o buffer padrão (2 km abaixo de 10 ha ou ponto; 3 km a partir de 10 ha), mede a nuvem só no polígono, salva em `02_Insumos/imagens/` e registra sensor, data e resolução. Comparar a cor com uma imagem que você já aprovou. Landsat refeito com realce comum às 3 bandas (23/10/2026).
-- [x] Planet: com o plugin aberto e a sua sessão ativa, pedir um mosaico mensal e conferir o nome `planetMosaico_MM_AAAA`. Landsat refeito com realce comum às 3 bandas (23/10/2026).
+- [x] Planet: com o plugin aberto e a sua sessão ativa, pedir um mosaico mensal e conferir o nome `planetMosaico_MM_AAAA`. Mosaico 07/2025 e cena diária de 13/08/2025 aprovados; nuvem confirmada na prévia, porque a medida automática não pega sombra nem névoa (23/10/2026).
 
 ## 3. Leitura no SEI (somente leitura)
 
