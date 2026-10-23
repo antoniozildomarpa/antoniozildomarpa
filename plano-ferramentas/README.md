@@ -102,7 +102,8 @@ Depende da Fase 1.
 Já disponíveis. Falta padronizar o uso.
 
 ### 4. Claude Docs
-- [ ] **Teste:** "crie um doc de relatório técnico de embargo com dados fictícios". Comente um trecho no doc e peça para o Claude responder ao comentário.
+- [~] **Doc de teste criado em 2026-10-22:** "Relatório técnico – Caso Teste 02 (fictício)", https://claude.ai/artifact/LUdd2LtUkBCuyKvGh6Pvwp. Comentário e exportação testados e aprovados.
+- **Teste:** "crie um doc de relatório técnico de embargo com dados fictícios". Comente um trecho no doc e peça para o Claude responder ao comentário.
 - **Uso:** pareceres, relatórios técnicos, minutas. Exporta para Word, PDF e Google Docs.
 - **Cuidado:** verifique com quem o doc está compartilhado antes de pôr dados reais.
 
@@ -116,7 +117,8 @@ Já disponíveis. Falta padronizar o uso.
 - **Teste:** ler e atualizar uma linha de teste.
 
 ### 7. Dataviz + Build Dashboard (plugin Data, já instalado)
-- [ ] **Teste:** a partir de uma planilha da Fase 3, "monte um painel com indicadores e gráficos".
+- [~] **Painel criado em 2026-10-22:** "Embargos e financeiro", https://claude.ai/artifact/LCcDSmG3U9bDie8wxxixUL (privado).
+- **Teste:** a partir de uma planilha da Fase 3, "monte um painel com indicadores e gráficos".
 - **Uso:** área desmatada por ano, embargos por município, receita e inadimplência do escritório.
 
 ## Fase 4: Navegação e automação de tela (semana 2)
@@ -158,7 +160,8 @@ Exige o seu computador. Não funciona nas sessões na nuvem.
 Feito por mim, em arquivos do repositório.
 
 ### 16. Hooks de segurança
-- [ ] Hook em `.claude/settings.json` que bloqueia envio de e-mail, mensagem ou protocolo sem confirmação explícita.
+- [~] **Gancho do SEI criado em 2026-10-22** (bloqueia assinar, enviar processo e senha no navegador); falta ver disparar no computador.
+- Hook em `.claude/settings.json` que bloqueia envio de e-mail, mensagem ou protocolo sem confirmação explícita.
 - **Teste:** pedir um envio e confirmar que o hook bloqueia.
 
 ### 17. Session Start Hook
@@ -235,3 +238,16 @@ Anote aqui cada item concluído, com data e observações.
 | 2026-10-22 | 13 | DRE encaminhando | Gmail institucional da DRE (SEDUC-PA) encaminha para o Gmail principal, com cópia; teste confirmado com dois e-mails vindos de outro Gmail. Marcador "DRE" criado; filtro automático fica com o usuário (o conector não cria filtros). Pendências: e-mails do Outlook para a DRE não chegaram nem na DRE; "Enviar e-mail como" do Hotmail no Gmail falha |
 | 2026-10-22 | 9, 13 | IBAMA pelo Chrome | Encaminhamento do Outlook do IBAMA para o Gmail não entrega (bloqueio do órgão). Decisão do usuário: ler o Outlook web do IBAMA pelo Claude in Chrome, só leitura e sob pedido, sem entrar nas rotinas da nuvem. Teste: caixa aberta com a sessão já logada, sem abrir nem baixar mensagens. A regra de encaminhamento ainda aparece ativa no Outlook do IBAMA |
 | 2026-10-22 | 11, 12 | instalados | Productivity e Legal ativos; conferido com `/mcp`. Gmail, Calendar, Drive, Notion e QGIS conectados. Servidores dos plugins (Figma, Box, Amplitude, Hex, Intercom) sem autenticação e Definite com endpoint quebrado, todos fora do plano. Plugin frontend-design instalado |
+| 2026-10-22 | 7 | criado | Painel "Embargos e financeiro" (artifact privado LCcDSmG3U9bDie8wxxixUL), lendo ao vivo as planilhas Controle de embargos e Financeiro pelo conector Google Sheets: casos, área adotada, cartas pendentes, divergência entre fontes (TEI, AI, SEI), gráfico de áreas por caso, recebido, a receber, despesas e saldo. Verificação automática sem erros. Falta a sua revisão |
+| 2026-10-22 | 4 | doc de teste | Relatório técnico fictício no Claude Docs (identificação, metodologia, análise das áreas com a regra de adoção, evolução da vegetação, conclusão com tarefas, anexos). Falta: comentar um trecho e pedir resposta; exportar para Word/PDF |
+| 2026-10-22 | 4 | comentário ok | Comentário com @Claude no doc: linha Bioma incluída na tabela e resposta postada no próprio comentário; conferido pelo usuário |
+| 2026-10-22 | 4 | exportação ok | Doc exportado e conferido na pasta Downloads. Claude Docs testado por completo |
+| 2026-10-22 | 1, 16 | planejado | Plano da automação do fluxo SEI → análise → documento técnico → despacho em `geoprocessamento/automacao-sei/PLANO.md`: 9 etapas, 8 agentes, 10 skills novas, 4 conferências, fases A a I. Aguarda respostas às perguntas em aberto |
+| 2026-10-22 | 1 | automação SEI: fases A e B | Scripts `caso.py`, `coordenadas.py` e `projeto_qgis.py` e skills `estrutura-caso`, `coordenadas-para-qgis` e `projeto-qgis-caso`. Testados na nuvem (QGIS 3.34) com casos fictícios; conferência de precisão contra o pyproj. Falta rodar no computador do usuário |
+| 2026-10-22 | 1 | automação SEI: fase C | `figura_mapa.py` (área útil, legenda sobreposta no canto livre, escala e norte, UTM da zona, 300 dpi), `estilos.py` (paleta suave por papel) e skills `figura-mapa-legenda` e `padrao-cartografico` (objetivo, cores suaves, sequência de mapas, elementos técnicos, conferência final). Testado na nuvem com QGIS 3.34 |
+| 2026-10-22 | 1 | padrão cartográfico ampliado | Linhas finas; rótulos com buffer, sempre exibidos e revisados automaticamente; revisão e ajuste automático de brilho, contraste e saturação das imagens (`revisao_imagem.py`); grade só com traços na borda e intervalo pela escala; escala gráfica refinada com texto junto à barra |
+| 2026-10-22 | 1 | automação SEI: fase D | `minuta.py` (Word a partir de conteúdo com marcadores: figuras, tabelas e anexos numerados, áreas e coordenadas dos dados do caso, ABNT para ilustrações, versões sem sobrescrever) e `revisar_minuta.py` (consistência); skill `redacao-documento-tecnico`; agentes `agente-redator` e `agente-revisor` em `.claude/agents/` |
+| 2026-10-22 | 1 | automação SEI: fase E | `anexos.py` (anexos com nome e número da minuta, versões anteriores guardadas, verificação de PDF, zip, extensão e tamanho, manifesto) e zip de Geoinformação com todas as camadas em SHP, GPKG e KML e LEIA-ME; skill `anexos-e-pacote`; agente `agente-empacotador` |
+| 2026-10-22 | 1 | automação SEI: fase H | `georreferenciar.py` (pontos em GMS, decimal ou UTM, qualquer datum; RMS de controle e de verificação em metros; ponto suspeito pela queda do RMS; limite caso a caso com referência de 0,2 mm na escala; GeoTIFF SIRGAS 2000; uso medição ou só ilustração); skill `georreferenciamento`; grade das figuras com GMS de dois dígitos |
+| 2026-10-22 | 1, 16 | automação SEI: F, G, I e gancho | Skills `leitura-processo-sei`, `protocolo-sei` e `caso-sei`; agentes `agente-sei-leitura`, `agente-sei-protocolo`, `agente-leitor`, `agente-geo` e `agente-figuras`; gancho que bloqueia assinar, enviar processo e senha no navegador (item 16). Roteiro de teste no computador em `geoprocessamento/automacao-sei/TESTE_LOCAL.md` |
+| 2026-10-22 | 1 | automação SEI: J | Agente `agente-imagens` (Landsat, Sentinel-2, ResourceSat-1 e Planet), a partir das skills `landsat-estilo-natural-tiarg` e `producao-carta-imagem`; integrado ao `agente-geo`, à `caso-sei`, ao `PLANO.md` e ao roteiro de teste. Decisão: a cor validada da skill prevalece para imagens baixadas |

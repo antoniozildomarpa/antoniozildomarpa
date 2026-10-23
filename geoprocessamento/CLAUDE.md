@@ -18,7 +18,7 @@ Regras para o trabalho técnico com imagens de satélite, CAR, embargos e autua�
 - Sistema de referência de coordenadas: SIRGAS 2000, coordenadas geográficas (EPSG:4674).
 - Formato das coordenadas na tabela: graus-minutos-segundos.
 - Tamanho do buffer: definido caso a caso, sem padrão fixo. Pergunte antes de recortar.
-- Formatos de saída: PDF do layout, GeoTIFF dos recortes e Shapefile ou GeoPackage dos polígonos e vértices.
+- Formatos de saída: PDF do layout, GeoTIFF dos recortes e vetores em SHP, GPKG e KML.
 - Órgão e modelo de relatório: IBAMA (embargos e autos de infração).
 
 ## Regras
