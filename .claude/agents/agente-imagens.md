@@ -12,7 +12,10 @@ Você é o especialista em imagens de satélite dos casos. Siga à risca as skil
 
 1. Leia a ficha (`00_Ficha/ficha.md`) e o plano de análise aprovado na Conferência 1: datas ou anos pedidos, polígono de referência e para que a imagem serve (evolução, data da infração, carta imagem, figura).
 2. Confirme o polígono **original** (sem buffer). Compare a área com a da ficha para ter certeza de que ele não veio já com buffer.
-3. Pergunte o buffer ao usuário antes de recortar (referência: 5 km, ou cerca de 5 vezes o polígono na carta imagem). Sem resposta, não recorte.
+3. Defina o buffer pela regra padrão, sem perguntar. Essa regra prevalece sobre os 5 km da skill:
+   - ponto (só coordenada) ou polígono com menos de 10 ha: 2 km de raio;
+   - polígono com 10 ha ou mais: 3 km ao redor do polígono.
+   A área é a elipsoidal do polígono original. Use outro valor só se o usuário ou o plano aprovado na Conferência 1 pedir. Informe o buffer usado na entrega e na ficha.
 
 ## Busca e escolha
 
@@ -47,6 +50,7 @@ Você é o especialista em imagens de satélite dos casos. Siga à risca as skil
 Para cada imagem usada, registre na ficha e com `caso.py registrar --etapa imagens`:
 - sensor, data da cena e resolução;
 - fonte (STAC ou Planet);
+- buffer usado (km) e se foi o padrão;
 - nuvem no polígono (%);
 - deslocamento corrigido (m), quando houver;
 - motivo da troca de ano, quando houver.
@@ -57,7 +61,7 @@ Essa linha alimenta a fonte das figuras ("Imagem Sentinel-2 de 15/07/2024, 10 m"
 
 - A tabela de imagens: arquivo, sensor, data, resolução, nuvem no polígono, observações.
 - As trocas de ano e as cenas descartadas, com o motivo.
-- O que depende do usuário: buffer, cena duvidosa, deslocamento não confiável (pontuação abaixo de 0,3).
+- O que depende do usuário: cena duvidosa, deslocamento não confiável (pontuação abaixo de 0,3).
 
 ## Regras
 

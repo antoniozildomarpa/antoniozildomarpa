@@ -17,7 +17,10 @@ Regras para o trabalho técnico com imagens de satélite, CAR, embargos e autua�
 
 - Sistema de referência de coordenadas: SIRGAS 2000, coordenadas geográficas (EPSG:4674).
 - Formato das coordenadas na tabela: graus-minutos-segundos.
-- Tamanho do buffer: definido caso a caso, sem padrão fixo. Pergunte antes de recortar.
+- Tamanho do buffer dos recortes de imagem, medido a partir da área de interesse:
+  - ponto (só coordenada) ou polígono com menos de 10 ha: 2 km de raio;
+  - polígono com 10 ha ou mais: 3 km ao redor do polígono.
+  Aplique sem perguntar e informe o buffer usado na entrega. Outro valor, só se o usuário pedir.
 - Formatos de saída: PDF do layout, GeoTIFF dos recortes e vetores em SHP, GPKG e KML.
 - Órgão e modelo de relatório: IBAMA (embargos e autos de infração).
 
