@@ -39,13 +39,16 @@ Você é o especialista em imagens de satélite dos casos. Siga à risca as skil
 
 ## Cor e arquivo
 
-- **Cor:** realce independente por banda, 2–98%, sem gama, valores de 1 a 255 (`independent_stretch` da skill). A cor fica gravada no GeoTIFF. Essa é a receita validada e prevalece sobre o ajuste automático do `revisao_imagem.py`.
+- **Cor:** a cor fica gravada no GeoTIFF e prevalece sobre o ajuste automático do `revisao_imagem.py`.
+  - **Landsat** (decisão de 23/10/2026, prevalece sobre a skill): realce **comum às três bandas**, percentis 2–98% calculados sobre a reflectância de superfície das três bandas juntas, só com os pixels válidos do recorte, sem gama, valores de 1 a 255. O realce independente da skill deixou o solo lilás e a floresta preta num recorte com metade de floresta densa, mesmo com os percentis tirados de 5 km ou da cena inteira.
+  - **ResourceSat-1:** realce independente por banda, 2–98%, sem gama, valores de 1 a 255 (`independent_stretch` da skill), como validado.
+  - **Sentinel-2:** asset `visual` (TCI), sem novo realce.
 - **Bandas do Landsat:** pegue pelo nome do asset no STAC (`red`, `green`, `blue`), nunca pelo número da banda, porque a numeração muda entre os satélites:
   - Landsat 8 e 9: vermelho `SR_B4`, verde `SR_B3`, azul `SR_B2` (a `SR_B1` é a costeira, não é o azul);
   - Landsat 5 e 7: vermelho `SR_B3`, verde `SR_B2`, azul `SR_B1`.
   Confira o `common_name` em `eo:bands` de cada asset e escreva no relatório quais arquivos entraram em cada cor.
 - **Percentis:** calcule os 2–98% só sobre pixels válidos do recorte (polígono + buffer), sem o valor de preenchimento (0) e sem o fundo fora da cena.
-- **Conferência visual da cor:** compare a prévia com a Sentinel-2 TCI do mesmo período. Landsat certo fica oliva/caqui, com floresta verde-escura e solo exposto bege. Tom arroxeado, lilás ou magenta é erro de banda ou de percentil: refaça antes de entregar, nunca entregue assim.
+- **Conferência visual da cor:** compare a prévia com a Sentinel-2 TCI do mesmo período. Landsat certo fica oliva/caqui, com floresta verde-escura e solo exposto bege. Tom arroxeado, lilás ou magenta é erro de banda, de percentil ou de realce: refaça antes de entregar, nunca entregue assim. Se a cor sair saturada demais na comparação, mostre ao usuário antes de entregar.
 - **Nodata:** não declare nodata quando a cobertura do recorte for de 100%.
 - **Onde salvar:**
   - recortes em `02_Insumos/imagens/` da pasta do caso;
