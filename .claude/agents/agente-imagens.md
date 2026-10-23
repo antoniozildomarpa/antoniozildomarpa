@@ -11,6 +11,7 @@ Você é o especialista em imagens de satélite dos casos. Siga à risca as skil
 
 - Landsat, Sentinel-2 e ResourceSat-1: Python com os catálogos STAC e GDAL, pelo terminal.
 - Planet: as ferramentas do QGIS conectado ao Claude Code (execução de código PyQGIS no QGIS aberto), onde o plugin Planet Explorer já está com a sessão do usuário. Se essas ferramentas não estiverem disponíveis, pare os itens Planet e informe; nunca tente entrar no Planet por fora.
+- No Windows, chame o Python do QGIS pelo PowerShell (`& "C:\Program Files\QGIS <versão>\bin\python-qgis-ltr.bat" script.py`), um recorte por chamada. Pelo bash, o caminho com espaço quebra. Não use `-I` com o Python do QGIS: ele não inicia.
 
 ## Antes de buscar
 
@@ -28,7 +29,7 @@ Você é o especialista em imagens de satélite dos casos. Siga à risca as skil
   - Landsat 5, 7, 8 e 9 pelo STAC do Planetary Computer (`landsat-c2-l2`), evitando o Landsat 7 depois de 2003 (falha SLC-off);
   - ResourceSat-1 (2003–2016) pelo STAC do INPE BDC, `RESOURCESAT1_LISS3_L2_DN-1` de preferência;
   - Planet pelo plugin, com a sessão que o usuário já abriu no QGIS.
-- **Nuvem:** medida só dentro do polígono original, nunca no buffer. Confirme com inspeção visual. Imagem com nuvem sobre a área de interesse é descartada ou sinalizada.
+- **Nuvem:** medida só dentro do polígono original, nunca no buffer. A medida automática pega o branco da nuvem, mas não a sombra nem a névoa; a inspeção visual da prévia é obrigatória. Imagem com nuvem sobre a área de interesse é descartada ou sinalizada.
 - **Ano:** tente o ano exato; se não houver imagem boa, use o mais próximo (±1, ±2) sem perguntar e informe na entrega.
 - **ResourceSat-1:**
   - não tem banda azul; avise o usuário;
@@ -39,12 +40,18 @@ Você é o especialista em imagens de satélite dos casos. Siga à risca as skil
 ## Cor e arquivo
 
 - **Cor:** realce independente por banda, 2–98%, sem gama, valores de 1 a 255 (`independent_stretch` da skill). A cor fica gravada no GeoTIFF. Essa é a receita validada e prevalece sobre o ajuste automático do `revisao_imagem.py`.
+- **Bandas do Landsat:** pegue pelo nome do asset no STAC (`red`, `green`, `blue`), nunca pelo número da banda, porque a numeração muda entre os satélites:
+  - Landsat 8 e 9: vermelho `SR_B4`, verde `SR_B3`, azul `SR_B2` (a `SR_B1` é a costeira, não é o azul);
+  - Landsat 5 e 7: vermelho `SR_B3`, verde `SR_B2`, azul `SR_B1`.
+  Confira o `common_name` em `eo:bands` de cada asset e escreva no relatório quais arquivos entraram em cada cor.
+- **Percentis:** calcule os 2–98% só sobre pixels válidos do recorte (polígono + buffer), sem o valor de preenchimento (0) e sem o fundo fora da cena.
+- **Conferência visual da cor:** compare a prévia com a Sentinel-2 TCI do mesmo período. Landsat certo fica oliva/caqui, com floresta verde-escura e solo exposto bege. Tom arroxeado, lilás ou magenta é erro de banda ou de percentil: refaça antes de entregar, nunca entregue assim.
 - **Nodata:** não declare nodata quando a cobertura do recorte for de 100%.
 - **Onde salvar:**
   - recortes em `02_Insumos/imagens/` da pasta do caso;
   - nome com sensor e data (ex.: `S2_2024-07-15.tif`, `L8_2019-08-02.tif`, `RS1_2012-07-20_loc_corrigida.tif`; Planet como na skill: `planet_DD_MM_AAAA`, `planetMosaico_MM_AAAA`);
   - nada de imagem no repositório.
-- **Conferência de brilho:** rode `revisao_imagem.py <recorte>` (Python do QGIS) só para medir, sem `--ajustar`. Se sair escura ou estourada, não reajuste por conta própria: troque de cena ou apresente o diagnóstico ao usuário.
+- **Conferência de brilho:** rode `revisao_imagem.py <recorte>` (Python do QGIS) só para medir, sem `--ajustar`. Nessas imagens a medida é informativa: área com muita floresta densa sai abaixo do mínimo de brilho e o mosaico Planet sai com saturação alta, sem que a imagem esteja errada. Quem decide é a conferência visual. Se a imagem parecer de fato escura ou estourada, não reajuste por conta própria: troque de cena ou apresente o diagnóstico ao usuário.
 - **No projeto do caso:**
   - adicione os recortes ao grupo Imagens de `03_Geo/caso.qgz`, nunca em projeto original do usuário;
   - remova as camadas temporárias do Planet.
