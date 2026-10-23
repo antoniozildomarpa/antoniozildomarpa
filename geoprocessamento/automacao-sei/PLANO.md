@@ -24,6 +24,8 @@ flowchart TD
     D --> G1{{Conferência 1:<br/>entendimento da demanda}}
     G1 --> E[4. Geoprocessamento<br/>agente-geo]
     E <--> E2[4a. Imagens de satélite<br/>agente-imagens]
+    E2 -.-> E3[4b. NDVI, quando pedido<br/>agente-ndvi]
+    E3 -.-> E
     E --> G2{{Conferência 2:<br/>resultados e áreas}}
     G2 --> F[5. Figuras para o texto<br/>agente-figuras]
     F --> H[6. Redação da minuta<br/>agente-redator]
@@ -98,8 +100,9 @@ Campos da ficha: NUP, tipo de processo, setor demandante, documento da demanda (
   3. Georreferencia mapas e croquis importantes, a partir de pontos de controle (cantos de grade, coordenadas impressas ou feições reconhecíveis). Registra o erro médio (RMS). O limite é definido caso a caso, conforme a fonte, a resolução e a qualidade do material; o Claude sugere um valor e você confirma.
   4. Adiciona as bases: as locais de `H:\Meu Drive\_GEO\_VETORES` e as online, pelas conexões do QGIS com o SISCOM (IBAMA) e com a SEMAS-PA (imóveis, CAR, datas de criação, histórico de alteração). Como os dados online mudam, exporta o recorte usado para `02_Insumos/consultas_online`, com fonte, data e hora.
   5. Quando o caso pede imagem, o `agente-imagens` busca e recorta as cenas (skill `landsat-estilo-natural-tiarg` e parte Planet da `producao-carta-imagem`): nuvem medida só no polígono original, ano mais próximo quando o exato não serve, cor do estilo natural gravada no GeoTIFF, recortes em `02_Insumos/imagens/` e sensor, data e resolução na ficha.
-  6. Faz as análises pedidas: área, sobreposição, distância, evolução temporal.
-  7. Gera a carta imagem com a skill `producao-carta-imagem`.
+  6. Quando o caso pede, o `agente-ndvi` faz a análise de NDVI (skill `analise-ndvi`): índice, classes (floresta densa, vegetação em regeneração, pastagem, solo exposto, água), polígonos das classes em SHP, GPKG e KML em `03_Geo/vetores_produzidos/ndvi/`, tabela de áreas, comparação com o aspecto visual da imagem em cor real e interpretação simplificada.
+  7. Faz as análises pedidas: área, sobreposição, distância, evolução temporal.
+  8. Gera a carta imagem com a skill `producao-carta-imagem`.
 - **Produto:** projeto QGIS completo, vetores produzidos e a tabela de resultados (áreas e sobreposições).
 - **Conferência 2:** você confere áreas, sobreposições e a carta imagem antes da redação.
 
@@ -165,6 +168,7 @@ Cada agente é um especialista com função, ferramentas e limites próprios. Fi
 | `agente-leitor` | Lê PDFs e imagens, faz OCR, extrai fatos e tabelas de coordenadas | Skill de PDF, planilhas, leitura de imagens | Não |
 | `agente-geo` | Monta o projeto QGIS, georreferencia, converte coordenadas, faz as análises e a carta imagem | QGIS (servidor conectado e PyQGIS), GDAL, skills de imagem e carta | Não |
 | `agente-imagens` | Busca, baixa e recorta imagens Landsat, Sentinel-2, ResourceSat-1 e Planet no estilo natural; registra sensor, data, resolução e nuvem | STAC (Planetary Computer, INPE BDC), plugin Planet no QGIS, GDAL | Não |
+| `agente-ndvi` | Calcula o NDVI, classifica, gera os polígonos das classes, a tabela, a comparação com a cor real e a interpretação | Python do QGIS (`ndvi.py`), GDAL | Não |
 | `agente-figuras` | Gera os recortes de mapa com legenda sobreposta para o corpo do texto | PyQGIS | Não |
 | `agente-redator` | Escreve a minuta no modelo certo, insere figuras, numera anexos | Skill de Word, modelos | Não |
 | `agente-revisor` | Revisão independente de consistência, sem ter escrito o texto | Leitura do Word, do projeto e da ficha | Não |
@@ -185,6 +189,7 @@ Skills são os roteiros reutilizáveis que os agentes seguem. Ficam em `geoproce
 | `coordenadas-para-qgis` | Leitura de tabelas de coordenadas (GMS, decimal, UTM), validação e criação de pontos e polígonos | `agente-leitor`, `agente-geo` |
 | `georreferenciamento` | Pontos de controle, transformação, limite de erro, registro do RMS | `agente-geo` |
 | `projeto-qgis-caso` | Projeto padrão, grupos, estilos e bases oficiais | `agente-geo` |
+| `analise-ndvi` | Bandas por sensor, classes de NDVI, produtos, comparação visual e interpretação simplificada | `agente-ndvi`, `agente-redator`, `agente-revisor` |
 | `figura-mapa-legenda` | Recorte da área útil, legenda sobreposta no melhor canto, exportação | `agente-figuras` |
 | `padrao-cartografico` | Objetivo antes do mapa, título alinhado, cores suaves, pouca informação por mapa, elementos técnicos completos e conferência final | `agente-geo`, `agente-figuras`, `agente-revisor` |
 | `redacao-documento-tecnico` | Modelos de relatório, parecer, informação, manifestação técnica e despacho; estilo IBAMA | `agente-redator`, `agente-revisor` |
@@ -228,6 +233,7 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 | H ✅ | `georreferenciamento` (concluída em 2026-10-22) | Testada na nuvem com croqui fictício e ponto errado de propósito; falta rodar no seu computador |
 | I ✍️ | `caso-sei` e agentes `agente-leitor`, `agente-geo`, `agente-figuras` (escritos em 2026-10-22) | Primeiro caso real, acompanhado |
 | J ✍️ | `agente-imagens`, a partir das skills `landsat-estilo-natural-tiarg` e `producao-carta-imagem` (escrito em 2026-10-22) | No seu computador (STAC e plugin Planet), com um caso conhecido |
+| K ✅ | `analise-ndvi` e `agente-ndvi` (concluída em 2026-10-23) | Testada na nuvem com imagem fictícia; falta rodar no seu computador com uma cena real |
 
 ## Decisões (respostas de 2026-10-22)
 
@@ -245,4 +251,5 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 | Formatos vetoriais | SHP, GPKG e KML. O zip de Geoinformação leva todas as camadas nos três formatos (GPKG e SHP em SIRGAS 2000; KML em WGS 84, padrão do formato) |
 | Cor das imagens baixadas | Landsat: realce comum às três bandas, 2–98% da reflectância, sem gama (decidido em 23/10/2026 no teste local: o realce independente deixou o solo lilás). ResourceSat-1: receita da skill `landsat-estilo-natural-tiarg` (realce independente por banda, 2–98%, sem gama). Sentinel-2: TCI sem realce. A cor fica gravada no GeoTIFF. O `revisao_imagem.py` só mede essas imagens; o ajuste automático dele fica para imagens de outras origens |
 | Buffer dos recortes de imagem | Ponto (só coordenada) ou polígono com menos de 10 ha: 2 km de raio. Polígono com 10 ha ou mais: 3 km ao redor. Aplicado sem perguntar; outro valor só a pedido |
+| Classes de NDVI | Água ou sombra (< 0,00), solo exposto ou área queimada (0,00–0,25), pastagem ou vegetação rasteira (0,25–0,55), vegetação em regeneração (0,55–0,75), floresta densa (≥ 0,75). Calibradas para a Amazônia na estação seca; outros limites só com aprovação do usuário. Área mínima mapeada de 0,5 ha |
 | Ilustrações no documento | ABNT NBR 14724: identificação acima ("Figura 1 – ...", "Tabela 1 – ...") e fonte abaixo, com autoria, imagem (sensor e data) e bases |

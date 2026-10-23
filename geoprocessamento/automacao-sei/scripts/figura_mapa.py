@@ -49,7 +49,7 @@ from qgis.core import (
     QgsTextFormat,
     QgsUnitTypes,
 )
-from qgis.PyQt.QtCore import QSize
+from qgis.PyQt.QtCore import QSize, Qt
 from qgis.PyQt.QtGui import QColor, QFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -62,6 +62,11 @@ FUNDO_LEGENDA = QColor(255, 255, 255, 220)
 MARGEM_MM = 3.0
 PREFERENCIA = ["inf_dir", "inf_esq", "sup_dir", "sup_esq"]
 
+
+
+def raster_tematico(lyr):
+    """NDVI, classes e outros rasters com rampa ou paleta: entram na legenda e não passam pela revisão de imagem."""
+    return lyr.renderer() is not None and lyr.renderer().type() in ("singlebandpseudocolor", "paletted")
 
 def mm(valor):
     return QgsLayoutMeasurement(valor, QgsUnitTypes.LayoutMillimeters)
@@ -288,7 +293,7 @@ def montar_figura(a, projeto):
     # revisão de brilho e contraste das imagens de satélite, na área exata da figura
     imagens = []
     for lyr in camadas:
-        if isinstance(lyr, QgsRasterLayer):
+        if isinstance(lyr, QgsRasterLayer) and not raster_tematico(lyr):
             imagens.append(revisar_imagem(lyr, mapa.extent(), crs_mapa, ajustar=(a.ajuste_imagem == "auto")))
     mu_por_mm = mapa.extent().width() / mw
 
@@ -301,7 +306,7 @@ def montar_figura(a, projeto):
         raiz = legenda.model().rootGroup()
         raiz.removeAllChildren()
         for lyr in camadas:
-            if isinstance(lyr, QgsRasterLayer):
+            if isinstance(lyr, QgsRasterLayer) and not raster_tematico(lyr):
                 continue  # a imagem de fundo é citada na legenda da figura, não na legenda do mapa
             no = raiz.addLayer(lyr)
             rotulo_legenda = nomes_legenda.get(lyr.name())
@@ -309,9 +314,18 @@ def montar_figura(a, projeto):
                 no.setUseLayerName(False)  # sem isso, setName renomearia a camada no projeto
                 no.setName(rotulo_legenda)
                 no.setCustomProperty("legend/title-label", rotulo_legenda)
-                # camada de símbolo único: o texto desenhado é o do item de legenda, não o do nó
-                QgsMapLayerLegendUtils.setLegendNodeUserLabel(no, 0, rotulo_legenda)
+                # camada de símbolo único: o texto desenhado é o do item de legenda, não o do nó;
+                # em camada por classes, o nome fica só no título e as classes mantêm os seus nomes
+                if len(legenda.model().layerLegendNodes(no)) == 1:
+                    QgsMapLayerLegendUtils.setLegendNodeUserLabel(no, 0, rotulo_legenda)
                 legenda.model().refreshLayerLegend(no)
+            if isinstance(lyr, QgsRasterLayer):
+                # tira a linha "Band 1: ..." da legenda do NDVI e de rasters por classe
+                nos = legenda.model().layerLegendNodes(no)
+                manter = [i for i, n in enumerate(nos) if not str(n.data(Qt.DisplayRole) or "").startswith(("Band ", "Banda "))]
+                if len(manter) < len(nos):
+                    QgsMapLayerLegendUtils.setLegendNodeOrder(no, manter)
+                    legenda.model().refreshLayerLegend(no)
         legenda.setTitle("Legenda")
         legenda.setLegendFilterByMapEnabled(False)  # as camadas já são escolhidas; o filtro zera o tamanho antes do desenho
         legenda.setResizeToContents(True)

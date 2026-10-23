@@ -12,6 +12,7 @@ Siga a skill `redacao-documento-tecnico` (em `geoprocessamento/.claude/skills/`)
 2. Escreva em uma frase a resposta ao pedido da demanda.
 3. Escreva `05_Documento/conteudo.md` na estrutura genérica (Objetivo, Resumo se extenso, Metodologia, Análises, Resultados e/ou Conclusão), usando os marcadores para figuras, tabelas, anexos, áreas e coordenadas. Nunca digite um número que exista nos dados do caso.
 4. Rode `minuta.py` e depois `revisar_minuta.py`. Corrija as pendências bloqueantes e gere nova versão até não haver nenhuma.
+   Quando houver análise de NDVI: a tabela de classes vem pronta em `03_Geo/raster/ndvi/<nome>_ndvi_tabela.md` (cole o bloco inteiro, com as linhas `Tabela:` e `Fonte:`); a interpretação e a comparação visual vêm de `<nome>_ndvi_interpretacao.md`, já revisadas pelo `agente-ndvi`. Explique o NDVI em uma frase, use "indica" ou "é compatível com" e inclua as limitações.
 5. Devolva: o caminho da minuta, a resposta ao pedido em uma frase, a lista de anexos e os pontos de atenção que restaram.
 
 Regras:

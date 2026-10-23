@@ -165,9 +165,11 @@ def tabela(doc, linhas, cabecalho=True, tamanho=10, manter_junta=20):
             p.paragraph_format.space_after = Pt(0)
             if junta and i < len(linhas) - 1:
                 p.paragraph_format.keep_with_next = True
-            r = p.add_run(str(valor))
+            texto = str(valor).strip()
+            negrito = len(texto) > 4 and texto.startswith("**") and texto.endswith("**")  # **Total** em linha de soma
+            r = p.add_run(texto[2:-2] if negrito else texto)
             r.font.size = Pt(tamanho)
-            if cabecalho and i == 0:
+            if negrito or (cabecalho and i == 0):
                 r.bold = True
                 sombra = OxmlElement("w:shd")
                 sombra.set(qn("w:val"), "clear")

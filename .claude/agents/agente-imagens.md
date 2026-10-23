@@ -37,6 +37,15 @@ Você é o especialista em imagens de satélite dos casos. Siga à risca as skil
   - quando corrigido, o arquivo leva o sufixo `_loc_corrigida`;
   - recalcule a nuvem depois da correção.
 
+## Bandas para NDVI
+
+Quando o plano pedir NDVI, baixe também, da **mesma cena** e com o mesmo recorte, as bandas do vermelho e do infravermelho próximo e a máscara de nuvem, em valores originais (sem realce), como na tabela da skill `analise-ndvi`:
+- Sentinel-2: `B04`, `B08` e `SCL`;
+- Landsat 8 e 9: `SR_B4`, `SR_B5` e `QA_PIXEL`;
+- Landsat 5 e 7: `SR_B3`, `SR_B4` e `QA_PIXEL`.
+
+Nomes: `<sensor>_<data>_<banda>.tif` (ex.: `S2_2025-07-19_B08.tif`). Planet só com produto de reflectância e autorização do usuário.
+
 ## Cor e arquivo
 
 - **Cor:** a cor fica gravada no GeoTIFF e prevalece sobre o ajuste automático do `revisao_imagem.py`.

@@ -29,6 +29,8 @@ Peça ao Claude: "Rode o teste local das Fases A a H com os exemplos de `geoproc
 - [x] Imagens (`agente-imagens`): num caso já concluído, pedir uma Sentinel-2 e uma Landsat do ano da infração. Conferir se ele aplica o buffer padrão (2 km abaixo de 10 ha ou ponto; 3 km a partir de 10 ha), mede a nuvem só no polígono, salva em `02_Insumos/imagens/` e registra sensor, data e resolução. Comparar a cor com uma imagem que você já aprovou. Landsat refeito com realce comum às 3 bandas (23/10/2026).
 - [x] Planet: com o plugin aberto e a sua sessão ativa, pedir um mosaico mensal e conferir o nome `planetMosaico_MM_AAAA`. Mosaico 07/2025 e cena diária de 13/08/2025 aprovados; nuvem confirmada na prévia, porque a medida automática não pega sombra nem névoa (23/10/2026).
 
+- [ ] NDVI (`agente-ndvi`): com a área de teste e a Sentinel-2 de 19/07/2025, pedir as bandas B04, B08 e SCL ao `agente-imagens` e rodar a análise. Conferir: classes somando 391,24 ha, polígonos em `03_Geo/vetores_produzidos/ndvi/` (GPKG, SHP e KML), painel de comparação com a cor real e a interpretação.
+
 ## 3. Leitura no SEI (somente leitura)
 
 - [ ] Abrir no Chrome um processo já concluído e pedir: "use a skill leitura-processo-sei neste processo, sem baixar nada". Conferir se a demanda foi bem identificada.

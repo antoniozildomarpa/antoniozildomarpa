@@ -39,3 +39,7 @@ Para reproduzir: crie um caso, valide `ficticio_gms.csv`, rode `projeto_qgis.py 
 
 Os pixels da tabela correspondem à imagem original (1900 × 1500); a versão reduzida aqui serve só para visualização.
 
+
+## Análise de NDVI
+
+Pasta `ndvi/`: imagem fictícia no formato da Sentinel-2, painel de comparação com a cor real, amostras por classe, figuras e tabela da análise de NDVI (ver `ndvi/LEIA-ME.md`).

@@ -5,7 +5,7 @@ Uso:
     python revisar_minuta.py --pasta "<pasta do caso>" --minuta minuta_v2.docx
 
 Confere, sem julgar o mérito:
-    - marcadores não resolvidos, [ERRO], [VERIFICAR] e lacunas (___, XXX, [preencher]);
+    - marcadores não resolvidos, [ERRO], [VERIFICAR], [COMPARAÇÃO VISUAL...] e lacunas (___, XXX, [preencher]);
     - seções obrigatórias e Resumo em documento extenso;
     - figuras: citadas no texto, numeradas em ordem, com legenda, conferidas, com data da imagem;
     - anexos: numeração sequencial pela ordem de citação e lista completa no fim;
@@ -57,7 +57,8 @@ def revisar(pasta, minuta):
 
     # 1. pendências de texto
     for padrao, nome in [(r"\[\[[^\]]*\]\]", "marcador não resolvido"), (r"\[ERRO[^\]]*\]", "erro de montagem"),
-                         (r"\[VERIFICAR[^\]]*\]", "trecho marcado para verificar"), (r"_{3,}|\bX{3,}\b|\[preencher[^\]]*\]|\[[^\]]*N[ÃA]O INFORMAD[OA]\]", "lacuna a preencher")]:
+                         (r"\[VERIFICAR[^\]]*\]", "trecho marcado para verificar"),
+                         (r"\[COMPARA[ÇC][ÃA]O VISUAL[^\]]*\]", "comparação visual do NDVI não escrita"), (r"_{3,}|\bX{3,}\b|\[preencher[^\]]*\]|\[[^\]]*N[ÃA]O INFORMAD[OA]\]", "lacuna a preencher")]:
         achados = re.findall(padrao, tudo, flags=re.I)
         if achados:
             bloqueios.append(f"{len(achados)} {nome}(s): {', '.join(sorted(set(achados))[:5])}")

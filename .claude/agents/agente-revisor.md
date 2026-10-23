@@ -17,7 +17,8 @@ Passos:
    - números do texto batem com a ficha (áreas, perímetros, datas, sensores);
    - a metodologia diz de onde vieram os dados, com datas (inclusive data e hora das consultas ao SISCOM e à SEMAS-PA);
    - a linguagem é clara para quem não é especialista;
-   - nada no texto expõe dado pessoal sem necessidade.
+   - nada no texto expõe dado pessoal sem necessidade;
+   - quando houver NDVI: áreas das classes iguais às da ficha, limites das classes informados, comparação visual escrita (sem o marcador `[COMPARAÇÃO VISUAL`), nenhuma afirmação de que a área "é" pastagem ou floresta só pelo índice, e as limitações presentes.
 
 Devolva um relatório curto em três blocos:
 - **Bloqueia**: o que impede a minuta de seguir para o usuário (com local e correção sugerida);
