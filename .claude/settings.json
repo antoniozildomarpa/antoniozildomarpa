@@ -1,4 +1,9 @@
 {
+  "enabledPlugins": {
+    "productivity@knowledge-work-plugins": true,
+    "legal@knowledge-work-plugins": true,
+    "frontend-design@anthropic-plugin-directory": true
+  },
   "extraKnownMarketplaces": {
     "knowledge-work-plugins": {
       "source": {
@@ -6,10 +11,6 @@
         "repo": "anthropics/knowledge-work-plugins"
       }
     }
-  },
-  "enabledPlugins": {
-    "productivity@knowledge-work-plugins": true,
-    "legal@knowledge-work-plugins": true
   },
   "hooks": {
     "PreToolUse": [
