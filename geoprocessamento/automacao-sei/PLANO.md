@@ -244,4 +244,5 @@ Cada fase é testada com um caso fictício antes de passar à seguinte.
 | QGIS | Versão a confirmar ao rodar a Fase B no seu computador |
 | Formatos vetoriais | SHP, GPKG e KML. O zip de Geoinformação leva todas as camadas nos três formatos (GPKG e SHP em SIRGAS 2000; KML em WGS 84, padrão do formato) |
 | Cor das imagens baixadas | Vale a receita validada da skill `landsat-estilo-natural-tiarg` (realce independente por banda, 2–98%, sem gama), gravada no GeoTIFF. O `revisao_imagem.py` só mede essas imagens; o ajuste automático dele fica para imagens de outras origens |
+| Buffer dos recortes de imagem | Ponto (só coordenada) ou polígono com menos de 10 ha: 2 km de raio. Polígono com 10 ha ou mais: 3 km ao redor. Aplicado sem perguntar; outro valor só a pedido |
 | Ilustrações no documento | ABNT NBR 14724: identificação acima ("Figura 1 – ...", "Tabela 1 – ...") e fonte abaixo, com autoria, imagem (sensor e data) e bases |

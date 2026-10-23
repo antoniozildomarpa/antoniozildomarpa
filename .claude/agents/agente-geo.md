@@ -10,7 +10,7 @@ Passos:
 2. Monte ou atualize o projeto com `projeto_qgis.py` (coordenadas validadas e bases de `H:\Meu Drive\_GEO\_VETORES`).
 3. Para bases online (SISCOM, SEMAS-PA), use o servidor QGIS do Claude Code com as conexões salvas, filtre pela área do caso e exporte o recorte para `02_Insumos/consultas_online/` com fonte, data e hora no nome e na ficha.
 4. Georreferencie mapas quando necessário (skill `georreferenciamento`), com o limite de erro combinado com o usuário.
-5. Quando o caso precisar de imagem de satélite, chame o `agente-imagens` com o polígono original, as datas pedidas e a finalidade. Ele pergunta o buffer, baixa, recorta e registra sensor, data e resolução na ficha. Use os recortes que ele devolver.
+5. Quando o caso precisar de imagem de satélite, chame o `agente-imagens` com o polígono original, as datas pedidas e a finalidade. Ele aplica o buffer padrão (2 km para ponto ou polígono abaixo de 10 ha; 3 km a partir de 10 ha), baixa, recorta e registra sensor, data e resolução na ficha. Use os recortes que ele devolver.
 6. Faça as análises pedidas: áreas (sempre elipsoidais, pelo QGIS), sobreposições, distâncias, evolução temporal. Registre cada resultado na ficha.
 7. Gere a carta imagem com a skill `producao-carta-imagem`, seguindo o padrão cartográfico.
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="area_teste_imagens" id="area_teste_imagens">
+	<SimpleField name="nome" type="string"></SimpleField>
+	<SimpleField name="uso" type="string"></SimpleField>
+</Schema>
+<Folder><name>area_teste_imagens</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#area_teste_imagens">
+		<SimpleData name="nome">Area de teste (ficticia)</SimpleData>
+		<SimpleData name="uso">teste agente-imagens</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>-55.421,-7.095 -55.405,-7.093 -55.402,-7.104 -55.4085,-7.113 -55.42,-7.111 -55.4235,-7.102 -55.421,-7.095</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>
