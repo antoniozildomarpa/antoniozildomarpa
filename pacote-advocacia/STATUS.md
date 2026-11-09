@@ -2,11 +2,12 @@
 
 Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão. Atualize-o a cada etapa concluída.
 
-Última atualização: 2026-10-11
+Última atualização: 2026-11-09
 
 ## Onde estamos
 
-- **Fase atual:** coleta de respostas da advogada (questionário de 23 perguntas, entregue por você a ela).
+- **Fase atual:** questionário salvo em `respostas/questionario.md`, aguardando as respostas da advogada. São 23 perguntas, nos blocos A a F, todas com `Status: pendente`. É uma versão nova, aprovada em 2026-11-09: o original de outubro foi escrito no Claude Desktop e não ficou salvo.
+- **Papel timbrado:** a advogada escolheu o modelo A, que está em `H:\Meu Drive\_advocacia\logomarca\modelos-papel-timbrado\modelo_timbrado_A.docx` (faixa azul texturizada com onda e filetes dourados). A inscrição foi confirmada como **OAB/PA 25.617** e já está corrigida na arte da 1ª página, no rodapé das páginas seguintes e na procuração de exemplo. Os modelos de documento (procuração, contrato de honorários, declaração de hipossuficiência, petição e requerimento) serão montados sobre esse papel em `modelos/`.
 - **Pacote inicial:** criado e commitado (commit `e333d19`), em rascunho. Não foi testado com caso real.
 - **Estrutura de pastas:** o padrão atual é só uma proposta. A advogada já tem pastas organizadas por cliente e processo, então o pacote deve se adaptar ao que existe, não o contrário.
 
@@ -29,7 +30,11 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 
 - [ ] Confirmar a planilha do Google Sheets como base do financeiro (decisão 11).
 - [ ] Informar onde ficam as pastas: Google Drive, OneDrive/SharePoint ou computador local.
-- [ ] Respostas ao questionário (blocos A a F), a serem salvas em `respostas/questionario.md`.
+- [x] Salvar o questionário (blocos A a F) em `respostas/questionario.md` (2026-11-09).
+- [ ] Respostas ao questionário: preencher `respostas/questionario.md` e marcar cada pergunta como `Status: respondida`.
+- [x] Escolher o papel timbrado: modelo A (2026-11-09).
+- [x] Confirmar a OAB: OAB/PA 25.617 (2026-11-09).
+- [ ] Criar os modelos de procuração, contrato de honorários, declaração de hipossuficiência, petição e requerimento sobre o modelo A, em `modelos/`, com dados fictícios e citações marcadas `[VERIFICAR]`.
 - [ ] Confirmar se ela autoriza a leitura apenas dos **nomes** de pastas e arquivos, para mapear a organização atual.
 - [ ] Definir área de atuação e tribunais principais (questões A e B).
 - [ ] Verificar se há processos em **segredo de justiça** e se precisam de regras separadas (questão 22).
@@ -76,6 +81,6 @@ Opções para ela começar na conta dela:
 ## Para retomar
 
 1. Ler este arquivo.
-2. Ler `respostas/` (quando existir).
+2. Ler `respostas/questionario.md` e ver quais perguntas ainda estão com `Status: pendente`.
 3. Ler `README.md` e `CLAUDE.md`.
 4. Continuar pela primeira pendência não marcada.

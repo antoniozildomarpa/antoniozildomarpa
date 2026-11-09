@@ -38,6 +38,10 @@ Estas regras valem para todas as sessões que usam este pacote. Ajuste-as à pr�
 
 - Usar os modelos em `modelos/` quando existirem. Se não houver modelo, seguir a estrutura geral da skill `minuta`.
 
+## Questionário da advogada
+
+- Questionário da advogada: ver respostas/questionario.md. Perguntas com Status: pendente continuam em aberto. Ao receber respostas, preencher o arquivo, marcar Status: respondida e revisar o CLAUDE.md e as skills afetadas.
+
 ## Qualidade e autoria das peças
 
 - O objetivo é qualidade e consistência com o estilo da advogada, não ocultar a forma de produção.
