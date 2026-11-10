@@ -1,6 +1,15 @@
 # Proposta: WhatsApp do escritório ligado à automação
 
-Data: 2026-11-10. Situação: **proposta, aguarda decisão da advogada.** Nada aqui foi instalado.
+Data: 2026-11-10. Situação: **proposta com decisões parciais.** Nada aqui foi instalado.
+
+## Decisões de 2026-11-10
+
+1. Haverá um número exclusivo do escritório.
+2. A exportação de conversas (caminho A) **não começa agora**.
+3. O texto do aviso de privacidade aos clientes será definido depois.
+4. Transcrição pelo Whisper, no computador.
+5. Além da advogada, as duas colaboradoras podem dar comandos ("abrir caso").
+6. Em estudo: o Claude usar o WhatsApp Web do número do escritório, aberto no Chrome (caminho D, detalhado abaixo).
 
 ## O que se quer
 
@@ -30,9 +39,43 @@ Motivos:
 | **A. Exportar conversa** | Ela (ou um colaborador) usa "Exportar conversa > Incluir mídia" e salva numa pasta do Drive. O Claude lê o arquivo, transcreve os áudios, atualiza a ficha e organiza os documentos. | Funciona já, sem custo, dentro das regras do WhatsApp. É manual: uma conversa por vez. Bom para testar a extração antes de automatizar. |
 | **B. API oficial do WhatsApp (Meta)** | O número do escritório é ligado à plataforma oficial de negócios do WhatsApp (Cloud API). Cada mensagem recebida chega a um serviço intermediário, que salva o texto e os arquivos no Drive, manda os áudios para transcrição e chama o Claude para classificar e extrair as informações. | **Recomendado** para a automação contínua. É o caminho permitido pelo WhatsApp. Exige configuração técnica, um serviço intermediário e tem custo por mensagem enviada pelo escritório. Verificar se o número pode continuar usando o app WhatsApp Business ao mesmo tempo (recurso de coexistência) e a tabela de preços atual `[VERIFICAR]`. |
 | **C. Ferramentas não oficiais (WhatsApp Web automatizado)** | Programas que conectam ao WhatsApp Web lendo o QR code e passam a ler tudo. | **Não recomendado.** Contraria os termos de uso do WhatsApp `[VERIFICAR]`, pode levar ao bloqueio do número e dá acesso a todas as conversas, inclusive pessoais, para um programa de terceiros. Risco alto para dados de clientes. |
-| **D. Claude in Chrome lendo o WhatsApp Web** | Com ela logada no WhatsApp Web, o Claude lê as conversas na tela. | Só como consulta pontual, com ela presente. Não serve para acompanhar o dia todo e expõe as conversas pessoais se o número for o mesmo. |
+| **D. Claude in Chrome lendo o WhatsApp Web** | O WhatsApp Web do número do escritório fica aberto no Chrome de um computador do escritório. Em horários marcados, o Claude abre as conversas não lidas, lê, baixa os anexos e os áudios, transcreve com o Whisper e organiza. | Viável com o número exclusivo, porque não há conversa pessoal na tela. Sem custo de API e sem serviço intermediário. Tem limites (ver abaixo): não é instantâneo, depende do computador ligado e os termos do WhatsApp sobre uso automatizado precisam ser conferidos `[VERIFICAR]`. |
 
-**Sugestão:** começar pelo caminho A agora, para testar a extração, e montar o caminho B com o número exclusivo do escritório.
+**Sugestão atual:** testar o caminho D com dados fictícios. O caminho B fica como evolução, se o D não der conta do volume ou se os termos do WhatsApp o impedirem.
+
+## Caminho D em detalhe: WhatsApp Web no Chrome
+
+### Como funcionaria
+
+1. Num computador do escritório que fica ligado no horário de trabalho, o WhatsApp Web do número do escritório fica conectado no Chrome. Quem faz o pareamento pelo QR code é a advogada ou uma colaboradora. O Claude não faz essa etapa.
+2. Uma rotina roda em horários marcados (sugestão: a cada hora, das 8h às 18h, em dias úteis) usando o Claude in Chrome.
+3. Em cada rodada, o Claude:
+   - abre só as conversas com mensagem nova;
+   - decide se o assunto é de advocacia; se não for, sai sem guardar nada;
+   - identifica o cliente pelo telefone e pelo nome, comparando com as fichas;
+   - baixa documentos, fotos e áudios para `Clientes/_WhatsApp/Entrada/{telefone}/AAAA-MM-DD/`;
+   - transcreve os áudios com o Whisper e salva o `.txt` ao lado;
+   - acrescenta na `ficha-cliente.md` (e na `ficha-processo.md`, se o caso for identificado) o resumo com data;
+   - move os documentos para `00 Documentação do cliente` ou `01 Entrada` do caso;
+   - lança prazos ou providências pela skill `agenda-prazos`;
+   - avisa a advogada e as colaboradoras sobre contatos novos e pedidos de informação.
+4. Comando "abrir caso": a advogada ou uma colaboradora escreve o comando numa conversa combinada, por exemplo o grupo interno "Comandos – Escritório", só com as três. Na rodada seguinte, o Claude lê o comando, cria a pasta, move os documentos daquela conversa, monta a ficha e gera os documentos de praxe.
+
+### Limites que é preciso aceitar
+
+- **Não é instantâneo.** O Claude só vê a mensagem na rodada seguinte. Para urgências, a notificação normal do WhatsApp no celular continua sendo a primeira.
+- **Confirmação de leitura.** Abrir a conversa no WhatsApp Web marca as mensagens como lidas, e o cliente vê os tiques azuis sem ter recebido resposta. Saída: desligar a confirmação de leitura no número do escritório, ou aceitar e combinar com as colaboradoras o tempo de resposta `[DECIDIR]`.
+- **Computador ligado e sessão ativa.** Se o computador desligar ou o WhatsApp Web desconectar, a rodada não acontece. A rotina avisa quando encontrar a sessão desconectada e não tenta reconectar.
+- **Aplicativo do celular.** O Claude não opera o app no celular. Só o WhatsApp Web, ou o WhatsApp para computador, no computador.
+- **Volume.** Com muitas conversas por dia, cada rodada fica longa. Se isso acontecer, o caminho B passa a valer a pena.
+- **Termos do WhatsApp.** Os termos restringem o acesso por meios automatizados `[VERIFICAR]`. O Claude in Chrome usa o navegador como uma pessoa, em ritmo humano, o que reduz o risco, mas não o elimina. Se o número for advertido ou bloqueado, a rotina para.
+
+### Regras do caminho D
+
+- O Claude **não escreve nem envia mensagem a clientes**. Não clica em "responder", não manda áudio, não apaga, não arquiva e não bloqueia contatos.
+- Avisos internos: só pela notificação do celular (agenda e app do Claude) ou, se a advogada autorizar, mensagem no grupo interno "Comandos – Escritório". Nunca para clientes.
+- Conversas de processos com `SIGILOSO.txt`: registrar só que houve mensagem, sem resumo.
+- Comandos só valem se vierem da advogada ou de uma das duas colaboradoras, no grupo interno.
 
 ## Como ficaria o caminho B
 
@@ -75,7 +118,7 @@ O serviço confere que a mensagem veio do número dela (só ela pode dar comando
 - cria a `ficha-cliente.md` com os dados da conversa, marcados `[CONFIRMAR]`;
 - gera os documentos de praxe (procuração, contrato, declaração de hipossuficiência) pela skill `minuta`.
 
-Os colaboradores podem ter o número deles autorizado para comandos, se ela quiser `[DECIDIR]`.
+As duas colaboradoras também podem dar comandos (decisão de 2026-11-10).
 
 ### O que continua proibido
 
@@ -102,9 +145,8 @@ O texto transcrito é salvo junto do áudio, com o mesmo nome e extensão `.txt`
 
 ## Decisões pendentes da advogada
 
-1. Número exclusivo do escritório: sim ou não?
-2. Começar pelo caminho A (exportar conversas) enquanto o B não fica pronto?
-3. Aviso de privacidade aos clientes sobre o uso de ferramenta na organização das mensagens: texto e momento de envio `[DECIDIR]`.
-4. Transcrição no computador (Whisper) ou em nuvem.
-5. Quem além dela pode dar comandos ("abrir caso").
-6. Orçamento mensal aceitável.
+1. Texto e momento do aviso de privacidade aos clientes (fica para depois).
+2. Caminho D: aceitar os limites acima? Desligar a confirmação de leitura no número do escritório?
+3. Qual computador fica ligado com o WhatsApp Web e com o Whisper instalado.
+4. Frequência das rodadas.
+5. Orçamento mensal, só se for preciso passar ao caminho B.
