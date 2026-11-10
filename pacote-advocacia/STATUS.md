@@ -54,6 +54,8 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 - [ ] Definir como ela terá acesso ao repositório (ver "Acesso ao repositório").
 - [x] Revisar `CLAUDE.md` e skills com base nas respostas (2026-11-10).
 - [x] Criar a ficha de processo (tribunal, instância, sistema, fase, próximo prazo, status): gerada pelo `criar_pastas.py` (2026-11-10).
+- [x] Etapa de levantamento de andamentos nos portais (2026-11-10): aviso à advogada, login feito por ela, leitura pelo Claude dos processos de `processos-acompanhados.md`. Ver `rotinas/levantamento-andamentos.md` e a skill `consulta-portais`.
+- [ ] Para ligar o levantamento: escolher o canal de aviso, preencher `processos-acompanhados.md`, conferir os termos de uso do PJe/TJPA e do Meu INSS e ver com ela quais ações no PJe registram ciência de intimação.
 - [ ] Definir o e-mail do escritório (Gmail ou Outlook). O questionário original não perguntou, e a triagem depende disso.
 - [ ] Mapear os nomes das pastas atuais no OneDrive (autorizado) e ajustar os nomes das áreas.
 - [ ] Skills novas pedidas na questão 20: cadastro de clientes; tratamento de fotos e digitalizações para PDF legível no tamanho aceito pelo PJe e pelo INSS; documentos de praxe automáticos ao criar a pasta; ficha do cliente a partir da transcrição do atendimento; planilha de honorários a partir dos contratos.

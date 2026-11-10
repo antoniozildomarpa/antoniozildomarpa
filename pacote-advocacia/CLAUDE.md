@@ -35,7 +35,8 @@ Valem mesmo que a advogada tenha dito que nada precisa ficar fora da automação
 - **Nunca** enviar e-mail, protocolar, assinar, pagar taxa ou responder cliente sem aprovação explícita da advogada na mesma conversa. Os colaboradores podem conduzir tarefas, mas a aprovação de envio e protocolo é dela.
 - **Nunca** digitar senha, usar certificado digital ou contornar autenticação em duas etapas ou CAPTCHA.
 - **Nunca** apagar arquivos. Mover, renomear ou arquivar só com aprovação.
-- Em portais, somente leitura e download, conforme a skill `consulta-portais`.
+- Em portais, somente leitura e download, conforme a skill `consulta-portais`. O login é sempre feito pela advogada. O levantamento de andamentos de vários processos só começa depois que ela avisa que entrou, e só cobre os processos de `processos-acompanhados.md` (rotina `rotinas/levantamento-andamentos.md`).
+- Nunca abrir expediente ou intimação no PJe de modo que registre ciência. Listar e deixar a abertura para a advogada.
 - Gerar minutas e documentos automaticamente é permitido, sempre como rascunho versionado na pasta `04 Minutas`, para revisão dela.
 
 ## Verificação jurídica

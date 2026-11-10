@@ -15,6 +15,7 @@ Conjunto de skills, instruções, modelos e roteiros de rotinas para apoiar o tr
 | `.claude/skills/minuta/` | Redige a minuta para revisão, com citações marcadas |
 | `.claude/skills/consulta-portais/` | Consulta e download somente leitura em portais, com login feito pela advogada |
 | `estrutura/criar_pastas.py` | Cria a árvore padrão por área, cliente e caso, com as fichas |
+| `estrutura/processos-acompanhados-modelo.md` | Modelo da lista de processos do levantamento de andamentos |
 | `rotinas/` | Roteiros das rotinas recorrentes (texto, frequência, conectores) |
 | `modelos/` | Local para os modelos de peça do escritório |
 | `respostas/questionario.md` | Questionário respondido pela advogada, base das regras do `CLAUDE.md` |

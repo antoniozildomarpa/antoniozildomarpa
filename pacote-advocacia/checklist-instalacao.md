@@ -42,6 +42,7 @@ Siga na ordem. Cada etapa tem um critério de conclusão.
 ## 6. Rotinas recorrentes
 
 - [ ] Criar as rotinas a partir dos arquivos em `rotinas/`, uma por vez, começando pelo alerta de prazos.
+- [ ] Para o levantamento de andamentos: copiar `estrutura/processos-acompanhados-modelo.md` para a raiz da pasta `Clientes` como `processos-acompanhados.md` e preencher com ela; escolher o canal de aviso; conferir os termos de uso do PJe do TJPA e do Meu INSS; ver com ela, na tela do PJe, quais ações registram ciência de intimação; fazer o primeiro levantamento com ela ao lado.
 - [ ] Revisar a primeira semana de saídas antes de manter a rotina.
 - [ ] **Critério:** as saídas são úteis e as ações indevidas ficaram bloqueadas.
 
