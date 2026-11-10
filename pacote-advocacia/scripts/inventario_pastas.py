@@ -109,10 +109,19 @@ LIMITE_CAMINHO = 240  # perto do limite de 260 do Windows
 
 
 def achar_onedrive():
+    """Só escolhe sozinho se houver um único OneDrive. Com pessoal e corporativo, exige --raiz."""
+    achados = []
     for var in ("OneDriveCommercial", "OneDriveConsumer", "OneDrive"):
         p = os.environ.get(var)
-        if p and os.path.isdir(p):
-            return Path(p)
+        if p and os.path.isdir(p) and os.path.normcase(os.path.realpath(p)) not in (
+                os.path.normcase(os.path.realpath(a)) for a in achados):
+            achados.append(p)
+    if len(achados) == 1:
+        return Path(achados[0])
+    if achados:
+        print("Há mais de um OneDrive neste computador. Informe qual varrer com --raiz:", file=sys.stderr)
+        for a in achados:
+            print(f"  {a}", file=sys.stderr)
     return None
 
 
@@ -192,6 +201,9 @@ def varrer(raiz: Path, anon: Anonimizador):
             entradas = list(os.scandir(atual))
         except OSError as e:
             info["erro"] = type(e).__name__
+            continue
+        if any(e.name.lower() == "sigiloso.txt" for e in entradas):
+            info["sigiloso"] = True  # registra que existe; não lista o conteúdo
             continue
         for e in entradas:
             try:
@@ -321,7 +333,10 @@ def main() -> int:
             "area_sugerida": area, "arquivos": tot[0], "tamanho_mb": round(tot[1] / 1024 / 1024, 2),
             "ultima_alteracao": data(tot[2]),
             "situacao": "ativo (últimos 12 meses)" if tot[2] and agora - tot[2] < 365 * 86400 else "parado há mais de 1 ano",
-            "processos_no_nome": len(cnj_por_pasta.get(partes, ())), "observacao": "",
+            "processos_no_nome": len(cnj_por_pasta.get(partes, ())),
+            "sigiloso": "sim" if any(i.get("sigiloso") for p, i in pastas.items() if p[:len(partes)] == partes) else "",
+            "observacao": "",
+            "caminho_origem": "" if args.anonimo else str(raiz.joinpath(*partes)),
         })
     escrever_csv(saida / "proposta_migracao.csv",
                  list(linhas_m[0].keys()) if linhas_m else ["origem"], linhas_m)
@@ -395,6 +410,7 @@ def main() -> int:
     r.append(f"- Pastas vazias: {len(vazias)}")
     r.append(f"- Prováveis duplicados (mesmo nome e mesmo tamanho): {len(duplicados)} grupos, {sum(duplicados.values()) - len(duplicados)} cópias extras")
     r.append(f"- Números de processo que aparecem em mais de uma pasta de cliente: {len(cnj_espalhado)}")
+    r.append(f"- Pastas com SIGILOSO.txt (registradas, conteúdo não listado): {sum(1 for i in pastas.values() if i.get('sigiloso'))}")
     r.append("\n## Próximos passos\n")
     r.append("1. Conferir a `proposta_migracao.csv`: área e destino de cada pasta, marcando `sim` em `aprovar`.")
     r.append("2. Decidir o que fazer com pastas paradas há mais de um ano (migrar como arquivo morto ou deixar no OneDrive).")

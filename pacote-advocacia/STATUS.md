@@ -10,6 +10,26 @@ O pacote está pronto para ser instalado no computador da advogada, na conta Cla
 
 Testes feitos aqui, só com dados fictícios: os seis scripts de `scripts/` (PDF com OCR, conversão de Word, fotos para PDF com correção de rotação e brilho e limite de tamanho, transcrição pelo Whisper, cadastro por nomes de pastas com aprovação, lançamento de honorários); o hook de sigilo (sete casos, incluindo o Claude Code de verdade barrando a leitura); o instalador numa pasta falsa, duas vezes seguidas, sem duplicar configurações e preservando as que já existiam; o Claude Code enxergando as 12 skills e os 3 agentes do projeto. Não testados aqui: a instalação dos programas pelo winget e o instalador oficial do Claude Code (este computador já os tinha).
 
+## Importação do OneDrive e ficha cadastral (2026-11-10)
+
+Preparado para rodar no computador dela, na conta dela. O usuário decidiu em 2026-11-10 que a varredura das pastas reais acontece lá, e não nesta conta. Skill `importacao-onedrive`, em cinco etapas com aprovação entre elas:
+1. Inventário: `inventario_pastas.py`, ou dois cliques em `instalacao/INVENTARIO-ONEDRIVE.cmd`. Lê só nomes, tamanhos e datas.
+2. Cópia aprovada: `migrar_pastas.py`. Copia para `Clientes/{Área}/{Cliente}/_importado-onedrive/` e não altera o OneDrive.
+3. Extração: `extrair_cliente.py`. Lê PDF com OCR, Word (inclusive .doc antigo, pelo Word), Excel, fotos e HEIC, e-mail, texto e áudio (com `--audio`). Separa os dados candidatos, cada um com a fonte, e descarta os dados do próprio escritório.
+4. Ficha: `ficha-cliente.md`, a partir de `modelos/ficha-cliente-modelo.md`, com fonte e `[CONFIRMAR]` em cada dado.
+5. Planilha geral: `consolidar_cadastro.py`.
+
+Pastas com `SIGILOSO.txt` não são listadas, copiadas nem lidas. O instalador libera para o Claude Code as pastas Clientes, Financeiro e o OneDrive (este só quando houver um único). A leitura do conteúdo depende de autorização dela, porque a questão 12 cobriu só nomes. A autorização é registrada em `Clientes/_inventario/andamento.md`.
+
+Testado aqui com um OneDrive fictício: procuração em PDF, petição em Word, foto de RG, e-mail, áudio e vídeo, pasta sigilosa e um segundo cliente. Resultados:
+- a cópia rodou duas vezes sem duplicar;
+- a extração encontrou CPF, RG, NIT, nascimento, estado civil, profissão, filiação, endereço, CEP, telefone, e-mail, CNJ e NB;
+- a planilha contou os `[CONFIRMAR]` e `[DECIDIR]`.
+
+Limite visto: o OCR de foto junta palavras e pode perder linhas.
+
+Durante o teste do atalho, o script pegou o OneDrive real deste computador, porque só uma das variáveis de ambiente tinha sido trocada. Ele listou nomes e totais. O relatório foi apagado sem ser aberto. Só os totais apareceram na conversa. Daí veio a correção: com mais de um OneDrive, o script e o instalador não escolhem sozinhos.
+
 ## Onde estamos
 
 - **Fase atual:** questionário respondido, salvo em `respostas/questionario.md`. É o original de outubro (blocos A a F, 23 perguntas), recuperado em 2026-11-09 de um .txt na Área de Trabalho do usuário, com as respostas dela. Das 23 perguntas, 21 estão respondidas; a 22 (segredo de justiça) e a 23 (dados que podem sair do computador) estão parciais. O bloco G (financeiro, perguntas 24 a 28) foi acrescentado e está pendente. Em 2026-11-10, o `CLAUDE.md`, as cinco skills, o script de pastas, as rotinas e o checklist foram revisados com base nas respostas (ver "Revisão de 2026-11-10"). Próximo passo: criar os modelos de documento sobre o papel timbrado.

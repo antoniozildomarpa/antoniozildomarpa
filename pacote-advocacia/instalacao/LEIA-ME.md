@@ -48,6 +48,13 @@ Depois disso, seguir o `checklist-instalacao.md`, na ordem.
 - Para marcar um processo em segredo de justiça: criar um arquivo `SIGILOSO.txt` na pasta do caso.
 - Se a conversa ficar longa, o aviso de sessão longa sugere abrir outra e gerar um `HANDOFF.md`.
 
+## Importação das pastas do OneDrive
+
+1. Antes, criar `SIGILOSO.txt` nas pastas dos processos em segredo de justiça, ainda no OneDrive.
+2. Dois cliques em `Escritorio-Claude\instalacao\INVENTARIO-ONEDRIVE.cmd`. Ele lê só nomes, tamanhos e datas, e o resumo abre no Bloco de Notas. Se houver mais de um OneDrive no computador, ele pede que se arraste a pasta do escritório para a janela.
+3. Abrir o Claude Code na pasta `Escritorio-Claude` e pedir "seguir a importação do OneDrive". A skill `importacao-onedrive` conduz a aprovação da cópia, a cópia, a leitura dos documentos e as fichas cadastrais. Cada etapa espera o "pode seguir" dela.
+4. Se o OneDrive não estiver liberado para o Claude Code, digitar `/add-dir` seguido da pasta do OneDrive do escritório.
+
 ## Atualizações
 
 Nova versão do pacote: substituir a pasta `pacote-advocacia` e rodar `INSTALAR.cmd` de novo. Arquivos que ela editou depois da última instalação (por exemplo, o `STATUS.md`) não são sobrescritos, e a instalação anterior inteira fica guardada em `Escritorio-Claude-backup-<data>`.

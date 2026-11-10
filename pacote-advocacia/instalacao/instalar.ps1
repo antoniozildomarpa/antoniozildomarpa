@@ -136,6 +136,33 @@ Toda referência a `Clientes/` nas skills e rotinas aponta para a pasta Clientes
     Ok "escritorio.local.md gravado (Clientes: $PastaClientes)"
 }
 
+# Pastas fora do pacote que o Claude Code pode abrir (Clientes, Financeiro e o OneDrive antigo, só leitura
+# na prática: os scripts nunca escrevem no OneDrive). O hook de sigilo continua valendo nelas.
+if (-not $PastaClientes) {
+    $m = Select-String -Path $local -Pattern 'Pasta Clientes: `(.+)`' | Select-Object -First 1
+    if ($m) { $PastaClientes = $m.Matches[0].Groups[1].Value }
+    $m = Select-String -Path $local -Pattern 'Pasta Financeiro: `(.+)`' | Select-Object -First 1
+    if ($m) { $PastaFinanceiro = $m.Matches[0].Groups[1].Value }
+}
+$extras = @($PastaClientes, $PastaFinanceiro)
+$onedrives = @("OneDriveCommercial", "OneDriveConsumer", "OneDrive") |
+    ForEach-Object { [Environment]::GetEnvironmentVariable($_) } |
+    Where-Object { $_ -and (Test-Path $_) } | Select-Object -Unique
+if (@($onedrives).Count -eq 1) {
+    $extras += $onedrives
+} elseif (@($onedrives).Count -gt 1) {
+    Aviso "mais de um OneDrive neste computador ($($onedrives -join '; ')); nenhum liberado. No Claude Code, use /add-dir com a pasta do OneDrive do escritório."
+}
+$extras = $extras | Where-Object { $_ } | Select-Object -Unique
+$slocal = Join-Path $Destino ".claude\settings.local.json"
+if (Test-Path $slocal) {
+    Ok "settings.local.json já existe (mantido). Pastas extras sugeridas: $($extras -join '; ')"
+} else {
+    $json = @{ permissions = @{ additionalDirectories = @($extras) } } | ConvertTo-Json -Depth 4
+    [IO.File]::WriteAllText($slocal, $json, (New-Object Text.UTF8Encoding $false))
+    Ok "pastas liberadas para o Claude Code: $($extras -join '; ')"
+}
+
 # ---------------------------------------------------------------- 4. configuração global
 Etapa "4. Configuração global do Claude Code"
 $g = Join-Path $PSScriptRoot "global"

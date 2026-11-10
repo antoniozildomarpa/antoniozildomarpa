@@ -1,5 +1,6 @@
 # Gerados na instalação, específicos de cada computador
 escritorio.local.md
+.claude/settings.local.json
 instalacao/para-claude-ai/
 instalacao/ultima-instalacao.txt
 __pycache__/

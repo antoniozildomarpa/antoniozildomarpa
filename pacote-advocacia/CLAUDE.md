@@ -56,6 +56,7 @@ Valem mesmo que a advogada tenha dito que nada precisa ficar fora da automação
 As pastas dela são organizadas por área e por cliente, sem padrão de nome de arquivo (questão 8). Hoje estão no OneDrive, e a migração para o Google Drive está prevista (questão 9).
 
 - Pastas existentes não são movidas nem renomeadas sem aprovação. O primeiro passo é mapear só os nomes de pastas e arquivos, o que ela autorizou (questão 12).
+- A importação do OneDrive segue a skill `importacao-onedrive`: inventário, cópia aprovada (o OneDrive fica intacto), extração do conteúdo e ficha cadastral. Abrir o conteúdo dos documentos depende de autorização dela, registrada em `Clientes/_inventario/andamento.md`.
 - Padrão para pastas novas: `Clientes/{Área}/{Cliente}/{Caso}/`.
   - `{Área}`: Previdenciário RPPS, Previdenciário RGPS, Família e Sucessões, Direito Público, Consumidor, Ambiental. Ajustar os nomes aos que ela já usa, depois do mapeamento.
   - `{Caso}`: número CNJ do processo, `INSS-{nº do requerimento}` para requerimento administrativo ou `consultivo-AAAA-MM-DD`.
@@ -79,6 +80,10 @@ As pastas dela são organizadas por área e por cliente, sem padrão de nome de 
   - `tratar_imagens.py`: fotos de documentos para PDF legível e leve;
   - `transcrever.py`: áudio para texto (Whisper);
   - `mapear_pastas.py`: cadastro de clientes pelos nomes das pastas;
+  - `inventario_pastas.py`: inventário do OneDrive (só nomes e metadados) e proposta de migração;
+  - `migrar_pastas.py`: cópia aprovada do OneDrive para a pasta Clientes, sem apagar nada;
+  - `extrair_cliente.py`: texto de todos os documentos da pasta do cliente e dados candidatos à ficha;
+  - `consolidar_cadastro.py`: planilha geral de clientes a partir das fichas;
   - `lancar_honorario.py`: honorários na planilha de controle.
 - Usar esses scripts antes de abrir documentos grandes, para economizar o limite do plano.
 - Agentes em `.claude/agents/`: `triagem-documentos` (separar e extrair, modelo econômico), `rotina-escritorio` (tarefas claras) e `revisao-juridica` (revisão crítica antes da advogada). Delegar a triagem de pastas grandes ao primeiro e passar toda minuta importante pelo último.

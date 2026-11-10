@@ -5,6 +5,8 @@ description: Monta o cadastro de clientes por área a partir só dos nomes das p
 
 # Cadastro de clientes
 
+Esta skill trabalha só com nomes de pastas, sem abrir documentos. Para importar as pastas do OneDrive e montar a ficha completa a partir do conteúdo dos documentos, use a skill `importacao-onedrive`.
+
 Pedido da advogada (questão 20, item 1): cadastro de clientes por área. Ela autorizou a leitura apenas dos nomes de pastas e arquivos (questão 12).
 
 ## Etapa 1: proposta
