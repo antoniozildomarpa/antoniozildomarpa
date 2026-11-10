@@ -6,10 +6,11 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 
 ## Onde estamos
 
-- **Fase atual:** questionário salvo em `respostas/questionario.md`, aguardando as respostas da advogada. São 23 perguntas, nos blocos A a F, todas com `Status: pendente`. É uma versão nova, aprovada em 2026-11-09: o original de outubro foi escrito no Claude Desktop e não ficou salvo.
+- **Fase atual:** questionário respondido, salvo em `respostas/questionario.md`. É o original de outubro (blocos A a F, 23 perguntas), recuperado em 2026-11-09 de um .txt na Área de Trabalho do usuário, com as respostas dela. Das 23 perguntas, 21 estão respondidas; a 22 (segredo de justiça) e a 23 (dados que podem sair do computador) estão parciais. O bloco G (financeiro, perguntas 24 a 28) foi acrescentado e está pendente. Próximo passo: revisar o `CLAUDE.md` e as skills com base nas respostas.
+- **Principais respostas:** previdenciário (RPPS cerca de 100 processos, RGPS cerca de 50), família e sucessões (50), público (50), consumidor (15), ambiental (4). Trabalha no TJPA, cerca de 100 processos na 1ª instância e 15 na 2ª, principalmente pelo PJe e pelo INSS. Escritório individual com dois colaboradores, que também mexem em pastas e prazos. Os prazos são controlados em agenda física, e já houve perda e quase perda de prazo. As pastas estão por área e por cliente, hoje no OneDrive, com migração planejada para o Google Drive. Não tem modelos de peça nem sistema de gestão. Autorizou a leitura dos nomes de pastas e arquivos.
 - **Papel timbrado:** a advogada escolheu o modelo A, que está em `H:\Meu Drive\_advocacia\logomarca\modelos-papel-timbrado\modelo_timbrado_A.docx` (faixa azul texturizada com onda e filetes dourados). A inscrição foi confirmada como **OAB/PA 25.617** e já está corrigida na arte da 1ª página, no rodapé das páginas seguintes e na procuração de exemplo. Os modelos de documento (procuração, contrato de honorários, declaração de hipossuficiência, petição e requerimento) serão montados sobre esse papel em `modelos/`.
 - **Pacote inicial:** criado e commitado (commit `e333d19`), em rascunho. Não foi testado com caso real.
-- **Estrutura de pastas:** o padrão atual é só uma proposta. A advogada já tem pastas organizadas por cliente e processo, então o pacote deve se adaptar ao que existe, não o contrário.
+- **Estrutura de pastas:** o padrão atual é só uma proposta. A advogada organiza as pastas por área e por cliente, sem padrão de nome de arquivo (questão 8). O pacote deve se adaptar a isso, não o contrário.
 
 ## Decisões já tomadas
 
@@ -28,18 +29,17 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 
 ## Pendências
 
-- [ ] Confirmar a planilha do Google Sheets como base do financeiro (decisão 11).
-- [ ] Informar onde ficam as pastas: Google Drive, OneDrive/SharePoint ou computador local.
+- [ ] Confirmar a planilha do Google Sheets como base do financeiro (decisão 11; questão 24).
+- [x] Informar onde ficam as pastas: hoje no OneDrive, com migração para o Google Drive (questão 9, 2026-11-09).
 - [x] Salvar o questionário (blocos A a F) em `respostas/questionario.md` (2026-11-09).
-- [ ] Respostas ao questionário: preencher `respostas/questionario.md` e marcar cada pergunta como `Status: respondida`.
+- [x] Respostas ao questionário original: 21 respondidas, 22 e 23 parciais (2026-11-09).
+- [ ] Fechar as questões 22 (segredo de justiça fora da automação ou com regras próprias) e 23 (confirmar que dados de clientes podem ser processados na conta dela).
+- [ ] Respostas do bloco G (financeiro, questões 24 a 28).
 - [x] Escolher o papel timbrado: modelo A (2026-11-09).
 - [x] Confirmar a OAB: OAB/PA 25.617 (2026-11-09).
 - [ ] Criar os modelos de procuração, contrato de honorários, declaração de hipossuficiência, petição e requerimento sobre o modelo A, em `modelos/`, com dados fictícios e citações marcadas `[VERIFICAR]`.
-- [ ] Confirmar se ela autoriza a leitura apenas dos **nomes** de pastas e arquivos, para mapear a organização atual.
-- [ ] Definir área de atuação e tribunais principais (questões A e B).
-- [ ] Verificar se há processos em **segredo de justiça** e se precisam de regras separadas (questão 22).
-- [ ] Confirmar quais dados podem sair do computador dela (questão 23).
-- [ ] Respostas financeiras (regime, formas de recebimento, tipos de honorário, valores de terceiros, controle atual).
+- [x] Autorização para ler apenas os **nomes** de pastas e arquivos: autorizado (questão 12, 2026-11-09).
+- [x] Área de atuação e tribunais principais (blocos A e B, 2026-11-09).
 - [ ] Definir como ela terá acesso ao repositório (ver "Acesso ao repositório").
 - [ ] Revisar `CLAUDE.md` e skills com base nas respostas.
 - [ ] Criar a ficha de processo (tribunal, instância, sistema, fase, próximo prazo, status), por causa dos muitos processos em andamento.
