@@ -9,20 +9,24 @@ Objetivo: transformar documentos recebidos em um diagnóstico curto, com a açã
 
 ## Entradas
 
-- Pasta do processo ou do cliente, no padrão `Clientes/{Cliente}/{processo}/`.
+- Pasta do caso, no padrão `Clientes/{Área}/{Cliente}/{Caso}/`, e a pasta `00 Documentação do cliente` do cliente.
+- `ficha-cliente.md` e `ficha-processo.md`, se existirem.
 - Notas da triagem em `03 Análise`, se existirem.
 - Pedido ou contexto dado pela advogada na conversa.
 
+Se a pasta do caso tiver o arquivo `SIGILOSO.txt`, pare e informe. Processos em segredo de justiça ficam fora da automação.
+
 ## Passos
 
-1. **Inventário.** Liste os documentos das pastas `00` a `02` e `06` antes de abrir qualquer um. Informe o que existe e o que parece faltar.
+1. **Inventário.** Liste os documentos das pastas `00` a `02` e `06` antes de abrir qualquer um. Informe o que existe e o que parece faltar. Nos casos previdenciários, confira se há os documentos que o INSS ou o regime próprio costumam exigir e liste os ausentes.
 2. **Leitura.** Leia os documentos relevantes. Para cada um, anote data, partes, tipo e pedido principal.
 3. **Fatos.** Monte uma linha do tempo com fatos documentados, indicando a fonte de cada um.
-4. **Demanda.** Identifique o que a parte quer e em que momento processual o caso está (inicial, contestação, recurso, cumprimento, extrajudicial, consultivo).
-5. **Prazos.** Liste prazos abertos ou previsíveis, com a data da intimação, a regra usada e o vencimento calculado em dias úteis. Marque como "conferir" qualquer prazo com dúvida sobre termo inicial, suspensão ou feriado local.
+4. **Demanda.** Identifique o que a parte quer e em que momento o caso está: requerimento administrativo (INSS ou regime próprio), exigência ou diligência administrativa, inicial, contestação, recurso, contrarrazões, cumprimento, extrajudicial ou consultivo.
+5. **Prazos.** Liste prazos abertos ou previsíveis, com a data da intimação ou do aviso, a regra usada e o vencimento. Prazo processual: dias úteis. Prazo administrativo (exigência do INSS, regime próprio): copie o prazo do documento e a forma de contagem indicada nele. Marque como "conferir" qualquer prazo com dúvida sobre termo inicial, suspensão, forma de contagem ou feriado local (Tucuruí, Novo Repartimento, Pará).
 6. **Fundamentos.** Acione a skill `pesquisa-juridica` para legislação e jurisprudência aplicáveis. Não cite de memória.
 7. **Proposta.** Apresente de duas a três alternativas de ação, com prós, contras e risco processual. Indique qual você recomenda e por quê.
 8. **Encaminhamento.** Liste os próximos passos: documentos a obter, dados a confirmar com o cliente, peça a redigir (acionar `minuta`), prazos a registrar.
+9. **Ficha.** Atualize `ficha-processo.md` com a fase, o próximo prazo e o status. Não apague informações anteriores; acrescente com data.
 
 ## Saída
 
@@ -49,4 +53,4 @@ Data: AAAA-MM-DD
 - Não calcule prazo sem indicar a regra usada.
 - Não recomende ação com base em jurisprudência que não tenha sido verificada.
 - Se faltar documento essencial, pare e peça à advogada antes de concluir.
-- Ao final, pergunte se a advogada quer seguir para a minuta. Não redija a peça sem pedido.
+- Ao final, pergunte se a advogada quer seguir para a minuta. Quando a análise foi acionada pela triagem de e-mail com prazo em aberto, siga direto para a minuta como rascunho `v1`, conforme a skill `triagem-email`.

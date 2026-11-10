@@ -7,6 +7,10 @@ description: Consulta andamento, lê e baixa documentos em portais de tribunais,
 
 Objetivo: consultar e baixar, com a sessão da advogada, documentos de processos em que ela atua. Não peticiona, não protocola e não altera nada no portal.
 
+Portais principais (questão 6): PJe do TJPA e INSS (Meu INSS). Outros portais só com orientação dela na conversa.
+
+Se a pasta do caso tiver `SIGILOSO.txt`, não faça a consulta pela automação.
+
 ## Antes de começar
 
 Confirme com a advogada, na conversa:
@@ -41,6 +45,7 @@ Se qualquer um desses pontos não estiver confirmado, não prossiga.
 - Consultas de benefício e de CNIS exigem cuidado extra: autenticação em duas etapas e termos de uso que podem restringir automação.
 - Use somente com aprovação explícita por sessão e somente para leitura.
 - Se houver dúvida sobre os termos do portal, pare e pergunte à advogada antes.
+- Exigências e diligências do INSS têm prazo próprio e são tão críticas quanto os prazos judiciais (questão 15). Ao encontrar uma exigência, registre o prazo copiado da tela ou da carta, salve o documento e anote na `ficha-processo.md`.
 
 ## Saída
 

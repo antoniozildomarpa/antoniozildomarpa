@@ -1,6 +1,6 @@
 ---
 name: minuta
-description: Redige uma minuta de peça ou documento jurídico para revisão da advogada, a partir de uma análise já feita, com fundamentos marcados e versionamento na pasta do processo. Use quando a advogada pedir a minuta de uma petição, resposta, recurso, notificação ou parecer. Nunca protocola nem envia.
+description: Redige uma minuta de peça ou documento jurídico para revisão da advogada, no papel timbrado do escritório, a partir de uma análise já feita, com fundamentos marcados e versionamento na pasta do processo. Use quando a advogada pedir a minuta de um requerimento administrativo, petição inicial, contrarrazões, recurso, notificação ou parecer, ou os documentos de praxe de um caso novo (procuração, contrato de honorários, declaração de hipossuficiência). Nunca protocola nem envia.
 ---
 
 # Minuta
@@ -9,9 +9,34 @@ Objetivo: produzir um rascunho completo, bem estruturado e fácil de revisar. A 
 
 ## Pré-requisitos
 
-- Existe uma análise em `03 Análise/` ou a advogada passou o contexto por escrito.
-- Se não houver modelo em `modelos/` para o tipo de peça, use a estrutura geral abaixo e avise.
-- Confirme o tipo de peça, o juízo ou órgão, a parte representada e o pedido principal antes de redigir.
+- Existe uma análise em `03 Análise/` ou a advogada passou o contexto por escrito. Documentos de praxe não exigem análise.
+- Se não houver modelo em `modelos/` para o tipo de peça, use a estrutura geral abaixo e avise. A advogada ainda não tem modelos próprios (questão 18); os modelos por área estão sendo criados.
+- Confirme o tipo de peça, o juízo ou órgão, a parte representada e o pedido principal antes de redigir. Quando a minuta for gerada pela triagem de e-mail, registre essas premissas no topo da resposta, como `[CONFIRMAR]`.
+- Se a pasta do caso tiver `SIGILOSO.txt`, não redija.
+
+## Papel timbrado
+
+- Toda minuta em Word parte do papel oficial, modelo A: `H:\Meu Drive\_advocacia\logomarca\modelos-papel-timbrado\modelo_timbrado_A.docx`. Abra uma cópia, apague o texto de exemplo e escreva sobre ela, mantendo cabeçalho, rodapé e estilos.
+- Corpo em Times New Roman 12, justificado, espaçamento 1,5, como no modelo.
+- Dados fixos da advogada, que podem ser preenchidos sem marcação: Leulla Mendanha, OAB/PA 25.617, endereços de Tucuruí e Novo Repartimento conforme o `CLAUDE.md`.
+
+## Documentos de praxe de caso novo
+
+Quando uma pasta de caso for criada e a documentação do cliente estiver em `00 Documentação do cliente`, gere em `04 Minutas/`, como `v1`:
+
+1. Procuração (`AAAA-MM-DD_procuracao_{cliente}_v1.docx`).
+2. Contrato de prestação de serviços advocatícios (`AAAA-MM-DD_contrato_{cliente}_v1.docx`). Valores e forma de pagamento ficam como `[DECIDIR]` enquanto o bloco G do questionário (honorários) não for respondido.
+3. Declaração de hipossuficiência (`AAAA-MM-DD_declaracao-hipossuficiencia_{cliente}_v1.docx`), para todo cliente, ainda que só seja usada se o caso couber.
+
+Os dados do cliente vêm dos documentos da pasta. O que não estiver legível ou não existir fica `[CONFIRMAR]`.
+
+## Peças mais frequentes
+
+Requerimento administrativo (INSS ou regime próprio), petição inicial e contrarrazões (questão 17). Para cada uma, enquanto não houver modelo:
+
+- **Requerimento administrativo:** órgão e unidade, qualificação do requerente, número do benefício ou do requerimento anterior, fatos, fundamento, pedido, documentos anexos.
+- **Petição inicial:** segue a estrutura geral abaixo.
+- **Contrarrazões:** endereçamento ao juízo de origem e ao tribunal, síntese do recurso da parte contrária, rebate ponto a ponto, pedido de não provimento.
 
 ## Estrutura geral (quando não houver modelo)
 
@@ -54,7 +79,7 @@ Antes de salvar, verifique e corrija:
 - nenhum símbolo de Markdown (`**`, `#`, `|`, `---`, crases de código) no texto final;
 - estilos do modelo aplicados (títulos, recuos, fonte, espaçamento), e não formatação manual;
 - numeração de pedidos e de parágrafos contínua, sem saltos;
-- marcações `[VERIFICAR]`, `[CONFIRMAR]`, `[DECIDIR]` e `[OAB]` visíveis e padronizadas, para serem removidas só após conferência;
+- marcações `[VERIFICAR]`, `[CONFIRMAR]` e `[DECIDIR]` visíveis e padronizadas, para serem removidas só após conferência;
 - sem caracteres de rascunho ou comentários do assistente dentro do arquivo. Comentários ficam na resposta, não no documento.
 
 ## Registro de apoio por IA
@@ -67,6 +92,6 @@ Antes de salvar, verifique e corrija:
 
 - Não use linguagem que assuma fatos não documentados.
 - Não inclua jurisprudência sem a marca de status da pesquisa.
-- Não assine, não data como definitiva e não preencha número de OAB ou dados de registro. Use `[OAB]` e confirme.
+- Não assine e não date como definitiva. A inscrição OAB/PA 25.617 está confirmada e pode ser preenchida; qualquer outro número de registro fica `[CONFIRMAR]`.
 - Não protocole. O protocolo é ato da advogada, feito por ela.
 - Ao final, informe o caminho do arquivo salvo e o que ainda precisa ser conferido.

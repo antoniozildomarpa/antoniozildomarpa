@@ -17,9 +17,11 @@ Siga na ordem. Cada etapa tem um critério de conclusão.
 
 ## 3. Estrutura de pastas
 
-- [ ] Rodar uma simulação: `python estrutura/criar_pastas.py --base ~/Clientes --cliente "Cliente Fictício" --dry-run`.
+- [ ] Mapear só os nomes das pastas e arquivos atuais (autorizado na questão 12), sem abrir documentos, e ajustar os nomes das áreas no `CLAUDE.md` e no script aos que ela já usa.
+- [ ] Decidir com ela se as pastas atuais migram do OneDrive para o Google Drive já no padrão novo (questão 9). Nada é movido sem aprovação.
+- [ ] Rodar uma simulação: `python estrutura/criar_pastas.py --base ~/Clientes --area "Consumidor" --cliente "Cliente Fictício" --dry-run`.
 - [ ] Criar de fato, se a simulação estiver correta.
-- [ ] **Critério:** a árvore criada tem as sete subpastas padrão.
+- [ ] **Critério:** a árvore criada tem `00 Documentação do cliente` e `ficha-cliente.md` na pasta do cliente, e as seis subpastas mais `ficha-processo.md` na pasta do caso.
 
 ## 4. Teste com caso fictício
 
@@ -31,7 +33,8 @@ Siga na ordem. Cada etapa tem um critério de conclusão.
 
 ## 5. Primeiro caso real (somente leitura)
 
-- [ ] Confirmar que o escritório autoriza tratar dados do cliente nesta ferramenta.
+- [ ] Confirmar que o escritório autoriza tratar dados do cliente nesta ferramenta (fechar a questão 23).
+- [ ] Marcar com `SIGILOSO.txt` as pastas dos processos em segredo de justiça, antes de ligar qualquer rotina (questão 22).
 - [ ] Rodar triagem e análise, sem envio e sem protocolo.
 - [ ] Conferir cada prazo e cada citação na fonte oficial.
 - [ ] **Critério:** a advogada revisou a análise e a minuta, e nada foi enviado pela automação.

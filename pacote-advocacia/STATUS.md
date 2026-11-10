@@ -6,11 +6,22 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 
 ## Onde estamos
 
-- **Fase atual:** questionário respondido, salvo em `respostas/questionario.md`. É o original de outubro (blocos A a F, 23 perguntas), recuperado em 2026-11-09 de um .txt na Área de Trabalho do usuário, com as respostas dela. Das 23 perguntas, 21 estão respondidas; a 22 (segredo de justiça) e a 23 (dados que podem sair do computador) estão parciais. O bloco G (financeiro, perguntas 24 a 28) foi acrescentado e está pendente. Próximo passo: revisar o `CLAUDE.md` e as skills com base nas respostas.
+- **Fase atual:** questionário respondido, salvo em `respostas/questionario.md`. É o original de outubro (blocos A a F, 23 perguntas), recuperado em 2026-11-09 de um .txt na Área de Trabalho do usuário, com as respostas dela. Das 23 perguntas, 21 estão respondidas; a 22 (segredo de justiça) e a 23 (dados que podem sair do computador) estão parciais. O bloco G (financeiro, perguntas 24 a 28) foi acrescentado e está pendente. Em 2026-11-10, o `CLAUDE.md`, as cinco skills, o script de pastas, as rotinas e o checklist foram revisados com base nas respostas (ver "Revisão de 2026-11-10"). Próximo passo: criar os modelos de documento sobre o papel timbrado.
 - **Principais respostas:** previdenciário (RPPS cerca de 100 processos, RGPS cerca de 50), família e sucessões (50), público (50), consumidor (15), ambiental (4). Trabalha no TJPA, cerca de 100 processos na 1ª instância e 15 na 2ª, principalmente pelo PJe e pelo INSS. Escritório individual com dois colaboradores, que também mexem em pastas e prazos. Os prazos são controlados em agenda física, e já houve perda e quase perda de prazo. As pastas estão por área e por cliente, hoje no OneDrive, com migração planejada para o Google Drive. Não tem modelos de peça nem sistema de gestão. Autorizou a leitura dos nomes de pastas e arquivos.
 - **Papel timbrado:** a advogada escolheu o modelo A, que está em `H:\Meu Drive\_advocacia\logomarca\modelos-papel-timbrado\modelo_timbrado_A.docx` (faixa azul texturizada com onda e filetes dourados). A inscrição foi confirmada como **OAB/PA 25.617** e já está corrigida na arte da 1ª página, no rodapé das páginas seguintes e na procuração de exemplo. Os modelos de documento (procuração, contrato de honorários, declaração de hipossuficiência, petição e requerimento) serão montados sobre esse papel em `modelos/`.
 - **Pacote inicial:** criado e commitado (commit `e333d19`), em rascunho. Não foi testado com caso real.
-- **Estrutura de pastas:** o padrão atual é só uma proposta. A advogada organiza as pastas por área e por cliente, sem padrão de nome de arquivo (questão 8). O pacote deve se adaptar a isso, não o contrário.
+- **Estrutura de pastas:** padrão novo `Clientes/{Área}/{Cliente}/{Caso}/`, seguindo a organização dela por área e por cliente (questão 8). Pastas existentes não são movidas sem aprovação; os nomes das áreas serão ajustados depois do mapeamento.
+
+## Revisão de 2026-11-10
+
+- `CLAUDE.md`: seção "Perfil do escritório"; processos em segredo de justiça fora da automação (pasta marcada com `SIGILOSO.txt`); limites de ação mantidos apesar da resposta 21, com aprovação de envio e protocolo só pela advogada; minutas automáticas permitidas como rascunho; prazos administrativos (INSS, regime próprio) com regra própria e mesma prioridade dos judiciais; CPC, art. 219, marcado `[VERIFICAR]`; nova estrutura de pastas com `ficha-cliente.md` e `ficha-processo.md`; papel timbrado A e documentos de praxe.
+- `analise-demanda`: novo caminho de pastas, parada em `SIGILOSO.txt`, fases administrativas e contrarrazões, prazos do INSS e feriados locais, atualização da ficha do caso.
+- `triagem-email`: prioridade para PJe e INSS, conteúdo e anexos salvos na pasta do caso, anotação na ficha, análise e minuta `v1` automáticas para itens urgentes com prazo. `remetentes.md` e `ultima-triagem.txt` passam para a raiz da pasta `Clientes`.
+- `minuta`: papel timbrado A, OAB/PA 25.617 preenchida, documentos de praxe de caso novo (procuração, contrato, declaração de hipossuficiência), estrutura do requerimento administrativo e das contrarrazões.
+- `pesquisa-juridica`: TJPA, STF e TRF1 primeiro; legislação municipal e do instituto no RPPS; normas do INSS.
+- `consulta-portais`: PJe do TJPA e Meu INSS como portais principais; exigências do INSS anotadas na ficha.
+- `estrutura/criar_pastas.py`: recebe `--area`, `--processo` ou `--inss`, cria a pasta do cliente e a do caso com as fichas, nunca sobrescreve e acrescenta o caso novo na ficha do cliente. Testado com dados fictícios.
+- Rotinas, checklist, `README.md` e `modelos/README.md` ajustados.
 
 ## Decisões já tomadas
 
@@ -41,8 +52,11 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 - [x] Autorização para ler apenas os **nomes** de pastas e arquivos: autorizado (questão 12, 2026-11-09).
 - [x] Área de atuação e tribunais principais (blocos A e B, 2026-11-09).
 - [ ] Definir como ela terá acesso ao repositório (ver "Acesso ao repositório").
-- [ ] Revisar `CLAUDE.md` e skills com base nas respostas.
-- [ ] Criar a ficha de processo (tribunal, instância, sistema, fase, próximo prazo, status), por causa dos muitos processos em andamento.
+- [x] Revisar `CLAUDE.md` e skills com base nas respostas (2026-11-10).
+- [x] Criar a ficha de processo (tribunal, instância, sistema, fase, próximo prazo, status): gerada pelo `criar_pastas.py` (2026-11-10).
+- [ ] Definir o e-mail do escritório (Gmail ou Outlook). O questionário original não perguntou, e a triagem depende disso.
+- [ ] Mapear os nomes das pastas atuais no OneDrive (autorizado) e ajustar os nomes das áreas.
+- [ ] Skills novas pedidas na questão 20: cadastro de clientes; tratamento de fotos e digitalizações para PDF legível no tamanho aceito pelo PJe e pelo INSS; documentos de praxe automáticos ao criar a pasta; ficha do cliente a partir da transcrição do atendimento; planilha de honorários a partir dos contratos.
 - [ ] Protótipo do painel financeiro com dados fictícios, para teste em computador e celular.
 - [ ] Script de backup e sincronização na conta dela, com o passo a passo de instalação.
 - [ ] Cadastro automático de clientes, na conta dela, com revisão antes da importação.
