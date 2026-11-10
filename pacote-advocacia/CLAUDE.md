@@ -84,7 +84,9 @@ As pastas dela são organizadas por área e por cliente, sem padrão de nome de 
   - `migrar_pastas.py`: cópia aprovada do OneDrive para a pasta Clientes, sem apagar nada;
   - `extrair_cliente.py`: texto de todos os documentos da pasta do cliente e dados candidatos à ficha;
   - `consolidar_cadastro.py`: planilha geral de clientes a partir das fichas;
-  - `lancar_honorario.py`: honorários na planilha de controle.
+  - `lancar_honorario.py`: honorários na planilha de controle;
+  - `registrar_prazo.py`: põe o prazo na lista do painel (`Clientes/_painel/prazos.csv`), sem duplicar.
+- Painel do escritório em `painel/` (`PAINEL.cmd`): telas com ícones para a advogada e as colaboradoras. Pedidos feitos pelo painel chegam aqui com a linha "Pedido feito pelo painel do escritório por ..."; seguem as mesmas regras. Os arquivos do pacote (`.claude/`, `painel/`, `scripts/`, `estrutura/`, `instalacao/`, este `CLAUDE.md`) não são editáveis pelo Claude: mudanças vêm por nova versão do pacote.
 - Usar esses scripts antes de abrir documentos grandes, para economizar o limite do plano.
 - Agentes em `.claude/agents/`: `triagem-documentos` (separar e extrair, modelo econômico), `rotina-escritorio` (tarefas claras) e `revisao-juridica` (revisão crítica antes da advogada). Delegar a triagem de pastas grandes ao primeiro e passar toda minuta importante pelo último.
 - O hook `.claude/hooks/bloqueio_sigiloso.py` barra qualquer leitura ou escrita em pasta com `SIGILOSO.txt`.

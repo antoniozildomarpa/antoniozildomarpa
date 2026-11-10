@@ -28,6 +28,7 @@ Se algum programa acabou de ser instalado e o instalador pedir, reinicie o compu
 | `%USERPROFILE%\.claude` | Regras globais de escrita, skills `escrita-sem-cara-de-ia` e `requerimento-revisao-proventos`, aviso de sessão longa e modelo de handoff. O que já existir é guardado em `.claude\backups` e as configurações são juntadas, não substituídas |
 | Bibliotecas | Leitura de PDF com OCR, conversão de Word e Excel, tratamento de fotos, planilha, transcrição de áudio (Whisper) |
 | Memórias | Três memórias iniciais do projeto (papel timbrado, leitura econômica de documentos, estado da automação) |
+| Área de trabalho e inicialização | Atalho "Painel do escritório" na área de trabalho e um atalho na inicialização do Windows que liga o painel minimizado, sem abrir o navegador |
 
 O instalador não pede, não lê e não grava senha, token ou certificado.
 
@@ -47,6 +48,18 @@ Depois disso, seguir o `checklist-instalacao.md`, na ordem.
 - Abrir o Claude Code sempre na pasta `Escritorio-Claude` (é ali que as regras, as skills e o hook de sigilo valem). No app Claude Desktop, aba Code, escolher essa pasta.
 - Para marcar um processo em segredo de justiça: criar um arquivo `SIGILOSO.txt` na pasta do caso.
 - Se a conversa ficar longa, o aviso de sessão longa sugere abrir outra e gerar um `HANDOFF.md`.
+
+## Painel do escritório
+
+1. **Primeira vez:** dois cliques em "Painel do escritório", na área de trabalho. O navegador abre na tela "Primeira configuração". Ali se cria um perfil para a advogada e um para cada colaboradora, cada um com PIN de 6 números. Isso só funciona no próprio computador. Os PINs ficam cifrados em `%APPDATA%\PainelEscritorio\usuarios.json`.
+2. **Dia a dia:** o painel liga sozinho quando o Windows abre. O atalho da área de trabalho só abre o navegador nele. A janela preta minimizada na barra de tarefas é o painel; fechá-la desliga o painel.
+3. **Celular, dentro e fora do escritório:**
+   - Instalar o Tailscale no computador e no celular, com a mesma conta. O login é feito por ela.
+   - No computador, dois cliques em `Escritorio-Claude\painel\PAINEL-NO-CELULAR.cmd` `[VERIFICAR os comandos do tailscale serve na primeira vez]`.
+   - No celular, abrir o endereço `.ts.net` que aparecer e adicionar à tela inicial.
+   - O passo a passo também está no painel, em "Usar no celular".
+4. **Treino:** `Escritorio-Claude\painel\DEMONSTRACAO.cmd` abre uma cópia com dados fictícios, na porta 8766. PINs de treino: 111111, 222222 e 333333.
+5. **Celular perdido:** remover o aparelho no site do Tailscale e trocar o PIN de quem o usava. Para trocar, apagar `usuarios.json` e refazer a primeira configuração.
 
 ## Importação das pastas do OneDrive
 

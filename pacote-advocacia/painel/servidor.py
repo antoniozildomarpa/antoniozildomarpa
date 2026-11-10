@@ -812,6 +812,18 @@ class Painel(BaseHTTPRequestHandler):
         raise ValueError("Passo desconhecido.")
 
 
+class ServidorExclusivo(ThreadingHTTPServer):
+    """No Windows, o padrão do Python deixa dois painéis ocuparem a mesma porta. Aqui a porta é exclusiva."""
+    allow_reuse_address = False
+    daemon_threads = True
+
+    def server_bind(self):
+        import socket
+        if hasattr(socket, "SO_EXCLUSIVEADDRUSE"):
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+        super().server_bind()
+
+
 def main():
     ap = argparse.ArgumentParser(description="Painel do escritório (servidor local).")
     ap.add_argument("--demo", action="store_true", help="usa dados fictícios em painel/_demo")
@@ -832,8 +844,16 @@ def main():
         CFG.update(clientes=cl, financeiro=fi or cl.parent / "Financeiro")
     (clientes_dir() / "_painel").mkdir(parents=True, exist_ok=True)
     UPLOADS.mkdir(parents=True, exist_ok=True)
-    srv = ThreadingHTTPServer(("127.0.0.1", args.porta), Painel)
     url = f"http://127.0.0.1:{args.porta}"
+    try:
+        srv = ServidorExclusivo(("127.0.0.1", args.porta), Painel)
+    except OSError:
+        # Já há um painel ligado (por exemplo, o da inicialização do Windows): só abre o navegador nele.
+        print(f"O painel já estava ligado em {url}.")
+        if args.abrir:
+            import webbrowser
+            webbrowser.open(url)
+        sys.exit(3)
     print(f"Painel do escritório em {url}" + ("  (demonstração, dados fictícios)" if args.demo else ""))
     print("Para fechar, feche esta janela.")
     if args.abrir:

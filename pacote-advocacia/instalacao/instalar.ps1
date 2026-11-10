@@ -103,7 +103,7 @@ if (Test-Path $Destino) {
     Ok "backup da instalação anterior em $backup"
 }
 # /XO: não sobrescreve arquivo que ela editou depois (mais novo no destino)
-robocopy $Origem $Destino /E /XO /XD ".git" "para-claude-ai" "__pycache__" "node_modules" /XF "escritorio.local.md" /NFL /NDL /NJH /NJS /NP | Out-Null
+robocopy $Origem $Destino /E /XO /XD ".git" "para-claude-ai" "__pycache__" "node_modules" "_demo" /XF "escritorio.local.md" "usuarios.json" /NFL /NDL /NJH /NJS /NP | Out-Null
 if ($LASTEXITCODE -ge 8) { throw "falha ao copiar o pacote (robocopy $LASTEXITCODE)" }
 Ok "pacote copiado para $Destino"
 
@@ -273,6 +273,27 @@ foreach ($sk in $pastasSkills) {
     Compress-Archive -Path $sk.FullName -DestinationPath $z
 }
 Ok "$($pastasSkills.Count) skills em $zips"
+
+# ---------------------------------------------------------------- 8b. atalhos do painel
+Etapa "8b. Atalhos do painel do escritório"
+if ($Teste) {
+    Aviso "atalhos não criados no modo de teste"
+} else {
+    $ws = New-Object -ComObject WScript.Shell
+    $icone = Join-Path $Destino "painel\static\img\icone.ico"
+    $alvoCmd = Join-Path $Destino "painel\PAINEL.cmd"
+    $atalho = $ws.CreateShortcut((Join-Path ([Environment]::GetFolderPath("Desktop")) "Painel do escritório.lnk"))
+    $atalho.TargetPath = $alvoCmd; $atalho.WorkingDirectory = $Destino; $atalho.IconLocation = $icone
+    $atalho.WindowStyle = 7; $atalho.Description = "Painel do escritório (abre no navegador)"
+    $atalho.Save()
+    Ok "atalho 'Painel do escritório' na área de trabalho"
+    # Liga o painel ao entrar no Windows, minimizado e sem abrir o navegador, para o celular alcançar o painel
+    $inicio = $ws.CreateShortcut((Join-Path ([Environment]::GetFolderPath("Startup")) "Painel do escritório.lnk"))
+    $inicio.TargetPath = $alvoCmd; $inicio.Arguments = "/fundo"; $inicio.WorkingDirectory = $Destino
+    $inicio.IconLocation = $icone; $inicio.WindowStyle = 7; $inicio.Save()
+    Ok "painel liga sozinho ao entrar no Windows (para desligar, apague o atalho em shell:startup)"
+    $Pendencias.Add("Abrir o painel pela primeira vez neste computador e criar os perfis e PINs (advogada e colaboradoras)")
+}
 
 # ---------------------------------------------------------------- 9. conferência
 Etapa "9. Conferência"

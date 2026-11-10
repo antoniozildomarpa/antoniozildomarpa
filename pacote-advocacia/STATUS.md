@@ -44,12 +44,17 @@ Correção feita após a revisão de segurança automática de 2026-11-10 (commi
 - O `.claude/settings.json` proíbe editar `.claude/`, `painel/`, `scripts/`, `estrutura/`, `instalacao/` e `CLAUDE.md`. Para mudar o pacote no computador dela, reinstalar pelo `.zip`.
 - Os pedidos das colaboradoras rodam sem Bash e PowerShell.
 
-Falta:
+Fechamento para instalação (2026-11-10):
+- **Instalador (etapa 8b):** cria o atalho "Painel do escritório" na área de trabalho, com o ícone do monograma, e um atalho na inicialização do Windows (`PAINEL.cmd /fundo`, minimizado, sem abrir o navegador). Não copia `_demo` nem `usuarios.json`.
+- **Uma cópia só:** o servidor exige a porta só para si. Sem isso, o Windows deixava duas cópias abrirem a mesma porta. Se já houver um painel ligado, o atalho só abre o navegador nele e sai.
+- **Prazos:** novo `scripts/registrar_prazo.py`, que acrescenta o prazo a `Clientes/_painel/prazos.csv` sem duplicar e recusa data fora do formato. A skill `agenda-prazos` chama esse script no passo 7.
+- **Documentação:** `instalacao/LEIA-ME.md` (seção "Painel do escritório"), `checklist-instalacao.md` (seção 3b) e `CLAUDE.md`.
+- **Testado aqui:** script de prazos (inclusão, duplicata, data inválida e leitura pelo painel), recusa da segunda cópia do servidor (sai com código 3), sintaxe do `instalar.ps1` e criação de atalho com ícone numa pasta de teste.
+
+Ainda falta, para fazer no computador dela (está no checklist 3b):
 1. Testar as telas no tamanho de celular.
 2. Testar de ponta a ponta fotos, gravação e honorários.
-3. Conferir os comandos do Tailscale e se ele envia o cabeçalho X-Forwarded-For e o X-Forwarded-Proto `[VERIFICAR]`.
-4. Fazer o instalador criar o atalho do painel e iniciá-lo com o Windows.
-5. Fazer a skill `agenda-prazos` gravar também em `Clientes/_painel/prazos.csv`, que é o arquivo que o painel lê.
+3. Conferir os comandos do Tailscale e se ele envia os cabeçalhos X-Forwarded-For e X-Forwarded-Proto `[VERIFICAR]`.
 
 ## Importação do OneDrive e ficha cadastral (2026-11-10)
 

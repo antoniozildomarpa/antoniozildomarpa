@@ -26,6 +26,14 @@ Siga na ordem. Cada etapa tem um critério de conclusão.
 - [ ] Criar de fato, se a simulação estiver correta.
 - [ ] **Critério:** a árvore criada tem `00 Documentação do cliente` e `ficha-cliente.md` na pasta do cliente, e as seis subpastas mais `ficha-processo.md` na pasta do caso.
 
+## 3b. Painel do escritório
+
+- [ ] Abrir "Painel do escritório" na área de trabalho e criar os perfis e PINs (advogada e colaboradoras).
+- [ ] Criar pelo painel um cliente fictício, gerar um PDF de foto e lançar um honorário de teste. Depois, apagar à mão o que foi criado no teste.
+- [ ] Reiniciar o computador e conferir se o painel ligou sozinho.
+- [ ] Tailscale no computador e nos celulares, `PAINEL-NO-CELULAR.cmd` e ícone na tela inicial. Testar fora do Wi-Fi do escritório, com os dados móveis.
+- [ ] **Critério:** cada pessoa entra com o próprio PIN, e só a advogada vê o botão de conferir prazo e de decidir dado em conflito.
+
 ## 4. Teste com caso fictício
 
 - [ ] Criar um cliente e processo fictícios.

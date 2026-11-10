@@ -56,7 +56,10 @@ As notificações chegam no celular pelo app do Google Agenda. Quando o canal de
 4. Se existir com os mesmos dados, não faça nada.
 5. Se existir com data diferente, não apague o antigo: crie o novo, acrescente na descrição do antigo "possível substituição por {nova data}, conferir" e avise a advogada.
 6. Acrescente na `ficha-processo.md` uma linha: data, prazo lançado, link ou título do evento.
-7. Ao final, informe na conversa quantos eventos foram criados, quantos já existiam e quais têm divergência.
+7. Registre o mesmo prazo no painel do escritório, com o documento e a página de onde ele saiu:
+   `python scripts/registrar_prazo.py --data AAAA-MM-DD [--hora HH:MM] --tipo "Prazo" --cliente "Nome" --processo "número" --descricao "o que fazer" --fonte "documento, pág."`
+   O script não duplica. Se o Google Agenda não estiver ligado, registre só no painel e avise a advogada.
+8. Ao final, informe na conversa quantos eventos foram criados, quantos já existiam e quais têm divergência.
 
 ## Regras
 
