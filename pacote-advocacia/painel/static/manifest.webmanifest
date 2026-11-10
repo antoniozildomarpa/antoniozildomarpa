@@ -1,0 +1,17 @@
+{
+  "name": "Escritório Leulla Mendanha",
+  "short_name": "Escritório",
+  "description": "Prazos, clientes, documentos e pedidos ao Claude.",
+  "lang": "pt-BR",
+  "start_url": "/#/inicio",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#171E44",
+  "theme_color": "#171E44",
+  "icons": [
+    {"src": "/img/icone-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/img/icone-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "/img/icone-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

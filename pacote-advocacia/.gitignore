@@ -5,3 +5,6 @@ instalacao/para-claude-ai/
 instalacao/ultima-instalacao.txt
 __pycache__/
 node_modules/
+painel/_demo/
+painel/usuarios.json
+.playwright-mcp/
