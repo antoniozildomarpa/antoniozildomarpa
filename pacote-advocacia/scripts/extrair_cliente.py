@@ -204,8 +204,14 @@ def ler_doc_antigo(p):
     import win32com.client  # Word instalado no computador
     word = win32com.client.DispatchEx("Word.Application")
     word.Visible = False
+    # Documento de terceiro: macros desligadas à força ANTES de abrir (o padrão da automação é habilitar),
+    # sem alertas, sem atualizar vínculos e sem travar em arquivo com senha (a senha falsa faz falhar).
+    word.AutomationSecurity = 3  # msoAutomationSecurityForceDisable
+    word.DisplayAlerts = 0
     try:
-        d = word.Documents.Open(str(p), ReadOnly=True, AddToRecentFiles=False, ConfirmConversions=False)
+        d = word.Documents.Open(str(p), ConfirmConversions=False, ReadOnly=True, AddToRecentFiles=False,
+                                PasswordDocument="senha-invalida", Revert=False, Visible=False,
+                                OpenAndRepair=False, NoEncodingDialog=True)
         try:
             return d.Content.Text, "Word (.doc antigo)", None
         finally:
