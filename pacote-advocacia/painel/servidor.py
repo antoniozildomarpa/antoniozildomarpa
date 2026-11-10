@@ -41,7 +41,8 @@ PAINEL = Path(__file__).resolve().parent
 PACOTE = PAINEL.parent
 SCRIPTS = PACOTE / "scripts"
 ESTATICO = PAINEL / "static"
-USUARIOS = PAINEL / "usuarios.json"
+# Fora da pasta do pacote: o Claude Code (que trabalha na pasta do pacote) não alcança os perfis.
+USUARIOS = Path(os.environ.get("APPDATA", Path.home())) / "PainelEscritorio" / "usuarios.json"
 UPLOADS = Path(os.environ.get("TEMP", "/tmp")) / "painel-escritorio-uploads"
 PY = sys.executable
 AREAS = ["Previdenciário RPPS", "Previdenciário RGPS", "Família e Sucessões", "Direito Público",
@@ -89,6 +90,7 @@ def carregar_usuarios():
 
 
 def salvar_usuarios(us):
+    USUARIOS.parent.mkdir(parents=True, exist_ok=True)
     USUARIOS.write_text(json.dumps(us, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
@@ -300,11 +302,17 @@ def nova_tarefa(titulo, quem, cmd=None, cwd=None, depois=None, simulacao=None):
     return t
 
 
-def claude_cmd(prompt):
+def claude_cmd(prompt, papel="advogada"):
+    """Claude Code sem interação. As proibições de .claude/settings.json (envio de e-mail, exclusão, edição
+    dos arquivos do pacote) e o hook de sigilo continuam valendo. Pedidos das colaboradoras rodam também
+    sem terminal, para que um pedido livre não execute comandos no computador."""
     exe = shutil.which("claude")
     if not exe:
         return None
-    return [exe, "-p", prompt, "--permission-mode", "acceptEdits", "--output-format", "text"]
+    cmd = [exe, "-p", prompt, "--permission-mode", "acceptEdits", "--output-format", "text"]
+    if papel != "advogada":
+        cmd += ["--disallowedTools", "Bash", "PowerShell"]
+    return cmd
 
 
 MODELOS_PEDIDO = {
@@ -745,7 +753,7 @@ class Painel(BaseHTTPRequestHandler):
                    "Siga o CLAUDE.md. Não envie nada para fora, não protocole e não apague arquivos.")
         titulos = {"ficha": "Ficha do cliente", "analise": "Análise de documento", "atendimento": "Ficha de atendimento",
                    "minuta": "Minuta", "livre": "Pedido ao Claude"}
-        cmd = claude_cmd(prompt)
+        cmd = claude_cmd(prompt, u["papel"])
         sim = None
         if CFG["demo"] or not cmd:
             sim = ("Modo demonstração: no computador do escritório, este pedido é enviado ao Claude Code com a "
@@ -795,7 +803,7 @@ class Painel(BaseHTTPRequestHandler):
                 raise PermissionError("Falta a autorização da advogada para ler os documentos.")
             prompt = ("Use a skill importacao-onedrive, etapa 4: crie ou complete a ficha-cliente.md dos próximos 10 "
                       "clientes que já têm _extracao/resumo.md e ainda não têm ficha. Registre em _inventario/andamento.md.")
-            cmd = claude_cmd(prompt)
+            cmd = claude_cmd(prompt, u["papel"])
             sim = "Modo demonstração: aqui o Claude Code faria as próximas 10 fichas." if CFG["demo"] or not cmd else None
             return self.json(nova_tarefa("Fichas cadastrais (lote de 10)", u["nome"], cmd, simulacao=sim))
         if passo == "planilha":
