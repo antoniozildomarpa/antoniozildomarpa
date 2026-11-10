@@ -15,13 +15,12 @@
 
 Se ela não responder em até duas horas, a rotina registra "não feito: sem login" e não insiste. O alerta de prazos do dia seguinte mostra que o levantamento ficou pendente.
 
-## Canal de aviso `[DECIDIR]`
+## Canal de aviso: celular
 
-Escolher um, na conta dela:
+Decidido em 2026-11-10: o aviso chega no celular dela.
 
-- notificação no celular pelo app do Claude, quando a rotina rodar no app desktop ou no Claude Code;
-- lembrete no Google Agenda, criado uma vez como evento recorrente, com o texto do aviso;
-- e-mail para ela mesma, somente se ela autorizar esse envio automático. É o único envio previsto e vai só para o endereço dela.
+- **Agora:** evento recorrente na agenda "Prazos – Escritório" ("Levantamento de andamentos: entre no PJe"), com notificação no horário, e notificação do app do Claude quando a rotina rodar.
+- **Depois:** mensagem no WhatsApp dela, quando o canal descrito em `propostas/whatsapp.md` estiver funcionando. O aviso vai só para o número dela.
 
 ## Prompt sugerido
 

@@ -11,6 +11,7 @@ Siga na ordem. Cada etapa tem um critério de conclusão.
 ## 2. Conectores e acessos (na conta dela)
 
 - [ ] Conectar Google Drive e Google Calendar.
+- [ ] Criar a agenda "Prazos – Escritório" no Google Agenda dela e ativar as notificações do app do Google Agenda no celular.
 - [ ] Conectar o e-mail (Gmail ou Outlook) para a skill `triagem-email`.
 - [ ] Instalar o Claude in Chrome ou usar o app desktop, para a skill `consulta-portais`.
 - [ ] **Critério:** cada conector aparece como conectado e cada acesso foi feito por ela, sem compartilhamento de senha ou certificado.

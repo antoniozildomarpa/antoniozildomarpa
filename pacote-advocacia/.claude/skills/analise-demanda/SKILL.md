@@ -26,7 +26,7 @@ Se a pasta do caso tiver o arquivo `SIGILOSO.txt`, pare e informe. Processos em 
 6. **Fundamentos.** Acione a skill `pesquisa-juridica` para legislação e jurisprudência aplicáveis. Não cite de memória.
 7. **Proposta.** Apresente de duas a três alternativas de ação, com prós, contras e risco processual. Indique qual você recomenda e por quê.
 8. **Encaminhamento.** Liste os próximos passos: documentos a obter, dados a confirmar com o cliente, peça a redigir (acionar `minuta`), prazos a registrar.
-9. **Ficha.** Atualize `ficha-processo.md` com a fase, o próximo prazo e o status. Não apague informações anteriores; acrescente com data.
+9. **Ficha e agenda.** Atualize `ficha-processo.md` com a fase, o próximo prazo e o status. Não apague informações anteriores; acrescente com data. Lance os prazos abertos pela skill `agenda-prazos`.
 
 ## Saída
 

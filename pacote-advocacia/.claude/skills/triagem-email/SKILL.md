@@ -37,7 +37,7 @@ A lista de remetentes e domínios cadastrados fica em `remetentes.md`, na raiz d
 4. **Pasta.** Localize a pasta do caso (`Clientes/{Área}/{Cliente}/{Caso}/`) pelo número do processo, do requerimento ou pelo nome do cliente. Se não houver pasta, não crie; registre na nota e pergunte.
 5. **Arquivo.** Salve o conteúdo do e-mail (texto, em `.md` ou `.pdf`) e os anexos em `01 Entrada/`, no padrão `AAAA-MM-DD_tipo_parte_versão.ext`.
 6. **Ficha.** Acrescente na `ficha-processo.md` do caso uma linha com a data, a comunicação recebida e o prazo informado. Não apague registros anteriores.
-7. **Prazos.** Para cada prazo identificado, liste na nota com o texto copiado do e-mail. Não crie evento no calendário sem aprovação.
+7. **Prazos e ações.** Para cada prazo, audiência, perícia ou ação necessária pedida no e-mail, liste na nota com o texto copiado e acione a skill `agenda-prazos`, que lança o evento na agenda "Prazos – Escritório" com `[CONFERIR]`.
 8. **Análise e minuta.** Para cada item urgente com prazo em aberto, acione `analise-demanda` e, em seguida, `minuta`, gerando o rascunho `v1` em `04 Minutas/`. A minuta não é enviada nem protocolada; fica para revisão da advogada.
 9. **Nota.** Crie a nota de triagem com o resumo (formato abaixo) em `03 Análise/` de cada caso afetado e um resumo geral na conversa.
 10. **Registro.** Atualize `ultima-triagem.txt` com a data e hora da execução.

@@ -56,6 +56,10 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 - [x] Criar a ficha de processo (tribunal, instância, sistema, fase, próximo prazo, status): gerada pelo `criar_pastas.py` (2026-11-10).
 - [x] Etapa de levantamento de andamentos nos portais (2026-11-10): aviso à advogada, login feito por ela, leitura pelo Claude dos processos de `processos-acompanhados.md`. Ver `rotinas/levantamento-andamentos.md` e a skill `consulta-portais`.
 - [ ] Para ligar o levantamento: escolher o canal de aviso, preencher `processos-acompanhados.md`, conferir os termos de uso do PJe/TJPA e do Meu INSS e ver com ela quais ações no PJe registram ciência de intimação.
+- [x] Canal de aviso: celular, com WhatsApp quando o canal estiver pronto (decisão de 2026-11-10).
+- [x] Skill `agenda-prazos`: todo prazo, audiência, perícia e ação necessária vai para a agenda "Prazos – Escritório" do Google Agenda, com `[CONFERIR]` e lembretes no celular (2026-11-10).
+- [ ] Criar na conta dela a agenda "Prazos – Escritório" e decidir se os colaboradores veem ou editam.
+- [ ] WhatsApp: decisões pendentes em `propostas/whatsapp.md` (número exclusivo do escritório, caminho A agora e caminho B com a API oficial, transcrição, aviso de privacidade, orçamento).
 - [ ] Definir o e-mail do escritório (Gmail ou Outlook). O questionário original não perguntou, e a triagem depende disso.
 - [ ] Mapear os nomes das pastas atuais no OneDrive (autorizado) e ajustar os nomes das áreas.
 - [ ] Skills novas pedidas na questão 20: cadastro de clientes; tratamento de fotos e digitalizações para PDF legível no tamanho aceito pelo PJe e pelo INSS; documentos de praxe automáticos ao criar a pasta; ficha do cliente a partir da transcrição do atendimento; planilha de honorários a partir dos contratos.

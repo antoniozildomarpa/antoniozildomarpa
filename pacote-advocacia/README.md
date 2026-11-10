@@ -14,6 +14,8 @@ Conjunto de skills, instruções, modelos e roteiros de rotinas para apoiar o tr
 | `.claude/skills/pesquisa-juridica/` | Pesquisa legislação e jurisprudência, com verificação das fontes |
 | `.claude/skills/minuta/` | Redige a minuta para revisão, com citações marcadas |
 | `.claude/skills/consulta-portais/` | Consulta e download somente leitura em portais, com login feito pela advogada |
+| `.claude/skills/agenda-prazos/` | Lança prazos, audiências e ações na agenda "Prazos – Escritório" do Google Agenda |
+| `propostas/whatsapp.md` | Proposta para ligar o WhatsApp do escritório à automação (aguarda decisão) |
 | `estrutura/criar_pastas.py` | Cria a árvore padrão por área, cliente e caso, com as fichas |
 | `estrutura/processos-acompanhados-modelo.md` | Modelo da lista de processos do levantamento de andamentos |
 | `rotinas/` | Roteiros das rotinas recorrentes (texto, frequência, conectores) |

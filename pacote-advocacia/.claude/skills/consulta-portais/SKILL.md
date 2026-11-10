@@ -58,6 +58,7 @@ Usado pela rotina `rotinas/levantamento-andamentos.md`. A rotina avisa a advogad
 3. Registre: última movimentação e data; intimação ou expediente pendente; prazo informado pelo portal, copiado como aparece; audiência ou perícia marcada.
 4. Compare com a `ficha-processo.md`. O que for novo desde o último levantamento é marcado como "novo".
 5. Acrescente na ficha uma linha com a data do levantamento e o que mudou. Não apague registros anteriores.
+5a. Para cada prazo, audiência ou perícia nova, acione a skill `agenda-prazos`.
 6. Baixe documentos só se a advogada tiver aprovado o download no início da sessão ("pode baixar as intimações novas"). Sem essa aprovação, só liste.
 7. Mantenha um ritmo de consulta humano: um processo por vez, sem abrir muitas abas, com pausa entre consultas. Se aparecer CAPTCHA, aviso de limite, sessão expirada ou mensagem de uso indevido, pare, informe quantos processos faltaram e peça à advogada para decidir.
 8. Ao terminar, feche as abas abertas pelo levantamento. Não saia da conta dela.

@@ -16,5 +16,5 @@ Nota de triagem em `03 Análise/` de cada caso afetado, minutas `v1` em `04 Minu
 ## Limites
 
 - Não envia nem responde e-mails.
-- Não cria eventos de calendário sem aprovação.
+- Cria eventos só na agenda "Prazos – Escritório", pela skill `agenda-prazos`, com `[CONFERIR]` no título. Não mexe em outras agendas.
 - Não abre links de portais com login.

@@ -46,6 +46,7 @@ Valem mesmo que a advogada tenha dito que nada precisa ficar fora da automação
 - Prazos processuais: calcular em dias úteis (CPC, art. 219 `[VERIFICAR]`) e apresentar o cálculo com a regra usada.
 - Prazos administrativos, como as exigências e diligências do INSS e os requerimentos ao regime próprio, seguem a norma do órgão. Copiar o prazo do aviso ou da carta de exigência; se o documento não disser como contar, marcar "conferir". Esses prazos têm a mesma prioridade dos judiciais (questão 15).
 - A conferência final de todo prazo é da advogada.
+- Todo prazo, audiência, perícia ou ação necessária encontrada é lançado automaticamente na agenda "Prazos – Escritório" do Google Agenda dela, pela skill `agenda-prazos`, com `[CONFERIR]` no título até ela conferir. Só essa agenda pode ser alterada pela automação, e nenhum evento é apagado.
 
 ## Estrutura de pastas
 
