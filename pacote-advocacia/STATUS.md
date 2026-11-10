@@ -39,6 +39,11 @@ Testado com dados fictícios, no navegador automatizado:
 
 Corrigido no teste: a pasta sigilosa entrava na contagem de clientes.
 
+Correção feita após a revisão de segurança automática de 2026-11-10 (commit `e95599c`). Os pedidos ao Claude rodam com `acceptEdits`, então um pedido livre poderia alterar os perfis ou as regras do pacote. Mudou o seguinte:
+- Os perfis passaram para `%APPDATA%\PainelEscritorio\usuarios.json`, fora da pasta do pacote.
+- O `.claude/settings.json` proíbe editar `.claude/`, `painel/`, `scripts/`, `estrutura/`, `instalacao/` e `CLAUDE.md`. Para mudar o pacote no computador dela, reinstalar pelo `.zip`.
+- Os pedidos das colaboradoras rodam sem Bash e PowerShell.
+
 Falta:
 1. Testar as telas no tamanho de celular.
 2. Testar de ponta a ponta fotos, gravação e honorários.
