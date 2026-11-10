@@ -10,6 +10,42 @@ O pacote está pronto para ser instalado no computador da advogada, na conta Cla
 
 Testes feitos aqui, só com dados fictícios: os seis scripts de `scripts/` (PDF com OCR, conversão de Word, fotos para PDF com correção de rotação e brilho e limite de tamanho, transcrição pelo Whisper, cadastro por nomes de pastas com aprovação, lançamento de honorários); o hook de sigilo (sete casos, incluindo o Claude Code de verdade barrando a leitura); o instalador numa pasta falsa, duas vezes seguidas, sem duplicar configurações e preservando as que já existiam; o Claude Code enxergando as 12 skills e os 3 agentes do projeto. Não testados aqui: a instalação dos programas pelo winget e o instalador oficial do Claude Code (este computador já os tinha).
 
+## Painel do escritório (protótipo, 2026-11-10)
+
+Pasta `painel/`. O usuário pediu em 2026-11-10 um painel com ícones para que a advogada e as colaboradoras não precisem usar o terminal. Ele deve funcionar no computador e no celular, inclusive fora do escritório.
+
+- **Servidor:** `painel/servidor.py`, em Python puro. Escuta só em 127.0.0.1:8765.
+- **Atalhos:** `PAINEL.cmd` abre o painel. `DEMONSTRACAO.cmd` abre a versão com dados fictícios. `PAINEL-NO-CELULAR.cmd` liga o acesso remoto pelo `tailscale serve`, só para os aparelhos da conta do escritório, e nunca abre o painel na internet.
+- **Perfis e PIN:** o PIN tem 6 números e fica só como hash PBKDF2 em `painel/usuarios.json`, que não vai para o GitHub. A primeira configuração só pode ser feita no próprio computador. Cinco erros bloqueiam o perfil por 5 minutos. A sessão fica em cookie HttpOnly e SameSite=Strict, e as ações exigem o cabeçalho X-Painel.
+- **Telas:**
+  - início com indicadores, ações rápidas, próximos prazos e fichas pendentes;
+  - prazos, com conferência só pela advogada;
+  - clientes e ficha: "Conferido" registra quem conferiu, só a advogada decide dado em conflito e a aba Documentos lista os arquivos da pasta;
+  - fotos para PDF, com câmera ou arquivos;
+  - atendimento: grava no navegador e transcreve pelo Whisper;
+  - pedir ao Claude (`claude -p` com a skill certa);
+  - novo cliente e honorários;
+  - importação do OneDrive em cinco passos;
+  - tarefas e instruções para usar no celular.
+- **Visual:** paleta e logomarca do cartão. Os ícones de aplicativo para o celular saem do monograma, com manifesto e service worker. O service worker não guarda dados de clientes no aparelho.
+- **Segurança no servidor:** pastas sigilosas não aparecem nem contam. Nenhum caminho sai da pasta Clientes, e nenhum botão apaga arquivo. Antes de alterar uma ficha, o painel guarda uma cópia em `_historico-ficha/`.
+
+Testado com dados fictícios, no navegador automatizado:
+- tela de entrada (computador e celular), início e ficha no tamanho de computador;
+- PIN errado recusado;
+- colaboradora barrada ao decidir;
+- conferência recusada quando a ficha mudou;
+- tentativa de sair da pasta do cliente e de abrir a pasta sigilosa, as duas recusadas.
+
+Corrigido no teste: a pasta sigilosa entrava na contagem de clientes.
+
+Falta:
+1. Testar as telas no tamanho de celular.
+2. Testar de ponta a ponta fotos, gravação e honorários.
+3. Conferir os comandos do Tailscale e se ele envia o cabeçalho X-Forwarded-For e o X-Forwarded-Proto `[VERIFICAR]`.
+4. Fazer o instalador criar o atalho do painel e iniciá-lo com o Windows.
+5. Fazer a skill `agenda-prazos` gravar também em `Clientes/_painel/prazos.csv`, que é o arquivo que o painel lê.
+
 ## Importação do OneDrive e ficha cadastral (2026-11-10)
 
 Preparado para rodar no computador dela, na conta dela. O usuário decidiu em 2026-11-10 que a varredura das pastas reais acontece lá, e não nesta conta. Skill `importacao-onedrive`, em cinco etapas com aprovação entre elas:
