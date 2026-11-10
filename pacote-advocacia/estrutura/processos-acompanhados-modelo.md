@@ -1,6 +1,6 @@
 # Processos acompanhados
 
-Lista dos processos que entram no levantamento de andamentos (`rotinas/levantamento-andamentos.md`). Fica na raiz da pasta `Clientes`, com o nome `processos-acompanhados.md`. Só a advogada ou os colaboradores, com o aval dela, incluem ou retiram processos.
+Lista dos processos que entram no levantamento de andamentos (`rotinas/levantamento-andamentos.md`). Fica na raiz da pasta `Clientes`, com o nome `processos-acompanhados.md`. Só a advogada ou as colaboradoras, com o aval dela, incluem ou retiram processos.
 
 Situação: `acompanhar` (entra no levantamento), `pausado` (fica fora por enquanto) ou `encerrado`.
 Processos em segredo de justiça não entram nesta lista.

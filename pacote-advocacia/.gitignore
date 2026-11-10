@@ -1,0 +1,6 @@
+# Gerados na instalação, específicos de cada computador
+escritorio.local.md
+instalacao/para-claude-ai/
+instalacao/ultima-instalacao.txt
+__pycache__/
+node_modules/

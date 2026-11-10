@@ -4,7 +4,9 @@ Siga na ordem. Cada etapa tem um critério de conclusão.
 
 ## 1. Preparação
 
-- [ ] Copiar a pasta `pacote-advocacia/` para a conta ou computador dela (ou clonar o repositório privado).
+- [ ] Copiar a pasta `pacote-advocacia/` para o computador dela e rodar `instalacao/INSTALAR.cmd` (ver `instalacao/LEIA-ME.md`).
+- [ ] Conferir o relatório `Escritorio-Claude/instalacao/ultima-instalacao.txt`: nenhuma linha "AVISO" sem explicação.
+- [ ] Abrir o Claude Code na pasta `Escritorio-Claude`, fazer login com a conta dela e aceitar a confiança na pasta.
 - [ ] Revisar o `CLAUDE.md` e ajustar as regras à prática do escritório.
 - [ ] **Critério:** o `CLAUDE.md` reflete as regras de sigilo, protocolo e verificação do escritório.
 

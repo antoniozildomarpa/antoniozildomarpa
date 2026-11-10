@@ -2,12 +2,18 @@
 
 Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão. Atualize-o a cada etapa concluída.
 
-Última atualização: 2026-11-09
+Última atualização: 2026-11-10
+
+## Pacote de instalação (2026-11-10)
+
+O pacote está pronto para ser instalado no computador da advogada, na conta Claude dela: dois cliques em `instalacao/INSTALAR.cmd` (guia em `instalacao/LEIA-ME.md`). O inventário do que veio da conta de origem e do que ficou de fora (geoprocessamento, uso pessoal, dados reais de clientes) está em `instalacao/O-QUE-FOI-PORTADO.md`.
+
+Testes feitos aqui, só com dados fictícios: os seis scripts de `scripts/` (PDF com OCR, conversão de Word, fotos para PDF com correção de rotação e brilho e limite de tamanho, transcrição pelo Whisper, cadastro por nomes de pastas com aprovação, lançamento de honorários); o hook de sigilo (sete casos, incluindo o Claude Code de verdade barrando a leitura); o instalador numa pasta falsa, duas vezes seguidas, sem duplicar configurações e preservando as que já existiam; o Claude Code enxergando as 12 skills e os 3 agentes do projeto. Não testados aqui: a instalação dos programas pelo winget e o instalador oficial do Claude Code (este computador já os tinha).
 
 ## Onde estamos
 
 - **Fase atual:** questionário respondido, salvo em `respostas/questionario.md`. É o original de outubro (blocos A a F, 23 perguntas), recuperado em 2026-11-09 de um .txt na Área de Trabalho do usuário, com as respostas dela. Das 23 perguntas, 21 estão respondidas; a 22 (segredo de justiça) e a 23 (dados que podem sair do computador) estão parciais. O bloco G (financeiro, perguntas 24 a 28) foi acrescentado e está pendente. Em 2026-11-10, o `CLAUDE.md`, as cinco skills, o script de pastas, as rotinas e o checklist foram revisados com base nas respostas (ver "Revisão de 2026-11-10"). Próximo passo: criar os modelos de documento sobre o papel timbrado.
-- **Principais respostas:** previdenciário (RPPS cerca de 100 processos, RGPS cerca de 50), família e sucessões (50), público (50), consumidor (15), ambiental (4). Trabalha no TJPA, cerca de 100 processos na 1ª instância e 15 na 2ª, principalmente pelo PJe e pelo INSS. Escritório individual com dois colaboradores, que também mexem em pastas e prazos. Os prazos são controlados em agenda física, e já houve perda e quase perda de prazo. As pastas estão por área e por cliente, hoje no OneDrive, com migração planejada para o Google Drive. Não tem modelos de peça nem sistema de gestão. Autorizou a leitura dos nomes de pastas e arquivos.
+- **Principais respostas:** previdenciário (RPPS cerca de 100 processos, RGPS cerca de 50), família e sucessões (50), público (50), consumidor (15), ambiental (4). Trabalha no TJPA, cerca de 100 processos na 1ª instância e 15 na 2ª, principalmente pelo PJe e pelo INSS. Escritório individual com duas colaboradoras, que também mexem em pastas e prazos. Os prazos são controlados em agenda física, e já houve perda e quase perda de prazo. As pastas estão por área e por cliente, hoje no OneDrive, com migração planejada para o Google Drive. Não tem modelos de peça nem sistema de gestão. Autorizou a leitura dos nomes de pastas e arquivos.
 - **Papel timbrado:** a advogada escolheu o modelo A, que está em `H:\Meu Drive\_advocacia\logomarca\modelos-papel-timbrado\modelo_timbrado_A.docx` (faixa azul texturizada com onda e filetes dourados). A inscrição foi confirmada como **OAB/PA 25.617** e já está corrigida na arte da 1ª página, no rodapé das páginas seguintes e na procuração de exemplo. Os modelos de documento (procuração, contrato de honorários, declaração de hipossuficiência, petição e requerimento) serão montados sobre esse papel em `modelos/`.
 - **Pacote inicial:** criado e commitado (commit `e333d19`), em rascunho. Não foi testado com caso real.
 - **Estrutura de pastas:** padrão novo `Clientes/{Área}/{Cliente}/{Caso}/`, seguindo a organização dela por área e por cliente (questão 8). Pastas existentes não são movidas sem aprovação; os nomes das áreas serão ajustados depois do mapeamento.
@@ -58,12 +64,15 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 - [ ] Para ligar o levantamento: escolher o canal de aviso, preencher `processos-acompanhados.md`, conferir os termos de uso do PJe/TJPA e do Meu INSS e ver com ela quais ações no PJe registram ciência de intimação.
 - [x] Canal de aviso: celular, com WhatsApp quando o canal estiver pronto (decisão de 2026-11-10).
 - [x] Skill `agenda-prazos`: todo prazo, audiência, perícia e ação necessária vai para a agenda "Prazos – Escritório" do Google Agenda, com `[CONFERIR]` e lembretes no celular (2026-11-10).
-- [ ] Criar na conta dela a agenda "Prazos – Escritório" e decidir se os colaboradores veem ou editam.
+- [ ] Criar na conta dela a agenda "Prazos – Escritório" e decidir se as colaboradoras veem ou editam.
+- [x] Pacote de instalação automática para o computador e a conta dela (2026-11-10).
+- [x] Skills novas da questão 20: cadastro de clientes, tratamento de fotos, ficha por atendimento, honorários, leitura econômica de documentos (2026-11-10). A do WhatsApp foi criada desligada.
+- [ ] Instalar no computador dela e seguir o `checklist-instalacao.md`.
 - [x] WhatsApp, decisões de 2026-11-10: número exclusivo do escritório; exportação de conversas não começa agora; transcrição pelo Whisper; as duas colaboradoras podem dar comandos; aviso de privacidade fica para depois.
 - [ ] WhatsApp: decidir o caminho D (WhatsApp Web do escritório no Chrome, lido pelo Claude em horários marcados), aceitando os limites descritos em `propostas/whatsapp.md`; conferir os termos do WhatsApp; escolher o computador e testar com dados fictícios.
 - [ ] Definir o e-mail do escritório (Gmail ou Outlook). O questionário original não perguntou, e a triagem depende disso.
 - [ ] Mapear os nomes das pastas atuais no OneDrive (autorizado) e ajustar os nomes das áreas.
-- [ ] Skills novas pedidas na questão 20: cadastro de clientes; tratamento de fotos e digitalizações para PDF legível no tamanho aceito pelo PJe e pelo INSS; documentos de praxe automáticos ao criar a pasta; ficha do cliente a partir da transcrição do atendimento; planilha de honorários a partir dos contratos.
+- [ ] Documentos de praxe automáticos ao criar a pasta (questão 20, item 3): a skill `minuta` já descreve o fluxo; faltam os modelos `.docx` de procuração, contrato e declaração sobre o papel A.
 - [ ] Protótipo do painel financeiro com dados fictícios, para teste em computador e celular.
 - [ ] Script de backup e sincronização na conta dela, com o passo a passo de instalação.
 - [ ] Cadastro automático de clientes, na conta dela, com revisão antes da importação.

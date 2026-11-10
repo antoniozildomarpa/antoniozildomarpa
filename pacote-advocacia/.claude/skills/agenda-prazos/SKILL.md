@@ -10,7 +10,7 @@ Objetivo: nenhum prazo fica só no papel. Hoje os prazos estão em agenda físic
 ## Onde lançar
 
 - Somente na agenda **"Prazos – Escritório"**, criada uma vez na conta Google da advogada. Nunca criar, alterar ou apagar eventos em outras agendas dela.
-- Compartilhamento com os dois colaboradores: `[DECIDIR]` com a advogada (ver ou editar).
+- Compartilhamento com as duas colaboradoras: `[DECIDIR]` com a advogada (ver ou editar).
 - A agenda física continua em uso até esta skill ser validada lado a lado por algumas semanas.
 
 ## O que vira evento

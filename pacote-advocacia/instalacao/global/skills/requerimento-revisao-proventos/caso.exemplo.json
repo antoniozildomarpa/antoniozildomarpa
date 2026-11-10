@@ -1,0 +1,47 @@
+{
+  "requerente": {
+    "nome": "SERVIDORA FICTÍCIA DE EXEMPLO",
+    "genero": "F",
+    "nacionalidade": "brasileira",
+    "estado_civil": "casada",
+    "cargo": "Professora Nível Médio B",
+    "matricula": "0000-0",
+    "rg": "0000000 PC/PA",
+    "cpf": "000.000.000-00",
+    "pis": "000.00000.00/0",
+    "residencia": "Tucuruí/PA"
+  },
+  "beneficio": {
+    "processo": "0000.00.00000P",
+    "portaria": "00/2025",
+    "data_portaria": "01/09/2025",
+    "dib": "2025-09-01",
+    "descricao": "aposentadoria voluntária (pedágio) de professora, com integralidade e paridade",
+    "parecer": "00/2025",
+    "fundamentacao": "art. 50, § 2º, I, da Lei Municipal nº 10.556/2021",
+    "integral": true
+  },
+  "planilha": {
+    "data": "19/08/2025",
+    "vencimento_base": 4000.00,
+    "total": 8000.00,
+    "parcelas": ["salário base", "Adicional por Tempo de Serviço", "Nível Superior (40%)", "PCCR Pós-Graduação (10%)"]
+  },
+  "gratificacao": {
+    "percentual": 0.20,
+    "no_holerite": true,
+    "na_base_contribuicao": false
+  },
+  "reajustes": [],
+  "cidade_data": "Tucuruí/PA",
+  "ano_requerimento": 2026,
+  "anexos": [
+    "Portaria nº {portaria}-IPASET;",
+    "Planilha de cálculo dos proventos de {planilha_data};",
+    "Parecer de Benefício nº {parecer};",
+    "Contracheques e fichas financeiras com a Gratificação de Ensino Especial;",
+    "Declaração de lotação em atendimento educacional especializado;",
+    "Memória de cálculo dos retroativos;",
+    "Documento de identificação."
+  ]
+}

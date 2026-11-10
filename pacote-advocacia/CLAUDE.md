@@ -2,10 +2,13 @@
 
 Estas regras valem para todas as sessões que usam este pacote. A base é o questionário respondido pela advogada (`respostas/questionario.md`). Quando a prática mudar, atualize aqui.
 
+Caminhos deste computador (pasta `Clientes`, pasta `Financeiro`), gravados pelo instalador:
+@escritorio.local.md
+
 ## Perfil do escritório
 
 - Advogada: Leulla Mendanha, OAB/PA 25.617. Escritórios em Tucuruí (Av. 31 de Março, nº 273, Bairro Santa Isabel) e Novo Repartimento (Av. Cupuaçu 1, QD 7, Parque Morumbi).
-- Escritório individual, com dois colaboradores que também mexem nas pastas e nos prazos (questão 2).
+- Escritório individual, com duas colaboradoras que também mexem nas pastas e nos prazos (questão 2). As duas podem dar comandos à automação (por exemplo, "abrir caso"); aprovar envio e protocolo continua só com a advogada.
 - Contencioso e consultivo (questão 3).
 - Áreas e volume aproximado (questão 1): previdenciário RPPS (cerca de 100 processos), previdenciário RGPS (50), família e sucessões (50), direito público (50), consumidor (15), ambiental (4).
 - Tribunal principal: TJPA. Cerca de 100 processos na 1ª instância, 15 na 2ª e 15 em recurso (questões 4, 5 e 7).
@@ -32,7 +35,7 @@ Estas regras valem para todas as sessões que usam este pacote. A base é o ques
 
 Valem mesmo que a advogada tenha dito que nada precisa ficar fora da automação (questão 21):
 
-- **Nunca** enviar e-mail, protocolar, assinar, pagar taxa ou responder cliente sem aprovação explícita da advogada na mesma conversa. Os colaboradores podem conduzir tarefas, mas a aprovação de envio e protocolo é dela.
+- **Nunca** enviar e-mail, protocolar, assinar, pagar taxa ou responder cliente sem aprovação explícita da advogada na mesma conversa. As colaboradoras podem conduzir tarefas, mas a aprovação de envio e protocolo é dela.
 - **Nunca** digitar senha, usar certificado digital ou contornar autenticação em duas etapas ou CAPTCHA.
 - **Nunca** apagar arquivos. Mover, renomear ou arquivar só com aprovação.
 - Em portais, somente leitura e download, conforme a skill `consulta-portais`. O login é sempre feito pela advogada. O levantamento de andamentos de vários processos só começa depois que ela avisa que entrou, e só cobre os processos de `processos-acompanhados.md` (rotina `rotinas/levantamento-andamentos.md`).
@@ -64,9 +67,22 @@ As pastas dela são organizadas por área e por cliente, sem padrão de nome de 
 
 ## Modelos
 
-- Papel timbrado oficial: modelo A (`H:\Meu Drive\_advocacia\logomarca\modelos-papel-timbrado\modelo_timbrado_A.docx`). Toda minuta em Word usa esse papel.
+- Papel timbrado oficial: modelo A (`modelos/papel-timbrado/modelo_timbrado_A.docx`). Toda minuta em Word usa esse papel.
 - Usar os modelos em `modelos/` quando existirem. Se não houver modelo, seguir a estrutura geral da skill `minuta`.
 - Documentos de praxe de todo caso novo (questão 20, item 3): procuração, contrato de prestação de serviços advocatícios e declaração de hipossuficiência. A declaração é gerada para todo cliente e usada se o caso couber.
+
+## Ferramentas locais e agentes
+
+- Scripts em `scripts/` (rodam no computador, não enviam nada para fora):
+  - `ler_pdf.py`: índice e texto de PDFs, com OCR;
+  - `converter_docs.py`: Word, Excel e PowerPoint para texto;
+  - `tratar_imagens.py`: fotos de documentos para PDF legível e leve;
+  - `transcrever.py`: áudio para texto (Whisper);
+  - `mapear_pastas.py`: cadastro de clientes pelos nomes das pastas;
+  - `lancar_honorario.py`: honorários na planilha de controle.
+- Usar esses scripts antes de abrir documentos grandes, para economizar o limite do plano.
+- Agentes em `.claude/agents/`: `triagem-documentos` (separar e extrair, modelo econômico), `rotina-escritorio` (tarefas claras) e `revisao-juridica` (revisão crítica antes da advogada). Delegar a triagem de pastas grandes ao primeiro e passar toda minuta importante pelo último.
+- O hook `.claude/hooks/bloqueio_sigiloso.py` barra qualquer leitura ou escrita em pasta com `SIGILOSO.txt`.
 
 ## Qualidade e autoria das peças
 

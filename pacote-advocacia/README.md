@@ -15,6 +15,17 @@ Conjunto de skills, instruções, modelos e roteiros de rotinas para apoiar o tr
 | `.claude/skills/minuta/` | Redige a minuta para revisão, com citações marcadas |
 | `.claude/skills/consulta-portais/` | Consulta e download somente leitura em portais, com login feito pela advogada |
 | `.claude/skills/agenda-prazos/` | Lança prazos, audiências e ações na agenda "Prazos – Escritório" do Google Agenda |
+| `.claude/skills/leitura-documentos/` | Índice local de PDFs e documentos, para ler só o necessário |
+| `.claude/skills/tratamento-documentos/` | Fotos e digitalizações para PDF legível e leve |
+| `.claude/skills/cadastro-clientes/` | Cadastro por área a partir dos nomes das pastas, com aprovação |
+| `.claude/skills/ficha-atendimento/` | Ficha do cliente a partir da gravação do atendimento (Whisper) |
+| `.claude/skills/honorarios/` | Lança honorários dos contratos na planilha de controle |
+| `.claude/skills/whatsapp-escritorio/` | WhatsApp Web do escritório (desligada até a advogada ativar) |
+| `.claude/agents/` | Agentes `triagem-documentos`, `rotina-escritorio` e `revisao-juridica` |
+| `.claude/hooks/bloqueio_sigiloso.py` | Barra leitura e escrita em pastas com `SIGILOSO.txt` |
+| `.claude/settings.json` | Permissões do projeto e registro do hook de sigilo |
+| `scripts/` | Scripts locais: PDF, documentos, fotos, áudio, cadastro, honorários |
+| `instalacao/` | Instalador automático (`INSTALAR.cmd`), configuração global, memórias iniciais e guia (`LEIA-ME.md`) |
 | `propostas/whatsapp.md` | Proposta para ligar o WhatsApp do escritório à automação (aguarda decisão) |
 | `estrutura/criar_pastas.py` | Cria a árvore padrão por área, cliente e caso, com as fichas |
 | `estrutura/processos-acompanhados-modelo.md` | Modelo da lista de processos do levantamento de andamentos |
@@ -34,4 +45,4 @@ Conjunto de skills, instruções, modelos e roteiros de rotinas para apoiar o tr
 
 ## Como usar
 
-Leia o `checklist-instalacao.md` antes do primeiro uso.
+No computador dela: dois cliques em `instalacao/INSTALAR.cmd` (detalhes em `instalacao/LEIA-ME.md`). Depois, seguir o `checklist-instalacao.md`. O que veio da conta de origem e o que ficou de fora está em `instalacao/O-QUE-FOI-PORTADO.md`.

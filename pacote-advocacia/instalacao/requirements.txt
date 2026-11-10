@@ -1,0 +1,14 @@
+# Bibliotecas Python dos scripts do pacote (tudo roda no computador)
+pymupdf
+rapidocr_onnxruntime
+markitdown[docx,xlsx,pptx]
+pillow
+pillow-heif
+img2pdf
+openpyxl
+python-docx
+pywin32
+pyyaml
+# Transcrição de áudio (Whisper). O av 16+ é incompatível com o faster-whisper 1.2 (testado em 2026-11-10).
+faster-whisper
+av>=11,<16

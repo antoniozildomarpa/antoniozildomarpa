@@ -16,7 +16,7 @@ Objetivo: produzir um rascunho completo, bem estruturado e fácil de revisar. A 
 
 ## Papel timbrado
 
-- Toda minuta em Word parte do papel oficial, modelo A: `H:\Meu Drive\_advocacia\logomarca\modelos-papel-timbrado\modelo_timbrado_A.docx`. Abra uma cópia, apague o texto de exemplo e escreva sobre ela, mantendo cabeçalho, rodapé e estilos.
+- Toda minuta em Word parte do papel oficial, modelo A: `modelos/papel-timbrado/modelo_timbrado_A.docx`. Abra uma cópia, apague o texto de exemplo e escreva sobre ela, mantendo cabeçalho, rodapé e estilos.
 - Corpo em Times New Roman 12, justificado, espaçamento 1,5, como no modelo.
 - Dados fixos da advogada, que podem ser preenchidos sem marcação: Leulla Mendanha, OAB/PA 25.617, endereços de Tucuruí e Novo Repartimento conforme o `CLAUDE.md`.
 
