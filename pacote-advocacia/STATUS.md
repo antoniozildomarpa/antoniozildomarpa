@@ -59,7 +59,8 @@ Este arquivo é o ponto de partida para retomar o trabalho, em qualquer sessão.
 - [x] Canal de aviso: celular, com WhatsApp quando o canal estiver pronto (decisão de 2026-11-10).
 - [x] Skill `agenda-prazos`: todo prazo, audiência, perícia e ação necessária vai para a agenda "Prazos – Escritório" do Google Agenda, com `[CONFERIR]` e lembretes no celular (2026-11-10).
 - [ ] Criar na conta dela a agenda "Prazos – Escritório" e decidir se os colaboradores veem ou editam.
-- [ ] WhatsApp: decisões pendentes em `propostas/whatsapp.md` (número exclusivo do escritório, caminho A agora e caminho B com a API oficial, transcrição, aviso de privacidade, orçamento).
+- [x] WhatsApp, decisões de 2026-11-10: número exclusivo do escritório; exportação de conversas não começa agora; transcrição pelo Whisper; as duas colaboradoras podem dar comandos; aviso de privacidade fica para depois.
+- [ ] WhatsApp: decidir o caminho D (WhatsApp Web do escritório no Chrome, lido pelo Claude em horários marcados), aceitando os limites descritos em `propostas/whatsapp.md`; conferir os termos do WhatsApp; escolher o computador e testar com dados fictícios.
 - [ ] Definir o e-mail do escritório (Gmail ou Outlook). O questionário original não perguntou, e a triagem depende disso.
 - [ ] Mapear os nomes das pastas atuais no OneDrive (autorizado) e ajustar os nomes das áreas.
 - [ ] Skills novas pedidas na questão 20: cadastro de clientes; tratamento de fotos e digitalizações para PDF legível no tamanho aceito pelo PJe e pelo INSS; documentos de praxe automáticos ao criar a pasta; ficha do cliente a partir da transcrição do atendimento; planilha de honorários a partir dos contratos.
