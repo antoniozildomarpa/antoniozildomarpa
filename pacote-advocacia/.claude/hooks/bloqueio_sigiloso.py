@@ -66,11 +66,28 @@ def marcada_abaixo(p):
     return None
 
 
-def caminhos_no_comando(cmd):
+RECURSIVO = re.compile(
+    r"(^|[\s;|&(])(rg|find|tree|robocopy|xcopy|forfiles|where)(\s|$)"
+    r"|\s-(r|R|rn|rl|ri|Recurse)\b|\s--recursive\b|\s/s\b|os\.walk|rglob|glob\.glob",
+    re.I)
+CORINGA = re.compile(r"[*?\[]")
+
+
+def caminhos_no_comando(cmd, cwd):
+    """Cada palavra (ou trecho entre aspas) que corresponde a algo existente, relativo à pasta atual."""
     achados = re.findall(r'"([^"]+)"|\'([^\']+)\'', cmd)
-    trechos = [a or b for a, b in achados]
-    trechos += [t.strip("\"'") for t in cmd.split() if ("\\" in t or "/" in t or t in (".", "..")) and not t.startswith("-")]
-    return trechos
+    trechos = [a or b for a, b in achados] + re.split(r"[\s;|&()<>=,]+", cmd)
+    saida = []
+    for t in trechos:
+        t = t.strip("\"'`")
+        if not t or t.startswith("-"):
+            continue
+        if CORINGA.search(t):  # confere a pasta antes do coringa
+            t = re.split(r"[*?\[]", t, 1)[0] or "."
+            t = t if t.endswith(("/", "\\")) or t == "." else os.path.dirname(t) or "."
+        if os.path.exists(resolver(t, cwd)):
+            saida.append(t)
+    return saida
 
 
 def decidir(dados):
@@ -79,7 +96,13 @@ def decidir(dados):
     cwd = dados.get("cwd") or os.getcwd()
 
     if ferramenta in ("Bash", "PowerShell"):
-        alvos, descer = caminhos_no_comando(entrada.get("command", "")), True
+        cmd = entrada.get("command", "")
+        alvos, descer = caminhos_no_comando(cmd, cwd), True
+        pasta = marcada_acima(resolver(cwd, cwd))
+        if pasta:
+            return f"A sessão está dentro de uma pasta em segredo de justiça ({pasta}). Comandos ficam bloqueados aqui."
+        if RECURSIVO.search(cmd):
+            alvos.append(cwd)  # comando recursivo sem caminho varre a pasta atual
     else:
         alvos = [entrada[k] for k in ("file_path", "path", "notebook_path") if entrada.get(k)]
         descer = ferramenta in RECURSIVAS
